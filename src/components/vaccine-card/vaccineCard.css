@@ -1,0 +1,6 @@
+.custom-ripple {
+    --ripple-color: transparent;
+    --background-hover: transparent;
+    --padding-start: 0 !important;
+    --padding-end: 0 !important;
+}

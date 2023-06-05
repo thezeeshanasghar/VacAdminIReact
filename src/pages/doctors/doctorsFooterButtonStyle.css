@@ -1,0 +1,17 @@
+.custom-buttons-footer{
+    display: flex;
+    height: 4rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+}
+
+.custom-text-sizing {
+    font-weight: 500;
+}
+
+.custom-footer-icon {
+    font-size: 25px;
+}
+

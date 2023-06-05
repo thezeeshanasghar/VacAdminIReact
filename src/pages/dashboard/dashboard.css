@@ -1,0 +1,21 @@
+.dashboard-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    /* height: 30vh; */
+    border-radius: 10px;
+  }
+  
+  .custom-header-style {
+    padding: 16px;
+  }
+  .custom-header-style > * {
+    font-weight: 500;
+    color: #fff;
+  }
+  

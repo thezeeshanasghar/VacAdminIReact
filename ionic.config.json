@@ -1,0 +1,7 @@
+{
+  "name": "MyVaccine",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
