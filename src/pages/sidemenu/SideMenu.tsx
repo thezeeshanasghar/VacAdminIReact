@@ -24,6 +24,7 @@ import {
   mail,
   colorFilter,
   powerSharp,
+  time,
 } from "ionicons/icons";
 import "./SideMenu.css";
 import logo from "../../assets/dashboard/vaccine-logo.png";
@@ -33,6 +34,7 @@ const SideMenu: React.FC = () => {
     { name: "Vaccines", to: "/members/vaccine", icon: colorFilter },
     { name: "Doctors", to: "/members/doctor/approved", icon: medkit },
     { name: "Patients", to: "/members/patient", icon: man },
+    { name: "Schedule", to: "/members/schedule", icon: time },
   ];
   return (
     <>
