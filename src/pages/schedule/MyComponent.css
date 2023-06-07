@@ -1,0 +1,10 @@
+.date-picker-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .calendar-icon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+  
