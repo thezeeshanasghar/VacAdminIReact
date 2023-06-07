@@ -16,7 +16,13 @@ import {
 } from "@ionic/react";
 
 import Routes from "../../routes/Routes";
-import { home, medkit, man, colorFilter, powerSharp   time,
+import {
+  home,
+  medkit,
+  man,
+  colorFilter,
+  powerSharp,
+  time,
 } from "ionicons/icons";
 import "./SideMenu.css";
 import logo from "../../assets/dashboard/vaccine-logo.png";
