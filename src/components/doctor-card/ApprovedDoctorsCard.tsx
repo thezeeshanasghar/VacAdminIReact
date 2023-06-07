@@ -139,12 +139,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
           <p>Email: {Email}</p>
           <p>Number: {MobileNumber}</p>
           <p>PMDC No: {PMDC}</p>
-          <IonButton
-            color="tertiary"
-            fill="outline"
-            size="small"
-            //   ng-reflect-router-link='/members/doctor/1/permissions'
-          >
+          <IonButton color="tertiary" fill="outline" size="small">
             <IonIcon
               icon={fingerPrint}
               role="img"
@@ -158,7 +153,6 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
             fill="outline"
             size="small"
             disabled
-            //   ng-reflect-router-link='/members/doctor/1/permissions'
             aria-disabled="true"
           >
             <IonIcon icon={body} role="img" aria-label="body"></IonIcon>{" "}
