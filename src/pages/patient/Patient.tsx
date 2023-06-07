@@ -14,7 +14,7 @@ import {
   IonText,
   IonItemDivider,
 } from "@ionic/react";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderButtons from "../../components/HeaderButtons";
 import axios from "axios";
 interface IPatientProps {
@@ -54,8 +54,8 @@ const Patient: React.FC = () => {
   const [options, setOptions] = useState<IonSelectOption[]>([]);
 
   useEffect(() => {
-    fetch('https://myapi.fernflowers.com/api/Doctor')
-    .then((response) => response.json())
+    fetch("https://myapi.fernflowers.com/api/Doctor/approved/true")
+      .then((response) => response.json())
       .then((data) => setOptions(data))
       .catch((error) => console.log(error));
   }, []);
@@ -100,27 +100,23 @@ const Patient: React.FC = () => {
       <IonContent className="ion-padding">
         <form onSubmit={handleSubmit}>
           <IonItem>
-        
             <IonSelect
               label="Doctor Name"
-              value={doctorName}//@ts-ignore
+              value={doctorName} //@ts-ignore
               onIonChange={(e) => setdoctorName(e.detail.value)}
               labelPlacement="floating"
             >
-             
-      {options.map((option) => (
-        <IonSelectOption key={option.Id} value={option.Name}>
-          {option.Name}
-        </IonSelectOption>
-      ))}
- 
+              {options.map((option) => (
+                <IonSelectOption key={option.Id} value={option.Name}>
+                  {option.Name}
+                </IonSelectOption>
+              ))}
             </IonSelect>
-          
           </IonItem>
           <IonItem>
             <IonInput
               label="Patient Name"
-              value={paientName}//@ts-ignore
+              value={paientName} //@ts-ignore
               onIonChange={(e) => setpaientName(e.detail.value)}
               labelPlacement="floating"
             ></IonInput>

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  IonButton,
   IonContent,
   IonFooter,
   IonHeader,
@@ -9,6 +8,7 @@ import {
   IonItem,
   IonList,
   IonMenu,
+  IonMenuToggle,
   IonPage,
   IonSplitPane,
   IonTitle,
@@ -16,18 +16,12 @@ import {
 } from "@ionic/react";
 
 import Routes from "../../routes/Routes";
-import {
-  home,
-  aperture,
-  medkit,
-  man,
-  mail,
-  colorFilter,
-  powerSharp,
-} from "ionicons/icons";
+import { home, medkit, man, colorFilter, powerSharp } from "ionicons/icons";
 import "./SideMenu.css";
 import logo from "../../assets/dashboard/vaccine-logo.png";
+import { useLocation } from "react-router";
 const SideMenu: React.FC = () => {
+  const location = useLocation();
   const routes = [
     { name: "Dashboard", to: "/members/dashboard", icon: home },
     { name: "Vaccines", to: "/members/vaccine", icon: colorFilter },
@@ -38,7 +32,7 @@ const SideMenu: React.FC = () => {
     <>
       <IonPage>
         <IonSplitPane contentId="main-content">
-          <IonMenu contentId="main-content">
+          <IonMenu contentId="main-content" type="overlay">
             <IonHeader>
               <IonToolbar color="primary">
                 <IonTitle>Menu Content</IonTitle>
@@ -47,14 +41,18 @@ const SideMenu: React.FC = () => {
             <IonContent>
               <IonList>
                 {routes.map((item, index) => (
-                  <IonItem
-                    routerLink={item.to}
-                    routerDirection="forward"
-                    key={index}
-                  >
-                    <IonIcon icon={item.icon} slot="start" color="primary" />
-                    {item.name}
-                  </IonItem>
+                  <IonMenuToggle key={index} autoHide={false}>
+                    <IonItem
+                      className={
+                        location.pathname === item.to ? "selected" : ""
+                      }
+                      routerLink={item.to}
+                      routerDirection="forward"
+                    >
+                      <IonIcon icon={item.icon} slot="start" color="primary" />
+                      {item.name}
+                    </IonItem>
+                  </IonMenuToggle>
                 ))}
               </IonList>
               <IonItem lines="none" className="divide-list-into-two-pieces">

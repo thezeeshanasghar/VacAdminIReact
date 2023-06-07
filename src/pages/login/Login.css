@@ -4,7 +4,7 @@
     .wrapper {
       background: url('../../../src/assets/login-bg/vaccine-bg2.jpg') no-repeat center center fixed;
       background-size: cover;
-      transform: scale(1);
+      /* transform: scale(1); */
       height: 100%;
       display: flex;
       justify-content: center;
