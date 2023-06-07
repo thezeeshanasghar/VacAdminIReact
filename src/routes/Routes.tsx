@@ -15,6 +15,7 @@ import AddBrands from "../pages/vaccines/brands/AddBrands";
 import EditDose from "../pages/vaccines/doses/EditDose";
 import EditBrand from "../pages/vaccines/brands/EditBrands";
 import Test from "../pages/test/Test";
+import ScheduleList from "../pages/schedule/ScheduleLIst";
 
 const Routes: React.FC = () => {
   return (
@@ -23,6 +24,11 @@ const Routes: React.FC = () => {
         <Route exact path="/members/dashboard" component={Dashboard} />
         <Route exact path="/members/vaccine" component={VaccineCardList} />
         <Route exact path="/members/patient" component={Patient} />
+        <Route
+          exact
+          path="/members/schedule"
+          component={ScheduleList}
+        />
         <Route exact path="/members/vaccine/add" component={AddVaccine} />
         <Route
           exact

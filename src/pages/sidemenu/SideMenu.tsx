@@ -16,7 +16,8 @@ import {
 } from "@ionic/react";
 
 import Routes from "../../routes/Routes";
-import { home, medkit, man, colorFilter, powerSharp } from "ionicons/icons";
+import { home, medkit, man, colorFilter, powerSharp   time,
+} from "ionicons/icons";
 import "./SideMenu.css";
 import logo from "../../assets/dashboard/vaccine-logo.png";
 import { useLocation } from "react-router";
@@ -27,6 +28,7 @@ const SideMenu: React.FC = () => {
     { name: "Vaccines", to: "/members/vaccine", icon: colorFilter },
     { name: "Doctors", to: "/members/doctor/approved", icon: medkit },
     { name: "Patients", to: "/members/patient", icon: man },
+    { name: "Schedule", to: "/members/schedule", icon: time },
   ];
   return (
     <>
