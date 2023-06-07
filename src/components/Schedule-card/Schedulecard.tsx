@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
   IonDatetime,
   IonIcon,
-  IonInput,
   IonItem,
-  IonPopover,
-  IonText,
+  IonPopover
 } from "@ionic/react";
 import { format } from "date-fns";
 import { calendar } from "ionicons/icons";
-import { enUS } from "date-fns/locale";
+
+import AlertError from "../alerts/AlertError";
+import AlertSuccess from "../alerts/AlertSuccess";
 interface IDoseSchedule {
   Id: number;
   Name: string;
@@ -22,51 +18,46 @@ interface IDoseSchedule {
   VaccineId: number;
   DoseDate: string
   cardDate: string;
+  renderList: () => void;
 }
-
-const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate }) => {
+const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate, renderList}) => {
   const [error, setError] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string>("");
-  // const handleDateChange = (event: CustomEvent) => {
-  //   setSelectedDate(event.detail.value);
-  //   closePopover();
-  // };
-  // console.log('yeeeeeeeeeeeeeeeeeeeeeeessss card date', cardDate)
-  const handleDateChange = (event: CustomEvent<any>) => {
+  const [success, setSuccess] = useState(false);
+ 
+  const handleDateChange =async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
     console.log(selectedValue);
     const data=selectedValue.split('T');
     const data1=data[0];
     console.log(data1);
-
-      // setSelectedDate(selectedValue);
-      // setShowDatePicker(false);
-      // if (inputRef.current) {
-      //   inputRef.current.setFocus();
-      // }
       const dataTobeSent = {
-        
     date: selectedValue,
     doseId: Id
       };
       console.log(dataTobeSent)
-      fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_single_updateDate`, {
+      try {
+        const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_single_updateDate`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataTobeSent),
-       
       })
-        .then((response) => {
-          // if (response.status === 204) renderList();
-        })
-        .catch((err) => {
-          setError(true);
-        });
+      if (response.ok) {
+        console.log(response.ok)
+        setSuccess(true);
+        renderList();
+      } else if (!response.ok) {
+        setError(true);
+      }
+      }catch (error) {
+        console.error(error);
+        setError(true);
+      }
   };
-  
+
   const openPopover = () => {
     setShowPopover(true);
   };
@@ -74,9 +65,19 @@ const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate })
   const closePopover = () => {
     setShowPopover(false);
   };
-  // console.log(selectedDate)
+
   return (
     <>
+    <AlertSuccess
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Selected dose date updated successfully"
+      />
+      <AlertError
+        isOpen={error}
+        setOpen={setError}
+        message="An Error occcured. Plz try again."
+      />
       <IonItem>
         {Name}
         </IonItem>
@@ -99,9 +100,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate })
             ></IonDatetime>
           </IonPopover>
         </IonItem>
-      
     </>
   );
 };
-
 export default Schedulecard;

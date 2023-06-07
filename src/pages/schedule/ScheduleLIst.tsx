@@ -14,6 +14,8 @@ import Schedulecard from "../../components/Schedule-card/Schedulecard";
 import { groupBy } from "lodash";
 import { calendar } from "ionicons/icons";
 import { format } from "date-fns";
+import AlertSuccess from "../../components/alerts/AlertSuccess";
+import AlertError from "../../components/alerts/AlertError";
 
 interface IDoseSchedule {
   Id: number;
@@ -38,19 +40,22 @@ const ScheduleList: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
-
+  const [renderList, setRenderList] = useState(false);
   // const [error, setError] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
+  const [success, setSuccess] = useState(false);
   // const [selectedDate, setSelectedDate] = useState<string>("");
   const handleIconClick = () => {
     setShowDatePicker(true);
   };
  
-
+  const forceRender = () => {
+    fetchDoseData();
+  };
   useEffect(() => {
-    fetchVaccineData();
+    fetchDoseData();
   }, [location]);
-  const fetchVaccineData = async () => {
+  const fetchDoseData =  () => {
     // setShowLoading(true);/
     fetch(`http://localhost:5041/doseschedule_date`)
       .then((response) => response.json())
@@ -58,7 +63,7 @@ const ScheduleList: React.FC = () => {
         setData(data);
       });
   };
-  const handleDateChange = (event: CustomEvent,key: string ) => {
+  const handleDateChange =async (event: CustomEvent,key: string ) => {
     console.log(setInputValue(event.detail.value));
     console.log(selectedDate);
     setSelectedDate(event.detail.value);
@@ -80,8 +85,10 @@ const ScheduleList: React.FC = () => {
       value:data2,
     }
   ];
+
     console.log("object item date : ", dataTobeSent );
-    fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_bulk_updateDate/${data3}`,
+    try{
+      const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_bulk_updateDate/${data3}`,
       {
         method: "PATCH",
         headers: {
@@ -90,12 +97,17 @@ const ScheduleList: React.FC = () => {
         body: JSON.stringify(dataTobeSent),
       }
     )
-      .then((response) => {
-        // if (response.status === 204) renderList();
-      })
-      .catch((err) => {
-        setError(true);
-      });
+    if (response.ok) {
+      console.log(response.ok)
+      setSuccess(true);
+      //  renderList();
+    } else if (!response.ok) {
+      setError(true);
+    }
+    }catch (error) {
+      console.error(error);
+      setError(true);
+    }
     // UpdateExpiryDateOfDoctor(event.detail.value);
   };
   useEffect(() => {
@@ -123,6 +135,17 @@ const ScheduleList: React.FC = () => {
     setShowPopover(false);
   };
   return (
+    <>
+    <AlertSuccess
+    isOpen={success}
+    setOpen={setSuccess}
+    message="Selected dose date updated successfully"
+  />
+  <AlertError
+    isOpen={error}
+    setOpen={setError}
+    message="An Error occcured. Plz try again."
+  />
     <IonPage>
        <HeaderButtons
           pageName="Dose Schedule"
@@ -180,6 +203,7 @@ const ScheduleList: React.FC = () => {
                         VaccineId={item.VaccineId}
                         DoseDate={item.DoseDate}
                         cardDate={ourdate}
+                        renderList={forceRender}
                       />
                     </IonItem>
                   ))}
@@ -191,7 +215,7 @@ const ScheduleList: React.FC = () => {
           
          </IonContent>
          </IonPage>
-
+         </>
   );
 };
 export default ScheduleList;
