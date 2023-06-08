@@ -49,7 +49,7 @@ const ScheduleList1: React.FC = () => {
 
   const fetchDoseData = async () => {
     try {
-      const response = await fetch('http://localhost:5041/api/AdminDoseSchedule');
+      const response = await fetch('https://myapi.fernflowers.com/api/AdminDoseSchedule');
       if (response.ok) {
         const data = await response.json();
 
@@ -109,7 +109,7 @@ const ScheduleList1: React.FC = () => {
 
     console.log("object item date : ", dataTobeSent );
     try{
-      const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_bulk_updateDate/${value}`,
+      const response = await fetch(`https://myapi.fernflowers.com/api/AdminDoseSchedule/Admin_bulk_updateDate/${value}`,
       {
         method: "PATCH",
         headers: {

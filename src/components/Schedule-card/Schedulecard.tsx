@@ -38,7 +38,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate, r
       };
       console.log(dataTobeSent)
       try {
-        const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_single_updateDate`, {
+        const response = await fetch(`https://myapi.fernflowers.com/api/AdminDoseSchedule/Admin_single_updateDate`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
