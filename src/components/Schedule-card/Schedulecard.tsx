@@ -49,12 +49,14 @@ const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate, r
         console.log(response.ok)
         setSuccess(true);
         renderList();
+        setShowPopover(false);
       } else if (!response.ok) {
         setError(true);
       }
       }catch (error) {
         console.error(error);
         setError(true);
+        setShowPopover(false);
       }
   };
 

@@ -86,7 +86,7 @@ const ScheduleList1: React.FC = () => {
     console.log(value)
     // console.log(setInputValue(event.detail.value));
     
-    console.log(selectedDate);
+    // console.log(selectedDate);
     // setSelectedDate(event.detail.value);
     closePopover();
     // const previousDate = objectItem.key; // Get the previous date from the objectItem
@@ -160,11 +160,8 @@ const ScheduleList1: React.FC = () => {
      
     <IonContent className="ion-padding">
       {isLoading ? (
-         <LoadingSpinner
-         isOpen={showLoading}
-         setOpen={setShowLoading}
-         time={5000}
-       />
+        <p>Loading...</p>
+      
       ) : groupedData.length === 0 ? (
         <p>No data available</p>
       ) : (
