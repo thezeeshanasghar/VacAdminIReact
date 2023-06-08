@@ -37,6 +37,12 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [success, setSuccess] = useState(false);
 
+  function handelonmouseover(inputValue: string){
+    const data1=inputValue.split('T');
+    const data2=data1[0];
+    console.log(data2)
+    setSelectedDate(data2)
+   }
   const handleDateChange = async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
     console.log(selectedValue);
@@ -107,6 +113,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                 color="primary"
                 onClick={() => setShowPopover(true)}
                 icon={calendar}
+                onMouseOver={(e) => handelonmouseover(DoseDate)}
               />
               <input
                 style={{ border: "none" }}
@@ -121,9 +128,10 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
       <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
         <IonDatetime
           placeholder="Select Date"
-          value={DoseDate|| undefined}
+          value={selectedDate || undefined}
           onIonChange={handleDateChange}
         ></IonDatetime>
+       
       </IonPopover>
     </>
   );

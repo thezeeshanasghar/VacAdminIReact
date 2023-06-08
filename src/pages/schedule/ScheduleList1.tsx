@@ -7,6 +7,7 @@ import AlertError from '../../components/alerts/AlertError';
 import AlertSuccess from '../../components/alerts/AlertSuccess';
 import { calendar } from 'ionicons/icons';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner';
+import { format } from 'date-fns';
 
 interface IDoseSchedule {
   Id: number;
@@ -81,6 +82,7 @@ const ScheduleList1: React.FC = () => {
     const data2=data1[0];
     console.log(data2)
     setValue(data2)
+    setSelectedDate(data2)
    }
   const handleDateChange =async (event: CustomEvent,key: string,inputValue: string ) => {
     console.log(value)
@@ -109,6 +111,7 @@ const ScheduleList1: React.FC = () => {
 
     console.log("object item date : ", dataTobeSent );
     try{
+      setShowLoading(true);
       const response = await fetch(`https://myapi.fernflowers.com/api/AdminDoseSchedule/Admin_bulk_updateDate/${value}`,
       {
         method: "PATCH",
@@ -122,12 +125,15 @@ const ScheduleList1: React.FC = () => {
       console.log(response.ok)
       setSuccess(true);
       setRenderList(true);
+      setShowLoading(false);
     } else if (!response.ok) {
       setError(true);
+      setShowLoading(false);
     }
     }catch (error) {
       console.error(error);
       setError(true);
+      setShowLoading(false);
     }
     // UpdateExpiryDateOfDoctor(event.detail.value);
   };
@@ -141,6 +147,11 @@ const ScheduleList1: React.FC = () => {
 
   return (
     <>
+       <LoadingSpinner
+        isOpen={showLoading}
+        setOpen={setShowLoading}
+        time={5000}
+      />
     <AlertSuccess
     isOpen={success}
     setOpen={setSuccess}
@@ -159,12 +170,14 @@ const ScheduleList1: React.FC = () => {
         />
      
     <IonContent className="ion-padding">
-      {isLoading ? (
-        <p>Loading...</p>
+ 
+      {
+      // isLoading ? (
+      //   <p>Loading...</p>
       
-      ) : groupedData.length === 0 ? (
-        <p>No data available</p>
-      ) : (
+      // ) : groupedData.length === 0 ? (
+      //   <p>No data available</p>
+      // ) : (
         groupedData.map((group) => (
           <React.Fragment key={group.key}>
             {/* <h3>{group.key}</h3> */}
@@ -188,19 +201,20 @@ const ScheduleList1: React.FC = () => {
                           style={{ border: "none" }}
                           type="date"
                           readOnly
-                          value={group.key}
+                          value={format(new Date(group.key), "yyyy-MM-dd")}
                          
                         />
                         <IonPopover
                           isOpen={showPopover}
                           onDidDismiss={closePopover}
                         >
-                          <IonDatetime
-                            // displayFormat="MMM DD, YYYY"
-                            placeholder="Select Date"
-                            value={group.key|| undefined}
-                            onIonChange={(e) => handleDateChange(e, group.key,inputValue)}
-                          ></IonDatetime>
+                         <IonDatetime
+  // displayFormat="MMM DD, YYYY"
+  placeholder="Select Date"
+  value={selectedDate || undefined}
+  onIonChange={(e) => handleDateChange(e, group.key, inputValue)}
+></IonDatetime>
+
                         </IonPopover>
                       </IonItem>
                     </IonLabel>
@@ -222,7 +236,8 @@ const ScheduleList1: React.FC = () => {
             </IonCard>
           </React.Fragment>
         ))
-      )}
+      // )
+    }
     </IonContent>
     </IonPage>
     </>
