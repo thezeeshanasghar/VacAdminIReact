@@ -78,28 +78,28 @@ const Schedulecard: React.FC<IDoseSchedule> = ({ Name, DoseDate ,Id, cardDate, r
         setOpen={setError}
         message="An Error occcured. Plz try again."
       />
-      <IonItem>
+        <IonItem>
         {Name}
         </IonItem>
-        <IonItem slot="end" lines="none"  style={{ padding: 0 }}>
-          <IonItem>
-            <IonIcon color="primary" onClick={() => setShowPopover(true)} icon={calendar} />
-            <input
-            style={{border:"none"}}
-              type="date"
-              readOnly
-              value={format(new Date(DoseDate), "yyyy-MM-dd")}
-            />
-          </IonItem>
-          <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
-            <IonDatetime
-              // displayFormat="MMM DD, YYYY"
-              placeholder="Select Date"
-              value={selectedDate || undefined}
-              onIonChange={handleDateChange}
-            ></IonDatetime>
-          </IonPopover>
-        </IonItem>
+      <IonItem slot="end" lines="none" style={{ padding: 0 }}>
+  <IonItem>
+    <IonIcon color="primary" onClick={() => setShowPopover(true)} icon={calendar} />
+    <input
+      style={{ border: "none" }}
+      type="date"
+      readOnly
+      value={DoseDate ? format(new Date(DoseDate), "yyyy-MM-dd") : ""}
+    />
+  </IonItem>
+  <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
+    <IonDatetime
+      placeholder="Select Date"
+      value={selectedDate || undefined}
+      onIonChange={handleDateChange}
+    ></IonDatetime>
+  </IonPopover>
+</IonItem>
+
     </>
   );
 };

@@ -18,6 +18,7 @@ import AlertSuccess from "../../components/alerts/AlertSuccess";
 import AlertError from "../../components/alerts/AlertError";
 
 interface IDoseSchedule {
+  Date: string | number | Date;
   Id: number;
   Name: string;
   MinAge: number;
@@ -41,9 +42,11 @@ const ScheduleList: React.FC = () => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const [renderList, setRenderList] = useState(false);
-  // const [error, setError] = useState(false);
+  
   const [showPopover, setShowPopover] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [value, setValue] = useState('');
+
   // const [selectedDate, setSelectedDate] = useState<string>("");
   const handleIconClick = () => {
     setShowDatePicker(true);
@@ -52,19 +55,28 @@ const ScheduleList: React.FC = () => {
   const forceRender = () => {
     fetchDoseData();
   };
-  useEffect(() => {
-    fetchDoseData();
-  }, [location]);
+  // useEffect(() => {
+    
+  // }, [location]);
   const fetchDoseData =  () => {
     // setShowLoading(true);/
-    fetch(`http://localhost:5041/doseschedule_date`)
+    fetch(`http://localhost:5041/api/AdminDoseSchedule`)
       .then((response) => response.json())
       .then((data) => {
+      
         setData(data);
       });
   };
-  const handleDateChange =async (event: CustomEvent,key: string ) => {
+  function handelonmouseover(inputValue: string){
+    const data1=inputValue.split('T');
+    const data2=data1[0];
+    console.log(data2)
+    setValue(data2)
+   }
+  const handleDateChange =async (event: CustomEvent,key: string,inputValue: string ) => {
+    console.log(value)
     console.log(setInputValue(event.detail.value));
+    
     console.log(selectedDate);
     setSelectedDate(event.detail.value);
     closePopover();
@@ -81,7 +93,7 @@ const ScheduleList: React.FC = () => {
       {
       path:"Date",
       op:"replace",
-      from:data3,
+      from:value,
       value:data2,
     }
   ];
@@ -110,10 +122,12 @@ const ScheduleList: React.FC = () => {
     }
     // UpdateExpiryDateOfDoctor(event.detail.value);
   };
+  console.log(data)
   useEffect(() => {
-    const savedValue = localStorage.getItem('inputValue');
+    fetchDoseData();
+    console.log(data)
     const groupedData = groupBy(data, (item) => {
-      const date = new Date(item.DoseDate);
+      const date = new Date(item.Date);
       return date.toISOString().split("T")[0];
     });
     console.log("groupedData", groupedData);
@@ -130,6 +144,7 @@ const ScheduleList: React.FC = () => {
   const openPopover = () => {
     setShowPopover(true);
   };
+ 
 
   const closePopover = () => {
     setShowPopover(false);
@@ -149,15 +164,16 @@ const ScheduleList: React.FC = () => {
     <IonPage>
        <HeaderButtons
           pageName="Dose Schedule"
-          Showbutton={true}
+          Showbutton={false}
           url="/members/schedule"
         />
       <IonContent className="ion-padding">
         {data &&
           groupedData.map((objectItem: any, index: number) => {
-            const ourdate = objectItem.value.DoseDate;
-            // console.log(ourdate)
+            const ourdate = objectItem.value.Date;
+             console.log(ourdate)
             const array = objectItem.value;
+         
             return (
               <React.Fragment key={index}>
                 <IonCard>
@@ -172,12 +188,14 @@ const ScheduleList: React.FC = () => {
                         color="primary"
                           onClick={() => setShowPopover(true)}
                           icon={calendar}
+                          onMouseOver={(e) => handelonmouseover(inputValue)}
                         />
                         <input
                           style={{ border: "none" }}
                           type="date"
                           readOnly
                           value={objectItem.key}
+                         
                         />
                         <IonPopover
                           isOpen={showPopover}
@@ -187,7 +205,7 @@ const ScheduleList: React.FC = () => {
                             // displayFormat="MMM DD, YYYY"
                             placeholder="Select Date"
                             value={inputValue|| undefined}
-                            onIonChange={(e) => handleDateChange(e, objectItem.key)}
+                            onIonChange={(e) => handleDateChange(e, objectItem.key,inputValue)}
                           ></IonDatetime>
                         </IonPopover>
                       </IonItem>

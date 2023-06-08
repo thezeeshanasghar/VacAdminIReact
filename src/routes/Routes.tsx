@@ -16,6 +16,7 @@ import EditDose from "../pages/vaccines/doses/EditDose";
 import EditBrand from "../pages/vaccines/brands/EditBrands";
 import Test from "../pages/test/Test";
 import ScheduleList from "../pages/schedule/ScheduleLIst";
+import ScheduleList1 from "../pages/schedule/ScheduleList1";
 
 const Routes: React.FC = () => {
   return (
@@ -27,7 +28,7 @@ const Routes: React.FC = () => {
         <Route
           exact
           path="/members/schedule"
-          component={ScheduleList}
+          component={ScheduleList1}
         />
         <Route exact path="/members/vaccine/add" component={AddVaccine} />
         <Route
