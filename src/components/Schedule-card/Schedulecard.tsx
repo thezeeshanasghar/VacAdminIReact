@@ -114,12 +114,12 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                 icon={calendar}
                 onMouseOver={(e) => handelonmouseover(DoseDate)}
               />
-              <input
+              {/* <input
                 style={{ border: "none" }}
                 type="date"
                 readOnly
                 value={DoseDate ? format(new Date(DoseDate), "yyyy-MM-dd") : ""}
-              />
+              /> */}
             </>
           </IonCol>
         </IonRow>

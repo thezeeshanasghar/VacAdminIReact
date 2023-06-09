@@ -178,12 +178,12 @@ const groupArray = keys.map((key) => ({
     <IonContent className="ion-padding">
  
       {
-      // isLoading ? (
-      //   <p>Loading...</p>
+      isLoading ? (
+        <p>Loading...</p>
       
-      // ) : groupedData.length === 0 ? (
-      //   <p>No data available</p>
-      // ) : (
+      ) : groupedData.length === 0 ? (
+        <p>No data available</p>
+      ) : (
         groupedData.map((group) => (
           <React.Fragment key={group.key}>
             {/* <h3>{group.key}</h3> */}
@@ -201,6 +201,7 @@ const groupArray = keys.map((key) => ({
                         color="primary"
                           onClick={() => setShowPopover(true)}
                           icon={calendar}
+                          style={{ marginRight: '10px' }}
                           onMouseOver={(e) => handelonmouseover(group.key)}
                         />
                         <input
@@ -246,7 +247,7 @@ const groupArray = keys.map((key) => ({
             </IonCard>
           </React.Fragment>
         ))
-      // )
+      )
     }
     </IonContent>
     </IonPage>
