@@ -45,10 +45,8 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
    }
   const handleDateChange = async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
-    console.log(selectedValue);
-    const data = selectedValue.split("T");
-    const data1 = data[0];
-    console.log(data1);
+    
+    // console.log(data1);
     const dataTobeSent = {
       date: selectedValue,
       doseId: Id
@@ -56,7 +54,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
     console.log(dataTobeSent);
     try {
       const response = await fetch(
-        `https://myapi.fernflowers.com/api/AdminDoseSchedule/Admin_single_updateDate`,
+        `http://localhost:5041/api/AdminDoseSchedule/Admin_single_updateDate`,
         {
           method: "PATCH",
           headers: {
@@ -72,6 +70,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
         setShowPopover(false);
       } else if (!response.ok) {
         setError(true);
+        renderList();
       }
     } catch (error) {
       console.error(error);

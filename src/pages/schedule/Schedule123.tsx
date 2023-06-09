@@ -60,10 +60,10 @@ const ScheduleList1: React.FC = () => {
 console.log(data);
         const groupedData = groupBy(data, (item) => {
           const date = new Date(item.Date);
-          // console.log("date.toISOString().split('T')[0] : ", date.toISOString().split('T')[0])
-          return date
+          console.log(date)
+          return date.toISOString().split('T')[0];
         });
-console.log("groupedData : ",groupedData)
+console.log(groupedData)
 const keys = Object.keys(groupedData);
 const groupArray = keys.map((key) => ({
   key,
@@ -84,7 +84,7 @@ const groupArray = keys.map((key) => ({
   };
   function handelonmouseover(inputValue: string){
     const data1=inputValue.split('T');
-    const data2=format(new Date(inputValue), "yyyy-MM-dd");
+    const data2=data1[0];
     console.log(data2)
     setValue(data2)
     setSelectedDate(data2)
@@ -126,11 +126,11 @@ const groupArray = keys.map((key) => ({
         body: JSON.stringify(dataTobeSent),
       }
     )
-    if (response.status===204) {
+    if (response.ok) {
       console.log(response.ok)
       setSuccess(true);
+      setRenderList(true);
       setShowLoading(false);
-      forceRender()
     } else if (!response.ok) {
       setError(true);
       setShowLoading(false);
