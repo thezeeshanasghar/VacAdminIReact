@@ -63,7 +63,6 @@ const ScheduleList: React.FC = () => {
     fetch(`http://localhost:5041/api/AdminDoseSchedule`)
       .then((response) => response.json())
       .then((data) => {
-      
         setData(data);
       });
   };

@@ -13,6 +13,8 @@ import {
   IonTitle,
   IonText,
   IonItemDivider,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 import React, { useState, useEffect } from "react";
 import HeaderButtons from "../../components/HeaderButtons";
@@ -47,7 +49,12 @@ const Patient: React.FC = () => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [fromMonth, setFromMonth] = useState("");
+  const [toMonth, setToMonth] = useState("");
+  const [fromYear, setFromYear] = useState("");
+  const [toYear, setToYear] = useState("");
   const [apiData, setApiData] = useState<IPatientProps[]>([]);
   const [error, setError] = useState("");
   const [showerrorCard, setShowErrorCard] = useState(false);
@@ -62,7 +69,7 @@ const Patient: React.FC = () => {
   const performSearch = async () => {
     axios
       .get(
-        `https://myapi.fernflowers.com/api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&DOB=${dob}`
+        `https://myapi.fernflowers.com/api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
       )
       .then((res) => setApiData(res.data))
       .catch((err) => {
@@ -87,9 +94,9 @@ const Patient: React.FC = () => {
     performSearch();
     console.log("Submitted:", doctorName, paientName, dob, gender, city);
   };
-  const handleDateChange = (event: CustomEvent) => {
-    setSelectedDate(event.detail.value);
-  };
+  // const handleDateChange = (event: CustomEvent) => {
+  //   setSelectedDate(event.detail.value);
+  // };
   return (
     <IonPage>
       <HeaderButtons
@@ -118,25 +125,6 @@ const Patient: React.FC = () => {
               label="Patient Name"
               value={paientName} //@ts-ignore
               onIonChange={(e) => setpaientName(e.detail.value)}
-              labelPlacement="floating"
-            ></IonInput>
-          </IonItem>
-          <IonItem>
-            <IonInput
-              label="From DOB"
-              type="date"
-              value={dob}
-              onIonChange={(e) => setDob(e.detail.value!)}
-              labelPlacement="floating"
-            ></IonInput>
-          </IonItem>
-          <IonItem>
-            <IonInput
-              label="To DOB"
-              type="date"
-              value={dob}
-              //@ts-ignore
-              onIonChange={(e) => setDob(e.detail.value)}
               labelPlacement="floating"
             ></IonInput>
           </IonItem>
@@ -535,6 +523,81 @@ const Patient: React.FC = () => {
               <IonSelectOption value="Other">Other</IonSelectOption>
             </IonSelect>
           </IonItem>
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="From Date"
+                  type="number"
+                  value={fromDate}
+                  onIonChange={(e) => setFromDate(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="To date"
+                  type="number"
+                  value={toDate}
+                  //@ts-ignore
+                  onIonChange={(e) => setToDate(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="From Month"
+                  type="number"
+                  value={fromMonth}
+                  onIonChange={(e) => setFromMonth(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="To Month"
+                  type="number"
+                  value={toMonth}
+                  //@ts-ignore
+                  onIonChange={(e) => setToMonth(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="From Year"
+                  type="number"
+                  value={fromYear}
+                  onIonChange={(e) => setFromYear(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonInput
+                  label="To Year"
+                  type="number"
+                  value={toYear}
+                  //@ts-ignore
+                  onIonChange={(e) => setToYear(e.detail.value!)}
+                  labelPlacement="floating"
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
           <IonButton type="submit" expand="block">
             Search
           </IonButton>
