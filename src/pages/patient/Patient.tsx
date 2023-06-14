@@ -61,15 +61,16 @@ const Patient: React.FC = () => {
   const [options, setOptions] = useState<IonSelectOption[]>([]);
 
   useEffect(() => {
-    fetch("https://myapi.fernflowers.com/api/Doctor/approved/true")
+    fetch(`http://localhost:5041/api/Doctor/IsApproved/true`)
       .then((response) => response.json())
-      .then((data) => setOptions(data))
+      .then((data) =>{ setOptions(data)
+      console.log(data)})
       .catch((error) => console.log(error));
   }, []);
   const performSearch = async () => {
     axios
       .get(
-        `https://myapi.fernflowers.com/api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
+        `http://localhost:5041/api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
       )
       .then((res) => setApiData(res.data))
       .catch((err) => {
@@ -85,7 +86,13 @@ const Patient: React.FC = () => {
           setpaientName(""),
           setDob(""),
           setGender(""),
-          setCity("");
+          setCity(""),
+          setFromDate(""),
+          setToDate(""),
+          setFromMonth(""),
+          setToMonth(""),
+          setFromYear(""),
+          setToYear("");
       });
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -538,7 +545,7 @@ const Patient: React.FC = () => {
             <IonCol>
               <IonItem>
                 <IonInput
-                  label="To date"
+                  label="To Date"
                   type="number"
                   value={toDate}
                   //@ts-ignore
