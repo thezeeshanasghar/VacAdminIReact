@@ -609,45 +609,50 @@ const Patient: React.FC = () => {
             Search
           </IonButton>
         </form>
-        {showerrorCard && (
-          <IonCard>
-            <IonCardHeader>
-              <IonCardTitle>{error}</IonCardTitle>
-            </IonCardHeader>
-          </IonCard>
-        )}
-        {apiData.map((entity, index) => (
-          <div key={index}>
-            <IonCard>
-              <IonCardContent>
-                <IonText
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontWeight: 700,
-                    fontSize: 19,
-                    borderBottom: "1px solid gray",
-                  }}
-                >
-                  Name : {entity.Name}
-                </IonText>
+        {apiData.length>0 ? (
+  apiData.map((entity, index) => (
+    <div key={index}>
+      <IonCard>
+        <IonCardContent>
+          <IonText
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontWeight: 700,
+              fontSize: 19,
+              borderBottom: "1px solid gray",
+            }}
+          >
+            Name : {entity.Name}
+          </IonText>
 
-                <IonItem>Guardian : {entity.Guardian}</IonItem>
-                <IonItem>Father name : {entity.FatherName}</IonItem>
-                <IonItem>Email : {entity.Email}</IonItem>
-                <IonItem>DOB : {entity.DOB}</IonItem>
-                <IonItem>Gender : {entity.Gender}</IonItem>
-                <IonItem>Type : {entity.Type}</IonItem>
-                <IonItem>City : {entity.City}</IonItem>
-                <IonItem>CNIC : {entity.CNIC}</IonItem>
-                <IonItem lines="none">
-                  Preferred schedule : {entity.PreferredSchedule}
-                </IonItem>
-              </IonCardContent>
-            </IonCard>
-          </div>
-        ))}
+          <IonItem>Guardian : {entity.Guardian}</IonItem>
+          <IonItem>Father name : {entity.FatherName}</IonItem>
+          <IonItem>Email : {entity.Email}</IonItem>
+          <IonItem>DOB : {entity.DOB}</IonItem>
+          <IonItem>Gender : {entity.Gender}</IonItem>
+          <IonItem>Type : {entity.Type}</IonItem>
+          <IonItem>City : {entity.City}</IonItem>
+          <IonItem>CNIC : {entity.CNIC}</IonItem>
+          <IonItem lines="none">
+            Preferred schedule : {entity.PreferredSchedule}
+          </IonItem>
+        </IonCardContent>
+      </IonCard>
+    </div>
+  ))
+) : (
+  showerrorCard && (
+    <IonCard>
+      <IonCardHeader>
+        <IonCardTitle>{error? error : "No data available"}</IonCardTitle>
+      </IonCardHeader>
+    </IonCard>
+  )
+)}
+
+        
       </IonContent>
     </IonPage>
   );
