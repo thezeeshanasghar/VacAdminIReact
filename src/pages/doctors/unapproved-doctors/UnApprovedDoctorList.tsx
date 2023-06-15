@@ -48,16 +48,16 @@ const UnApprovedDoctorList: React.FC = () => {
           {data &&
             data.map((item, index) => (
               <React.Fragment key={index}>
-                {item.Isapproved === false && (
+                {item.IsApproved === false && (
                   <UnApprovedDoctorsCard
                     mt={data
                       .slice(0, index)
-                      .some((prevItem) => prevItem.Isapproved)}
+                      .some((prevItem) => prevItem.IsApproved)}
                     Id={item.Id}
                     Name={item.Name}
                     MobileNumber={item.MobileNumber}
                     Password={item.Password}
-                    Isapproved={item.Isapproved}
+                    IsApproved={item.IsApproved}
                     IsEnabled={item.IsEnabled}
                     Email={item.Email}
                     DoctorType={item.DoctorType}

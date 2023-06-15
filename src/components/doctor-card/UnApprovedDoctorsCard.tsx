@@ -17,7 +17,7 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   Name,
   MobileNumber,
   Password,
-  Isapproved,
+  IsApproved,
   IsEnabled,
   Email,
   DoctorType,
@@ -32,7 +32,7 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
     const dataTobeSent = [
       {
         op: "replace",
-        path: "Isapproved",
+        path: "IsApproved",
         value: "true",
       },
     ];

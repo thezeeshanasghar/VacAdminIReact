@@ -10,7 +10,7 @@ export interface IdoctorData {
   Name: string;
   MobileNumber: string;
   Password: string;
-  Isapproved: boolean;
+  IsApproved: boolean;
   IsEnabled: boolean;
   Email: string;
   DoctorType: string;
@@ -54,14 +54,14 @@ const ApprovedDoctorList: React.FC = () => {
           {data &&
             data.map((item, index) => (
               <React.Fragment key={index}>
-                {item.Isapproved && (
+                {item.IsApproved && (
                   <ApprovedDoctorsCard
                     mt={index === 0}
                     Id={item.Id}
                     Name={item.Name}
                     MobileNumber={item.MobileNumber}
                     Password={item.Password}
-                    Isapproved={item.Isapproved}
+                    IsApproved={item.IsApproved}
                     IsEnabled={item.IsEnabled}
                     Email={item.Email}
                     DoctorType={item.DoctorType}

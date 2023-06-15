@@ -621,7 +621,7 @@ const Patient: React.FC = () => {
             Search
           </IonButton>
         </form>
-        {apiData.length>0 ? (
+        {apiData.length>0 && !showerrorCard ? (
   apiData.map((entity, index) => (
     <div key={index}>
       <IonCard>
