@@ -51,7 +51,7 @@ const EditDoses: React.FC<IParam> = ({
     event.preventDefault();
     setShowLoading(true);
     const dataTobeSent = { id: doseId, Name, MinAge, MinGap };
-    const url = `https://myapi.fernflowers.com/api/Dose/${doseId}`;
+    const url = `${import.meta.env.VITE_API_URL}api/Dose/${doseId}`;
     try {
       const response = await fetch(url, {
         method: "PATCH",

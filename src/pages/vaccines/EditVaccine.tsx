@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
   IonPage,
@@ -13,6 +13,7 @@ import HeaderButtons from "../../components/HeaderButtons";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import AlertSuccess from "../../components/alerts/AlertError";
 import AlertError from "../../components/alerts/AlertError";
+
 interface IParam {
   location: {
     search: string;
@@ -23,6 +24,7 @@ interface IParam {
     };
   };
 }
+
 const EditVaccine: React.FC<IParam> = ({
   location: { search },
   match: {
@@ -31,25 +33,34 @@ const EditVaccine: React.FC<IParam> = ({
 }) => {
   const router = useIonRouter();
   const [showLoading, setShowLoading] = useState(false);
-  //extracting data from url
-  const [VaccineName, VaccineIsSpeical, VaccineInfinite] = search
-    .substring(1)
-    .split("&")
-    .map((item) => item.split("=")[1]);
 
-  // initial values;
-  let initialIsSpeical =
-    VaccineIsSpeical === "true" ? true : "false" ? false : true;
-  let initialInfinite =
-    VaccineInfinite === "true" ? true : "false" ? false : true;
-  //states variable for saving data from form
-  const [Name, setName] = useState(VaccineName);
-  const [IsSpecial, setIsSpeical] = useState(initialIsSpeical);
-  const [Infinite, setInfinite] = useState(initialIsSpeical);
-  //states varibale for alert, succesMsg and errorMsg
+  useEffect(()=> {
+    // Extracting data from the URL
+  const searchParams = new URLSearchParams(search);
+  const VaccineName = searchParams.get("vaccineName");
+  const VaccineIsSpecial = searchParams.get("IsSpecial");
+  const VaccineInfinite = searchParams.get("Infinite");
+
+  // Initial values
+  const initialIsSpecial = VaccineIsSpecial === "true";
+  const initialInfinite = VaccineInfinite === "true";
+
+  setName(VaccineName);
+  setIsSpecial(initialIsSpecial)
+  setInfinite(initialInfinite)
+  },[search])
+
+
+  // States for saving form data
+  const [Name, setName] = useState();
+  const [IsSpecial, setIsSpecial] = useState<boolean>();
+  const [Infinite, setInfinite] = useState<boolean>();
+
+  // States for success and error alerts
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  //submit handler
+
+  // Submit handler
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShowLoading(true);
@@ -71,7 +82,7 @@ const EditVaccine: React.FC<IParam> = ({
     } finally {
       setShowLoading(false);
       setName("");
-      setIsSpeical(false);
+      setIsSpecial(false);
       setInfinite(false);
     }
   };
@@ -92,9 +103,9 @@ const EditVaccine: React.FC<IParam> = ({
         <AlertError
           isOpen={error}
           setOpen={setError}
-          message="An Error occcured. Plz try again."
+          message="An Error occurred. Please try again."
         />
-        <HeaderButtons pageName="Update Vaccine"></HeaderButtons>
+        <HeaderButtons pageName="Update Vaccine" />
         <IonContent>
           <form onSubmit={handleSubmit}>
             <IonItem>
@@ -104,26 +115,21 @@ const EditVaccine: React.FC<IParam> = ({
               <IonInput
                 type="text"
                 value={Name}
-                //@ts-ignore
-                onIonChange={(e) => setName(e.detail.value)}
+                onIonChange={(e) => setName(e.detail.value!)}
               ></IonInput>
             </IonItem>
             <IonItem>
               <IonLabel color="primary">Is-Special</IonLabel>
               <IonCheckbox
-                value={IsSpecial}
                 checked={IsSpecial}
-                placeholder="Select One"
-                onIonChange={(e) => setIsSpeical(e.detail.checked)}
+                onIonChange={(e) => setIsSpecial(e.detail.checked)}
                 slot="end"
               ></IonCheckbox>
             </IonItem>
             <IonItem>
               <IonLabel color="primary">Infinite</IonLabel>
               <IonCheckbox
-                value={Infinite}
                 checked={Infinite}
-                placeholder="Select One"
                 onIonChange={(e) => setInfinite(e.detail.checked)}
                 slot="end"
               ></IonCheckbox>
@@ -132,7 +138,6 @@ const EditVaccine: React.FC<IParam> = ({
               type="submit"
               fill="solid"
               color="primary"
-              slot="start"
               expand="full"
               strong
             >
@@ -141,7 +146,6 @@ const EditVaccine: React.FC<IParam> = ({
             <IonButton
               fill="solid"
               color="primary"
-              slot="start"
               expand="full"
               strong
               onClick={() => router.push("/members/vaccine", "root")}

@@ -34,7 +34,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
     event.preventDefault();
     console.log(Name, MinGap, MinAge);
     const dataTobeSent = { Name, MinAge, MinGap, VaccineId: vaccineId };
-    const url = "https://myapi.fernflowers.com/api/Dose";
+    const url = `${import.meta.env.VITE_API_URL}api/Dose`;
     try {
       const response = await fetch(url, {
         method: "POST",
