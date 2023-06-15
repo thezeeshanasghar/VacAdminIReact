@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Install Ionic
-        run: npm install -g ionic
+        run: npm install -g @ionic/cli
 
         
       - name: Install Dependencies
