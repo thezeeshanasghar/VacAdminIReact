@@ -78,6 +78,7 @@ const Patient: React.FC = () => {
           setShowErrorCard(true);
           setError(err.response.data);
         } else {
+          setShowErrorCard(true);
           setError(err.message);
         }
       })
@@ -99,11 +100,22 @@ const Patient: React.FC = () => {
     event.preventDefault();
     // event.preventDefault();
     performSearch();
-    console.log("Submitted:", doctorName, paientName, dob, gender, city);
+    console.log("Submitted:", doctorName, paientName, gender, city, fromDate, toDate, fromMonth, toMonth, fromYear, toYear);
   };
   // const handleDateChange = (event: CustomEvent) => {
   //   setSelectedDate(event.detail.value);
   // };
+  const canSubmit =
+    doctorName.length > 0 ||
+    paientName.length > 0 ||
+    gender.length > 0 ||
+    city.length > 0 ||
+    (fromDate.length > 0 &&
+    toDate.length > 0) ||
+    (fromMonth.length > 0 &&
+    toMonth.length > 0) ||
+    (fromYear.length > 0 &&
+    toYear.length > 0);
   return (
     <IonPage>
       <HeaderButtons
@@ -605,7 +617,7 @@ const Patient: React.FC = () => {
               </IonItem>
             </IonCol>
           </IonRow>
-          <IonButton type="submit" expand="block">
+          <IonButton type="submit" expand="block"  disabled={!canSubmit}>
             Search
           </IonButton>
         </form>

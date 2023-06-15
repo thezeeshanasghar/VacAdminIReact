@@ -42,6 +42,7 @@ const VaccineCardList: React.FC = () => {
     fetchVaccineData();
   };
   const fetchVaccineData = async () => {
+    console.log(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
     setShowLoading(true);
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
       .then((response) => response.json())
