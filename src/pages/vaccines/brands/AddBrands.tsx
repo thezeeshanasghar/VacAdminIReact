@@ -33,7 +33,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
     console.log("Name : ", Name, "  Type of Name : ", typeof Name);
     event.preventDefault();
     const dataTobeSent = { Name, vaccineId };
-    const url = "https://myapi.fernflowers.com/api/brand";
+    const url = `${import.meta.env.VITE_API_URL}api/brand`;
     try {
       const response = await fetch(url, {
         method: "POST",

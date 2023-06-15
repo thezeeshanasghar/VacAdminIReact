@@ -38,7 +38,7 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
     ];
     try {
       const response = await fetch(
-        `https://myapi.fernflowers.com/api/Doctor/notapproved/${Id}`,
+        `${import.meta.env.VITE_API_URL}api/Doctor/notapproved/${Id}`,
         {
           method: "PATCH",
           headers: {

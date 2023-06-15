@@ -43,7 +43,7 @@ const VaccineCardList: React.FC = () => {
   };
   const fetchVaccineData = async () => {
     setShowLoading(true);
-    fetch("https://myapi.fernflowers.com/api/Vaccine/vaccine-with-count")
+    fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
         setData(data);

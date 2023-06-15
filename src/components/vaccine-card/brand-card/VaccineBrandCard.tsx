@@ -26,7 +26,7 @@ const VaccineBrandCard: React.FC<IimprovedIBrandData> = ({
   return (
     <>
       <DeletePopup
-        url={`https://myapi.fernflowers.com/api/brand/${Id}`}
+        url={`${import.meta.env.VITE_API_URL}api/brand/${Id}`}
         title="Brand"
         confirmAlertOpen={showPopup}
         setConfirmAlertOpen={setShowPopup}

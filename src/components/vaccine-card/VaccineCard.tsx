@@ -35,7 +35,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
   return (
     <>
       <DeletePopup
-        url={`https://myapi.fernflowers.com/api/Vaccine/${Id}`}
+        url={`${import.meta.env.VITE_API_URL}api/Vaccine/${Id}`}
         title="Vaccine"
         confirmAlertOpen={showPopup}
         setConfirmAlertOpen={setShowPopup}

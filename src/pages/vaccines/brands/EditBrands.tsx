@@ -41,7 +41,7 @@ const EditBrands: React.FC<IParam> = ({
     event.preventDefault();
     setShowLoading(true);
     const dataTobeSent = { Name, id: brandId };
-    const url = `https://myapi.fernflowers.com/api/Brand/${brandId}`;
+    const url = `${import.meta.env.VITE_API_URL}api/Brand/${brandId}`;
     try {
       const response = await fetch(url, {
         method: "PATCH",

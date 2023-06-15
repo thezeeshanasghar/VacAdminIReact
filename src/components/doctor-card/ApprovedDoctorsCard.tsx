@@ -70,7 +70,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
         locale: enUS,
       }),
     };
-    fetch(`https://myapi.fernflowers.com/api/Doctor/UpdateValidUpto/${Id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}api/Doctor/UpdateValidUpto/${Id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
         message="An Error occurred while updating date"
       />
       <DeletePopup
-        url={`https://myapi.fernflowers.com/api/Doctor/${Id}`}
+        url={`${import.meta.env.VITE_API_URL}api/Doctor/${Id}`}
         title="Doctor"
         confirmAlertOpen={showPopup}
         setConfirmAlertOpen={setShowPopup}

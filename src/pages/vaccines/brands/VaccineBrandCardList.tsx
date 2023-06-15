@@ -35,7 +35,7 @@ const VaccineBrandCardList: React.FC<VaccineIdProps> = ({
   };
   const fetchBrandData = async () => {
     setShowLoading(true);
-    fetch(`https://myapi.fernflowers.com/api/Brand/brand_name/${vaccineId}`)
+    fetch(`${import.meta.env.VITE_API_URL}api/Brand/brand_name/${vaccineId}`)
       .then((response) => response.json())
       .then((data: IBrandData[]) => {
         setData(data);

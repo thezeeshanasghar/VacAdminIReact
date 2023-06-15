@@ -35,7 +35,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const dataTobeSent = { Name, IsSpecial, Infinite };
-    const url = "https://myapi.fernflowers.com/api/Vaccine";
+    const url = `${import.meta.env.VITE_API_URL}api/Vaccine`;
     try {
       const response = await fetch(url, {
         method: "POST",

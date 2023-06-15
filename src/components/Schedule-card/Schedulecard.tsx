@@ -54,7 +54,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
     console.log(dataTobeSent);
     try {
       const response = await fetch(
-        `http://localhost:5041/api/AdminDoseSchedule/Admin_single_updateDate`,
+        `${import.meta.env.VITE_API_URL}api/AdminDoseSchedule/Admin_single_updateDate`,
         {
           method: "PATCH",
           headers: {

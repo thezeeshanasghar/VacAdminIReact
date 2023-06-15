@@ -61,7 +61,7 @@ const Patient: React.FC = () => {
   const [options, setOptions] = useState<IonSelectOption[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5041/api/Doctor/IsApproved/true`)
+    fetch(`${import.meta.env.VITE_API_URL}api/Doctor/IsApproved/true`)
       .then((response) => response.json())
       .then((data) =>{ setOptions(data)
       console.log(data)})
@@ -70,7 +70,7 @@ const Patient: React.FC = () => {
   const performSearch = async () => {
     axios
       .get(
-        `http://localhost:5041/api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
+        `${import.meta.env.VITE_API_URL}api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
       )
       .then((res) => setApiData(res.data))
       .catch((err) => {
@@ -651,8 +651,6 @@ const Patient: React.FC = () => {
     </IonCard>
   )
 )}
-
-        
       </IonContent>
     </IonPage>
   );

@@ -60,7 +60,7 @@ const ScheduleList: React.FC = () => {
   // }, [location]);
   const fetchDoseData =  () => {
     // setShowLoading(true);/
-    fetch(`http://localhost:5041/api/AdminDoseSchedule`)
+    fetch(`${import.meta.env.VITE_API_URL}api/AdminDoseSchedule`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -99,7 +99,7 @@ const ScheduleList: React.FC = () => {
 
     console.log("object item date : ", dataTobeSent );
     try{
-      const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_bulk_updateDate/${data3}`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}api/AdminDoseSchedule/Admin_bulk_updateDate/${data3}`,
       {
         method: "PATCH",
         headers: {

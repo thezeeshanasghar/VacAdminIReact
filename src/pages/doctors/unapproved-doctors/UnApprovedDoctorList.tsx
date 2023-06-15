@@ -11,7 +11,7 @@ const UnApprovedDoctorList: React.FC = () => {
   const [data, setData] = useState<IdoctorData[]>([]);
   const fetchDoctorData = async () => {
     setShowLoading(true);
-    fetch("https://myapi.fernflowers.com/api/Doctor")
+    fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
       .then((response) => response.json())
       .then((data: IdoctorData[]) => {
         setData(data);

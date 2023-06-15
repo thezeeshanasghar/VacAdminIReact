@@ -52,7 +52,7 @@ const ScheduleList1: React.FC = () => {
   const fetchDoseData = async () => {
     
     try {
-      const response = await fetch('http://localhost:5041/api/AdminDoseSchedule');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}api/AdminDoseSchedule`);
       if (response.ok) {
         const data = await response.json();
 
@@ -117,7 +117,7 @@ const groupArray = keys.map((key) => ({
     console.log("object item date : ", dataTobeSent );
     try{
       setShowLoading(true);
-      const response = await fetch(`http://localhost:5041/api/AdminDoseSchedule/Admin_bulk_updateDate/${value}`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}api/AdminDoseSchedule/Admin_bulk_updateDate/${value}`,
       {
         method: "PATCH",
         headers: {

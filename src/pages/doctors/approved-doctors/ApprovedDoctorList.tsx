@@ -23,7 +23,7 @@ const ApprovedDoctorList: React.FC = () => {
   const [renderList, setRenderList] = useState(false);
   const fetchDoctorData = async () => {
     setShowLoading(true);
-    fetch("https://myapi.fernflowers.com/api/Doctor")
+    fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
       .then((response) => response.json())
       .then((data: IdoctorData[]) => {
         setData(data);

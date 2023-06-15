@@ -54,7 +54,7 @@ const EditVaccine: React.FC<IParam> = ({
     event.preventDefault();
     setShowLoading(true);
     const dataTobeSent = { id: vaccineId, Name, IsSpecial, Infinite };
-    const url = `https://myapi.fernflowers.com/api/Vaccine?id=${vaccineId}`;
+    const url = `${import.meta.env.VITE_API_URL}api/Vaccine?id=${vaccineId}`;
     try {
       const response = await fetch(url, {
         method: "PATCH",
