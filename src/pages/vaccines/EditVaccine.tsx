@@ -59,7 +59,6 @@ const EditVaccine: React.FC<IParam> = ({
   // States for success and error alerts
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
   // Submit handler
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,6 +75,7 @@ const EditVaccine: React.FC<IParam> = ({
       });
       if (response.ok) {
         setSuccess(true);
+        router.push("/members/vaccine");
       } else if (!response.ok) setError(true);
     } catch (err) {
       setError(true);
