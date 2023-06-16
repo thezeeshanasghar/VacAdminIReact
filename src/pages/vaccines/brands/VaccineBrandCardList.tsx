@@ -4,6 +4,7 @@ import HeaderButtons from "../../../components/HeaderButtons";
 import VaccineBrandCard from "../../../components/vaccine-card/brand-card/VaccineBrandCard";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
 import { useLocation } from "react-router";
+import ErrorComponent from "../../../components/error-component/ErrorComponent";
 
 export interface IBrandData {
   Id: number;
@@ -66,7 +67,7 @@ const VaccineBrandCardList: React.FC<VaccineIdProps> = ({
           backUrl="/members/vaccine"
         />
         <IonContent className="ion-padding">
-          {data &&
+          {data.length > 0 ? (
             data.map((item, index) => (
               <React.Fragment key={index * item.Id + 1}>
                 <VaccineBrandCard
@@ -77,7 +78,10 @@ const VaccineBrandCardList: React.FC<VaccineIdProps> = ({
                   renderList={forceRender}
                 />
               </React.Fragment>
-            ))}
+            ))
+          ) : (
+            <ErrorComponent title="Brands" />
+          )}
         </IonContent>
       </IonPage>
     </>
