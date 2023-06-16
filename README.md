@@ -2,11 +2,11 @@
 
 
 npm i
-
-ionic build
-
+ionic serve
+ionic build <!--for local-->
+npm run build:prod<!--for production-->
 ionic cap add android
 
-ionic cap sync //when changes occur then this command run
+ionic cap sync 
 
 ionic cap open android
