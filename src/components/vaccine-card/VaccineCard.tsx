@@ -57,7 +57,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
           <IonButton
             fill="clear"
             className="custom-ripple"
-            routerLink={`/members/vaccine/edit/${Id}?vaccineName=${Name}&IsSpeical=${IsSpecial}&Infinite=${Infinite}`}
+            routerLink={`/members/vaccine/edit/${Id}?vaccineName=${Name}&IsSpecial=${IsSpecial}&Infinite=${Infinite}`}
             routerDirection="root"
           >
             <IonIcon

@@ -37,22 +37,22 @@ const EditVaccine: React.FC<IParam> = ({
   useEffect(()=> {
     // Extracting data from the URL
   const searchParams = new URLSearchParams(search);
-  const VaccineName = searchParams.get("vaccineName");
+  const VaccineName = searchParams.get("vaccineName")
   const VaccineIsSpecial = searchParams.get("IsSpecial");
   const VaccineInfinite = searchParams.get("Infinite");
 
   // Initial values
   const initialIsSpecial = VaccineIsSpecial === "true";
   const initialInfinite = VaccineInfinite === "true";
-
-  setName(VaccineName);
+  //@ts-ignore
+  VaccineName && setName(VaccineName);
   setIsSpecial(initialIsSpecial)
   setInfinite(initialInfinite)
   },[search])
 
 
   // States for saving form data
-  const [Name, setName] = useState();
+  const [Name, setName] = useState("");
   const [IsSpecial, setIsSpecial] = useState<boolean>();
   const [Infinite, setInfinite] = useState<boolean>();
 
