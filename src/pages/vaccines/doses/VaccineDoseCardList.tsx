@@ -5,6 +5,7 @@ import VaccineDoseCard from "../../../components/vaccine-card/dose-card/VaccineD
 import { VaccineIdProps } from "../brands/VaccineBrandCardList";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
 import { useLocation } from "react-router";
+import ErrorComponent from "../../../components/error-component/ErrorComponent";
 export interface IDoseData {
   Id: number;
   Name: string;
@@ -63,7 +64,7 @@ const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
           backUrl="/members/vaccine"
         />
         <IonContent className="ion-padding">
-          {data &&
+          {data.length > 0 ? (
             data.map((item, index) => (
               <React.Fragment key={index}>
                 <VaccineDoseCard
@@ -76,7 +77,10 @@ const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
                   renderList={forceRender}
                 />
               </React.Fragment>
-            ))}
+            ))
+          ) : (
+            <ErrorComponent title="Doses" />
+          )}
         </IonContent>
       </IonPage>
     </>

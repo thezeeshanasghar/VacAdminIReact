@@ -11,6 +11,7 @@ import HeaderButtons from "../../components/HeaderButtons";
 import VaccineCard from "../../components/vaccine-card/VaccineCard";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { useLocation } from "react-router";
+import ErrorComponent from "../../components/error-component/ErrorComponent";
 
 interface IVaccineData {
   DoseCount: number;
@@ -42,7 +43,6 @@ const VaccineCardList: React.FC = () => {
     fetchVaccineData();
   };
   const fetchVaccineData = async () => {
-    console.log(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
     setShowLoading(true);
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
       .then((response) => response.json())
@@ -72,7 +72,7 @@ const VaccineCardList: React.FC = () => {
           url="/members/vaccine/add"
         />
         <IonContent className="ion-padding">
-          {data &&
+          {data.length > 0 ? (
             data.map((item, index) => (
               <React.Fragment key={index * item.vaccine.Id + 1}>
                 <VaccineCard
@@ -86,7 +86,10 @@ const VaccineCardList: React.FC = () => {
                   renderList={forceRender}
                 />
               </React.Fragment>
-            ))}
+            ))
+          ) : (
+            <ErrorComponent title="Vaccines" />
+          )}
         </IonContent>
       </IonPage>
     </>

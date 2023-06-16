@@ -5,6 +5,7 @@ import ApprovedDoctorsCard from "../../../components/doctor-card/ApprovedDoctors
 import "../doctorsFooterButtonStyle.css";
 import FooterButtons from "../../../components/doctor-card/footer-buttons-for-doctor-lists/FooterButtons";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
+import ErrorComponent from "../../../components/error-component/ErrorComponent";
 export interface IdoctorData {
   Id: number;
   Name: string;
@@ -49,9 +50,13 @@ const ApprovedDoctorList: React.FC = () => {
         time={5000}
       />
       <IonPage>
-        <HeaderButtons pageName="Doctors" backbutton={true} backUrl="/members/vaccine"/>
+        <HeaderButtons
+          pageName="Doctors"
+          backbutton={true}
+          backUrl="/members/vaccine"
+        />
         <IonContent className="ion-padding">
-          {data &&
+          {data.length > 0 ? (
             data.map((item, index) => (
               <React.Fragment key={index}>
                 {item.IsApproved && (
@@ -71,7 +76,10 @@ const ApprovedDoctorList: React.FC = () => {
                   />
                 )}
               </React.Fragment>
-            ))}
+            ))
+          ) : (
+            <ErrorComponent title="Doctors" />
+          )}
         </IonContent>
         <FooterButtons approve={true} />
       </IonPage>

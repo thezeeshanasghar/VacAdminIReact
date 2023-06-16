@@ -5,6 +5,7 @@ import UnApprovedDoctorsCard from "../../../components/doctor-card/UnApprovedDoc
 import FooterButtons from "../../../components/doctor-card/footer-buttons-for-doctor-lists/FooterButtons";
 import { IdoctorData } from "../approved-doctors/ApprovedDoctorList";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
+import ErrorComponent from "../../../components/error-component/ErrorComponent";
 const UnApprovedDoctorList: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [renderList, setRenderList] = useState(false);
@@ -45,7 +46,7 @@ const UnApprovedDoctorList: React.FC = () => {
           backUrl="/members/vaccine"
         />
         <IonContent className="ion-padding">
-          {data &&
+          {data.length > 0 ?
             data.map((item, index) => (
               <React.Fragment key={index}>
                 {item.IsApproved === false && (
@@ -67,7 +68,11 @@ const UnApprovedDoctorList: React.FC = () => {
                   />
                 )}
               </React.Fragment>
-            ))}
+            ))
+            : (
+              <ErrorComponent title="Doctors" />
+            )
+          }
         </IonContent>
         <FooterButtons unapprove={true} />
       </IonPage>
