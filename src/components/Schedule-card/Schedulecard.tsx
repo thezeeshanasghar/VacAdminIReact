@@ -6,7 +6,7 @@ import {
   IonPopover,
   IonGrid,
   IonRow,
-  IonCol
+  IonCol,
 } from "@ionic/react";
 import { format } from "date-fns";
 import { calendar } from "ionicons/icons";
@@ -30,37 +30,39 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
   DoseDate,
   Id,
   cardDate,
-  renderList
+  renderList,
 }) => {
   const [error, setError] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [success, setSuccess] = useState(false);
 
-  function handelonmouseover(inputValue: string){
-    const data1=inputValue.split('T');
-    const data2=data1[0];
-    console.log(data2)
-    setSelectedDate(data2)
-   }
+  function handelonmouseover(inputValue: string) {
+    const data1 = inputValue.split("T");
+    const data2 = data1[0];
+    console.log(data2);
+    setSelectedDate(data2);
+  }
   const handleDateChange = async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
-    
+
     // console.log(data1);
     const dataTobeSent = {
       date: selectedValue,
-      doseId: Id
+      doseId: Id,
     };
     console.log(dataTobeSent);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminDoseSchedule/Admin_single_updateDate`,
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminDoseSchedule/Admin_single_updateDate`,
         {
           method: "PATCH",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(dataTobeSent)
+          body: JSON.stringify(dataTobeSent),
         }
       );
       if (response.ok) {
@@ -102,12 +104,10 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
       <IonGrid>
         <IonRow>
           <IonCol>
-            <>
-              {Name}
-            </>
+            <>{Name}</>
           </IonCol>
           <IonCol size="auto">
-            < >
+            <>
               <IonIcon
                 color="primary"
                 onClick={() => setShowPopover(true)}
@@ -130,7 +130,6 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
           value={selectedDate || undefined}
           onIonChange={handleDateChange}
         ></IonDatetime>
-       
       </IonPopover>
     </>
   );
