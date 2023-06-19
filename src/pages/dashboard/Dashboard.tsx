@@ -9,7 +9,7 @@ import {
   IonHeader,
   IonLoading,
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderButtons from "../../components/HeaderButtons";
 import "./dashboard.css";
 import DashboardSlides from "../../components/slider/DashboardSlides";
@@ -17,6 +17,25 @@ import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 
 const Dashboard: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
+  const [length, setLength] = useState("");
+  const [dLength, setDLength] = useState("");
+  useEffect(()=>{
+    fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.length)
+      setLength(data.length)
+      // setShowLoading(false);
+    })
+  
+  fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.length)
+    setDLength(data.length)
+    // setShowLoading(false);
+  })
+})
   return (
     <>
       <LoadingSpinner
@@ -39,7 +58,7 @@ const Dashboard: React.FC = () => {
                   routerDirection="forward"
                 >
                   <IonHeader className="custom-header-style">
-                    <IonCardTitle>12</IonCardTitle>
+                    <IonCardTitle>{length}</IonCardTitle>
                     <IonCardTitle style={{ marginTop: "8px" }}>
                       Active Vaccine
                     </IonCardTitle>
@@ -53,7 +72,7 @@ const Dashboard: React.FC = () => {
                   routerDirection="forward"
                 >
                   <IonHeader className="custom-header-style">
-                    <IonCardTitle>22</IonCardTitle>
+                    <IonCardTitle>{dLength}</IonCardTitle>
                     <IonCardTitle style={{ marginTop: "8px" }}>
                       Active Doctors
                     </IonCardTitle>
