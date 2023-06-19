@@ -8,6 +8,7 @@ import {
   IonLabel,
   IonPage,
   IonPopover,
+  IonText,
 } from "@ionic/react";
 import { groupBy } from "lodash";
 import Schedulecard from "../../components/Schedule-card/Schedulecard";
@@ -217,12 +218,15 @@ const ScheduleList1: React.FC = () => {
                           style={{ marginRight: "10px" }}
                           onMouseOver={(e) => handelonmouseover(group.key)}
                         />
-                        <input
+                        <IonText>
+                            {format(new Date(group.key), "yyyy-MM-dd")}
+                          </IonText>
+                        {/* <input
                           style={{ border: "none" }}
                           type="date"
                           readOnly
                           value={format(new Date(group.key), "yyyy-MM-dd")}
-                        />
+                        /> */}
                         <IonPopover
                           isOpen={showPopover}
                           onDidDismiss={closePopover}
