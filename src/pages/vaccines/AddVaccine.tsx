@@ -46,6 +46,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       });
       if (response.status === 201) {
         setSuccess(true);
+        router.push("/members/vaccine")
       } else if (response.status !== 201) setError(true);
     } catch (err) {
       setError(true);
@@ -55,7 +56,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       setInfinite(false);
     }
   };
-
+  const canSubmit=Name.length>0;
   return (
     <IonPage>
       <AlertSuccess
@@ -111,6 +112,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
             expand="block"
             color="primary"
             slot="start"
+            disabled={!canSubmit}
           >
             Add Vaccine
           </IonButton>

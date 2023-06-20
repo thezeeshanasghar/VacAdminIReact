@@ -86,7 +86,7 @@ const EditVaccine: React.FC<IParam> = ({
       setInfinite(false);
     }
   };
-
+const canSubmit=Name.length>0;
   return (
     <>
       <LoadingSpinner
@@ -116,6 +116,7 @@ const EditVaccine: React.FC<IParam> = ({
                 type="text"
                 value={Name}
                 onIonChange={(e) => setName(e.detail.value!)}
+                required
               ></IonInput>
             </IonItem>
             <IonItem>
@@ -140,6 +141,7 @@ const EditVaccine: React.FC<IParam> = ({
               color="primary"
               expand="full"
               strong
+              disabled={!canSubmit}
             >
               Update Vaccine
             </IonButton>

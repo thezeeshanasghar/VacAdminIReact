@@ -52,7 +52,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       setName("");
     }
   };
-
+const canSubmit=Name.length>0
   return (
     <IonPage>
       <AlertSuccess
@@ -78,6 +78,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               value={Name}
               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
+              required
             ></IonInput>
           </IonItem>
 
@@ -88,6 +89,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
             slot="start"
             expand="full"
             strong
+            disabled={!canSubmit}
           >
             add brand
           </IonButton>
@@ -98,6 +100,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
             expand="full"
             strong
             onClick={() => goBack(`/members/vaccine/${vaccineId}/brands`, "")}
+           
           >
             Brand List
           </IonButton>

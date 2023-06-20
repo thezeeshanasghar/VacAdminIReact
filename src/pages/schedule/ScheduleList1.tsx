@@ -247,6 +247,7 @@ const ScheduleList1: React.FC = () => {
                     <IonItem key={itemIndex}>
                       <Schedulecard
                         Id={item.Id}
+                        DId={item.DoseId}
                         Name={item.Dose.Name}
                         MinAge={item.Dose.MinAge}
                         MinGap={item.Dose.MinGap}

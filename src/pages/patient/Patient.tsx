@@ -63,14 +63,18 @@ const Patient: React.FC = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}api/Doctor/IsApproved/true`)
       .then((response) => response.json())
-      .then((data) =>{ setOptions(data)
-      console.log(data)})
+      .then((data) => {
+        setOptions(data);
+        console.log(data);
+      })
       .catch((error) => console.log(error));
   }, []);
   const performSearch = async () => {
     axios
       .get(
-        `${import.meta.env.VITE_API_URL}api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
+        `${
+          import.meta.env.VITE_API_URL
+        }api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
       )
       .then((res) => setApiData(res.data))
       .catch((err) => {
@@ -100,22 +104,61 @@ const Patient: React.FC = () => {
     event.preventDefault();
     // event.preventDefault();
     performSearch();
-    console.log("Submitted:", doctorName, paientName, gender, city, fromDate, toDate, fromMonth, toMonth, fromYear, toYear);
+    console.log(
+      "Submitted:",
+      doctorName,
+      paientName,
+      gender,
+      city,
+      fromDate,
+      toDate,
+      fromMonth,
+      toMonth,
+      fromYear,
+      toYear
+    );
   };
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const currentYear = new Date().getFullYear();
+  const years = Array.from(
+    { length: currentYear - 2000 + 1 },
+    (_, index) => 2000 + index
+  );
   // const handleDateChange = (event: CustomEvent) => {
   //   setSelectedDate(event.detail.value);
   // };
+  // const options = [];
+  // for (let i = 1; i <= 31; i++) {
+  //   options.push(
+  //     <IonSelectOption key={i} value={i.toString()}>
+  //       {i}
+  //     </IonSelectOption>
+  //   );
+  // }
   const canSubmit =
-    doctorName.length > 0 ||
-    paientName.length > 0 ||
-    gender.length > 0 ||
-    city.length > 0 ||
-    (fromDate.length > 0 &&
-    toDate.length > 0) ||
-    (fromMonth.length > 0 &&
-    toMonth.length > 0) ||
-    (fromYear.length > 0 &&
-    toYear.length > 0);
+  doctorName.trim().length > 0 ||
+  paientName.trim().length > 0 ||
+  gender.trim().length > 0 ||
+  city.trim().length > 0 ||
+  fromDate.toString().length > 0 ||
+  toDate.toString().length > 0 ||
+  fromMonth.toString().trim().length > 0 ||
+  toMonth.toString().trim().length > 0 ||
+  fromYear.toString().trim().length > 0 ||
+  toYear.toString().trim().length > 0;
   return (
     <IonPage>
       <HeaderButtons
@@ -167,9 +210,6 @@ const Patient: React.FC = () => {
               onIonChange={(e) => setCity(e.detail.value!)}
               labelPlacement="floating"
             >
-              <IonSelectOption value="">
-                <em> Choose...</em>
-              </IonSelectOption>
               <IonSelectOption value="Abbottabad">Abbottabad</IonSelectOption>
               <IonSelectOption value="Adezai">Adezai</IonSelectOption>
               <IonSelectOption value="Ali Bandar">Ali Bandar</IonSelectOption>
@@ -545,124 +585,195 @@ const Patient: React.FC = () => {
           <IonRow>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="From Date"
+                  value={fromDate}
+                  onIonChange={(e) => setFromDate(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {Array.from({ length: 31 }, (_, index) => (
+                    <IonSelectOption key={index + 1} value={index + 1}>
+                      {index + 1}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="From Date"
                   type="number"
                   value={fromDate}
                   onIonChange={(e) => setFromDate(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="To Date"
+                  value={toDate}
+                  onIonChange={(e) => setToDate(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {Array.from({ length: 31 }, (_, index) => (
+                    <IonSelectOption key={index + 1} value={index + 1}>
+                      {index + 1}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="To Date"
                   type="number"
                   value={toDate}
                   //@ts-ignore
                   onIonChange={(e) => setToDate(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
           <IonRow>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="From Month"
+                  value={fromMonth}
+                  onIonChange={(e) => setFromMonth(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {monthNames.map((month, index) => (
+                    <IonSelectOption key={index + 1} value={index + 1}>
+                      {month}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="From Month"
                   type="number"
                   value={fromMonth}
                   onIonChange={(e) => setFromMonth(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="To Month"
+                  value={toMonth}
+                  //@ts-ignore
+                  onIonChange={(e) => setToMonth(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {monthNames.map((month, index) => (
+                    <IonSelectOption key={index + 1} value={index + 1}>
+                      {month}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="To Month"
                   type="number"
                   value={toMonth}
                   //@ts-ignore
                   onIonChange={(e) => setToMonth(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
           <IonRow>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="From Year"
+                  value={fromYear}
+                  onIonChange={(e) => setFromYear(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {years.map((year) => (
+                    <IonSelectOption key={year} value={year}>
+                      {year}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="From Year"
                   type="number"
                   value={fromYear}
                   onIonChange={(e) => setFromYear(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
               <IonItem>
-                <IonInput
+                <IonSelect
+                  label="To Year"
+                  value={toYear}
+                  onIonChange={(e) => setToYear(e.detail.value!)}
+                  labelPlacement="floating"
+                >
+                  {years.map((year) => (
+                    <IonSelectOption key={year} value={year}>
+                      {year}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
+                {/* <IonInput
                   label="To Year"
                   type="number"
                   value={toYear}
                   //@ts-ignore
                   onIonChange={(e) => setToYear(e.detail.value!)}
                   labelPlacement="floating"
-                ></IonInput>
+                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
-          <IonButton type="submit" expand="block"  disabled={!canSubmit}>
+          <IonButton type="submit" expand="block" disabled={!canSubmit}>
             Search
           </IonButton>
         </form>
-        {apiData.length>0 && !showerrorCard ? (
-  apiData.map((entity, index) => (
-    <div key={index}>
-      <IonCard>
-        <IonCardContent>
-          <IonText
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontWeight: 700,
-              fontSize: 19,
-              borderBottom: "1px solid gray",
-            }}
-          >
-            Name : {entity.Name}
-          </IonText>
+        {apiData.length > 0 && !showerrorCard? apiData.map((entity, index) => (
+              <div key={index}>
+                <IonCard>
+                  <IonCardContent>
+                    <IonText
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontWeight: 700,
+                        fontSize: 19,
+                        borderBottom: "1px solid gray",
+                      }}
+                    >
+                      Name : {entity.Name}
+                    </IonText>
 
-          <IonItem>Guardian : {entity.Guardian}</IonItem>
-          <IonItem>Father name : {entity.FatherName}</IonItem>
-          <IonItem>Email : {entity.Email}</IonItem>
-          <IonItem>DOB : {entity.DOB}</IonItem>
-          <IonItem>Gender : {entity.Gender}</IonItem>
-          <IonItem>Type : {entity.Type}</IonItem>
-          <IonItem>City : {entity.City}</IonItem>
-          <IonItem>CNIC : {entity.CNIC}</IonItem>
-          <IonItem lines="none">
-            Preferred schedule : {entity.PreferredSchedule}
-          </IonItem>
-        </IonCardContent>
-      </IonCard>
-    </div>
-  ))
-) : (
-  showerrorCard && (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>{error? error : "No data available"}</IonCardTitle>
-      </IonCardHeader>
-    </IonCard>
-  )
-)}
+                    <IonItem>Guardian : {entity.Guardian}</IonItem>
+                    <IonItem>Father name : {entity.FatherName}</IonItem>
+                    <IonItem>Email : {entity.Email}</IonItem>
+                    <IonItem>DOB : {entity.DOB}</IonItem>
+                    <IonItem>Gender : {entity.Gender}</IonItem>
+                    <IonItem>Type : {entity.Type}</IonItem>
+                    <IonItem>City : {entity.City}</IonItem>
+                    <IonItem>CNIC : {entity.CNIC}</IonItem>
+                    <IonItem lines="none">
+                      Preferred schedule : {entity.PreferredSchedule}
+                    </IonItem>
+                  </IonCardContent>
+                </IonCard>
+              </div>
+            )) : showerrorCard && (
+              <IonCard>
+                <IonCardHeader>
+                  <IonCardTitle>
+                    {error ? error : "No data available"}
+                  </IonCardTitle>
+                </IonCardHeader>
+              </IonCard>
+            )}
       </IonContent>
     </IonPage>
   );

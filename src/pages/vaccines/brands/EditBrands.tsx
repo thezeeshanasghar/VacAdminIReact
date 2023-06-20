@@ -52,6 +52,7 @@ const EditBrands: React.FC<IParam> = ({
       });
       if (response.ok) {
         setSuccess(true);
+        router.push(`/members/vaccine/${vaccineId}/brands`);
       } else if (!response.ok) setError(true);
     } catch (err) {
       setError(true);
@@ -60,7 +61,7 @@ const EditBrands: React.FC<IParam> = ({
       setName("");
     }
   };
-
+  const canSubmit=Name.length>0
   return (
     <>
       <LoadingSpinner
@@ -91,6 +92,7 @@ const EditBrands: React.FC<IParam> = ({
                 value={Name}
                 //@ts-ignore
                 onIonChange={(e) => setName(e.detail.value)}
+                required
               ></IonInput>
             </IonItem>
             <IonButton
@@ -100,6 +102,7 @@ const EditBrands: React.FC<IParam> = ({
               slot="start"
               expand="full"
               strong
+              disabled={!canSubmit}
             >
               Update Brand
             </IonButton>

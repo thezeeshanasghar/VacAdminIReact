@@ -38,7 +38,7 @@ const EditDoses: React.FC<IParam> = ({
     .substring(1)
     .split("&")
     .map((search) => search.split("=")[1]);
-
+// console.log(first)
   //states
   const [Name, setName] = useState(initialDoseName);
   const [MinAge, setMinAge] = useState(+initialMinAge);
@@ -62,6 +62,7 @@ const EditDoses: React.FC<IParam> = ({
       });
       if (response.ok) {
         setSuccess(true);
+     router.push(`/members/vaccine/${vaccineId}/doses`);   
       } else if (!response.ok) setError(true);
     } catch (err) {
       setError(true);
@@ -72,7 +73,7 @@ const EditDoses: React.FC<IParam> = ({
       setMinAge(0);
     }
   };
-
+  const canSubmit=Name.length>0 && MinGap.length>0 && MinAge.length>0;
   return (
     <>
       <LoadingSpinner
@@ -103,6 +104,7 @@ const EditDoses: React.FC<IParam> = ({
                 value={Name}
                 //@ts-ignore
                 onIonChange={(e) => setName(e.detail.value)}
+                required
               ></IonInput>
             </IonItem>
             <IonItem>
@@ -112,6 +114,7 @@ const EditDoses: React.FC<IParam> = ({
                 labelPlacement="floating"
                 value={MinGap}
                 onIonChange={(e) => setMinGap(e.detail.value)}
+                
               >
                 <IonSelectOption selected-text value="0">
                   No Gap
@@ -345,6 +348,7 @@ const EditDoses: React.FC<IParam> = ({
               slot="start"
               expand="full"
               strong
+              disabled={!canSubmit}
             >
               Update Dose
             </IonButton>

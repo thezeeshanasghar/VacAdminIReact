@@ -45,6 +45,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       });
       if (response.status === 201) {
         setSuccess(true);
+        router.push(`/members/vaccine/${vaccineId}/doses`);
       } else if (response.status !== 201) {
         setError(true);
       }
@@ -57,7 +58,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       setMinAge(0);
     }
   };
-
+  const canSubmit=Name.length>0 && MinGap.length>0 && MinAge.length>0;
   return (
     <IonPage>
       <AlertSuccess
@@ -81,6 +82,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               type="text"
               value={Name}               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
+              required
             ></IonInput>
           </IonItem>
           {/* <IonDatetime presentation="month-year"></IonDatetime> */}
@@ -324,6 +326,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
             slot="start"
             expand="full"
             strong
+            disabled={!canSubmit}
           >
             Add Dose
           </IonButton>

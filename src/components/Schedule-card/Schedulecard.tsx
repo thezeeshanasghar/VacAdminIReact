@@ -16,6 +16,7 @@ import AlertSuccess from "../alerts/AlertSuccess";
 
 interface IDoseSchedule {
   Id: number;
+  DId:number;
   Name: string;
   MinAge: number;
   MinGap: number;
@@ -30,6 +31,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
   DoseDate,
   Id,
   cardDate,
+  DId,
   renderList,
 }) => {
   const [error, setError] = useState(false);
@@ -49,7 +51,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
     // console.log(data1);
     const dataTobeSent = {
       date: selectedValue,
-      doseId: Id,
+      doseId: DId,
     };
     console.log(dataTobeSent);
     try {
