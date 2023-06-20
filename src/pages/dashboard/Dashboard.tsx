@@ -20,22 +20,25 @@ const Dashboard: React.FC = () => {
   const [length, setLength] = useState("");
   const [dLength, setDLength] = useState("");
   useEffect(()=>{
-    fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data.length)
-      setLength(data.length)
-      // setShowLoading(false);
-    })
-  
-  fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
+   fetchData()
+})
+const fetchData=()=>{
+  fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
   .then((response) => response.json())
   .then((data) => {
     console.log(data.length)
-    setDLength(data.length)
+    setLength(data.length)
     // setShowLoading(false);
   })
+
+fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
+.then((response) => response.json())
+.then((data) => {
+  console.log(data.length)
+  setDLength(data.length)
+  // setShowLoading(false);
 })
+}
   return (
     <>
       <LoadingSpinner
@@ -88,3 +91,7 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+function fetchData() {
+  throw new Error("Function not implemented.");
+}
+

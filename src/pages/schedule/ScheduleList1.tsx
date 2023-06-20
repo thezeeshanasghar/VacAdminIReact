@@ -96,11 +96,11 @@ const ScheduleList1: React.FC = () => {
   function handelonmouseover(inputValue: string) {
     const data1 = inputValue.split("T");
     const data2 = format(new Date(inputValue), "yyyy-MM-dd");
-    console.log(data2);
+    // console.log(data2);
     setValue(data2);
     setSelectedDate(data2);
   }
-  const handleDateChange = async (
+  const handleDateChange:any = async (
     event: CustomEvent,
     key: string,
     inputValue: string
