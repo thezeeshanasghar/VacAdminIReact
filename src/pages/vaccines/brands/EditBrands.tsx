@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import {
   IonContent,
   IonPage,
@@ -23,6 +23,7 @@ interface IParam {
     };
   };
 }
+
 const EditBrands: React.FC<IParam> = ({
   location: { search },
   match: {
@@ -31,8 +32,23 @@ const EditBrands: React.FC<IParam> = ({
 }: IParam) => {
   const router = useIonRouter();
   const [showLoading, setShowLoading] = useState(false);
+  useEffect(()=> {
+    // Extracting data from the URL
+  const searchParams = new URLSearchParams(search);
+  const BrandName = searchParams.get("brandName")
+  // const VaccineIsSpecial = searchParams.get("minAge");
+  // const VaccineInfinite = searchParams.get("minGap");
+  
+  // Initial values
+  // const initialIsSpecial = VaccineIsSpecial ;
+  // const initialInfinite = VaccineInfinite ;
+  //@ts-ignore
+  BrandName && setName(BrandName);
+  // setMinAge(VaccineIsSpecial)
+  // setMinGap(VaccineInfinite)
+  },[search])
   //state variable to store brand Name from query parameter, using substring to remove first character '?'
-  const [Name, setName] = useState(search.substring(1));
+  const [Name, setName] = useState("");
   //states varibale for alert, succesMsg and errorMsg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -106,7 +122,7 @@ const EditBrands: React.FC<IParam> = ({
             >
               Update Brand
             </IonButton>
-            <IonButton
+            {/* <IonButton
               fill="solid"
               color="primary"
               slot="start"
@@ -117,7 +133,7 @@ const EditBrands: React.FC<IParam> = ({
               }
             >
               Brand List
-            </IonButton>
+            </IonButton> */}
           </form>
         </IonContent>
       </IonPage>

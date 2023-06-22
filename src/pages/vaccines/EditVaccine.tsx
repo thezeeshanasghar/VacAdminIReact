@@ -145,7 +145,7 @@ const canSubmit=Name.length>0;
             >
               Update Vaccine
             </IonButton>
-            <IonButton
+            {/* <IonButton
               fill="solid"
               color="primary"
               expand="full"
@@ -153,7 +153,7 @@ const canSubmit=Name.length>0;
               onClick={() => router.push("/members/vaccine", "root")}
             >
               Vaccine List
-            </IonButton>
+            </IonButton> */}
           </form>
         </IonContent>
       </IonPage>

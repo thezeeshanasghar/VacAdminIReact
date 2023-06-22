@@ -73,12 +73,13 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       <IonContent>
         <form onSubmit={handleSubmit}>
           <IonItem>
-            <IonLabel color="primary">Name</IonLabel>
+            <IonLabel color="primary" position="floating">Name</IonLabel>
             <IonInput
               type="text"
               value={Name}
               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
+              required
             ></IonInput>
           </IonItem>
 
@@ -116,7 +117,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
           >
             Add Vaccine
           </IonButton>
-          <IonButton
+          {/* <IonButton
             fill="solid"
             onClick={() => router.push("/members/vaccine", "root")}
             expand="block"
@@ -124,7 +125,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
             slot="start"
           >
             Vaccine List
-          </IonButton>
+          </IonButton> */}
         </form>
       </IonContent>
     </IonPage>

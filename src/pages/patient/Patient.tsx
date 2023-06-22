@@ -15,6 +15,7 @@ import {
   IonItemDivider,
   IonRow,
   IonCol,
+  IonCardSubtitle,
 } from "@ionic/react";
 import React, { useState, useEffect } from "react";
 import HeaderButtons from "../../components/HeaderButtons";
@@ -59,6 +60,9 @@ const Patient: React.FC = () => {
   const [error, setError] = useState("");
   const [showerrorCard, setShowErrorCard] = useState(false);
   const [options, setOptions] = useState<IonSelectOption[]>([]);
+  const clearApiData = () => {
+    setApiData([]);
+  };
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}api/Doctor/IsApproved/true`)
@@ -70,6 +74,7 @@ const Patient: React.FC = () => {
       .catch((error) => console.log(error));
   }, []);
   const performSearch = async () => {
+    clearApiData();
     axios
       .get(
         `${
@@ -734,46 +739,54 @@ const Patient: React.FC = () => {
             Search
           </IonButton>
         </form>
-        {apiData.length > 0 && !showerrorCard? apiData.map((entity, index) => (
-              <div key={index}>
-                <IonCard>
-                  <IonCardContent>
-                    <IonText
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        fontWeight: 700,
-                        fontSize: 19,
-                        borderBottom: "1px solid gray",
-                      }}
-                    >
-                      Name : {entity.Name}
-                    </IonText>
+        
+          <div>
+          {apiData.length > 0 ? (
+  <>
+    {apiData.map((entity, index) => (
+      <div key={index}>
+        <IonCard>
+          <IonCardContent>
+            <IonText
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontWeight: 700,
+                fontSize: 19,
+                borderBottom: "1px solid gray",
+              }}
+            >
+            Name: {entity.Name}
+          </IonText>
+          <IonItem>Guardian: {entity.Guardian}</IonItem>
+          <IonItem>Father name: {entity.FatherName}</IonItem>
+          <IonItem>Email: {entity.Email}</IonItem>
+          <IonItem>DOB: {entity.DOB}</IonItem>
+          <IonItem>Gender: {entity.Gender}</IonItem>
+          <IonItem>Type: {entity.Type}</IonItem>
+          <IonItem>City: {entity.City}</IonItem>
+          <IonItem>CNIC: {entity.CNIC}</IonItem>
+          <IonItem lines="none">
+            Preferred schedule: {entity.PreferredSchedule}
+          </IonItem>
+          </IonCardContent>
+        </IonCard>
+      </div>
+    ))}
+  </>
+) : null}
+{showerrorCard && error && apiData.length === 0 && (
+  <IonCard>
+    <IonCardHeader>
+      <IonCardTitle>Error</IonCardTitle>
+      <IonCardSubtitle>{error}</IonCardSubtitle>
+    </IonCardHeader>
+  </IonCard>
+)}
 
-                    <IonItem>Guardian : {entity.Guardian}</IonItem>
-                    <IonItem>Father name : {entity.FatherName}</IonItem>
-                    <IonItem>Email : {entity.Email}</IonItem>
-                    <IonItem>DOB : {entity.DOB}</IonItem>
-                    <IonItem>Gender : {entity.Gender}</IonItem>
-                    <IonItem>Type : {entity.Type}</IonItem>
-                    <IonItem>City : {entity.City}</IonItem>
-                    <IonItem>CNIC : {entity.CNIC}</IonItem>
-                    <IonItem lines="none">
-                      Preferred schedule : {entity.PreferredSchedule}
-                    </IonItem>
-                  </IonCardContent>
-                </IonCard>
-              </div>
-            )) : showerrorCard && (
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle>
-                    {error ? error : "No data available"}
-                  </IonCardTitle>
-                </IonCardHeader>
-              </IonCard>
-            )}
+            </div>
+           
       </IonContent>
     </IonPage>
   );

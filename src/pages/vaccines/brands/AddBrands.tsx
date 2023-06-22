@@ -44,6 +44,7 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       });
       if (response.status === 201) {
         setSuccess(true);
+        router.push(`/members/vaccine/${vaccineId}/brands`);
       } else if (response.status !== 201) setError(true);
     } catch (err) {
       setError(true);
@@ -93,7 +94,7 @@ const canSubmit=Name.length>0
           >
             add brand
           </IonButton>
-          <IonButton
+          {/* <IonButton
             fill="solid"
             color="primary"
             slot="start"
@@ -103,7 +104,7 @@ const canSubmit=Name.length>0
            
           >
             Brand List
-          </IonButton>
+          </IonButton> */}
         </form>
       </IonContent>
     </IonPage>

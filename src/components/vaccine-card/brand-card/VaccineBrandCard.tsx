@@ -48,7 +48,7 @@ const VaccineBrandCard: React.FC<IimprovedIBrandData> = ({
           <IonButton
             fill="clear"
             className="custom-ripple"
-            routerLink={`/members/vaccine/${VaccineId}/brands/edit/${Id}?${Name}`}
+            routerLink={`/members/vaccine/${VaccineId}/brands/edit/${Id}?brandName=${Name}`}
             routerDirection="root"
           >
             <IonIcon

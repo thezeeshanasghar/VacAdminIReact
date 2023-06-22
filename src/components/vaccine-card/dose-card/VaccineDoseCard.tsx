@@ -68,8 +68,8 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
           </IonItem>
         </IonItem>
         <IonCardContent>
-          <p>Minimum Age Limit: {MinAge}</p>
-          <p>Minimum Gap Limit: {MinGap}</p>
+          <p>Minimum Age Limit: {MinAge} Days</p>
+          <p>Minimum Gap Limit: {MinGap} Days</p>
         </IonCardContent>
       </IonCard>
     </>
