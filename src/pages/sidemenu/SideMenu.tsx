@@ -43,7 +43,7 @@ const SideMenu: React.FC = () => {
           <IonMenu contentId="main-content" type="overlay">
             <IonHeader>
               <IonToolbar color="primary">
-                <IonTitle>Menu Content</IonTitle>
+                <IonTitle>Menu</IonTitle>
               </IonToolbar>
             </IonHeader>
             <IonContent>

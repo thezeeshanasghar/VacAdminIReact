@@ -106,20 +106,14 @@ const ScheduleList1: React.FC = () => {
     inputValue: string
   ) => {
     console.log(value);
-    // console.log(setInputValue(event.detail.value));
-
-    // console.log(selectedDate);
-    // setSelectedDate(event.detail.value);
     closePopover();
-    // const previousDate = objectItem.key; // Get the previous date from the objectItem
-    // console.log('Previous Date:', previousDate);
     const data = event.detail.value;
     const data1 = data.split("T");
     const data2 = data1[0];
     console.log(data2);
 
     console.log(event.detail.value);
-    const data3 = "2028-06-05";
+ 
     const dataTobeSent = [
       {
         path: "Date",
@@ -215,18 +209,13 @@ const ScheduleList1: React.FC = () => {
                           color="primary"
                           onClick={() => setShowPopover(true)}
                           icon={calendar}
-                          style={{ marginRight: "10px" }}
+                          style={{ marginRight: "10px",PointerEvent:"cursor" }}
                           onMouseOver={(e) => handelonmouseover(group.key)}
                         />
                         <IonText>
                             {format(new Date(group.key), "yyyy-MM-dd")}
                           </IonText>
-                        {/* <input
-                          style={{ border: "none" }}
-                          type="date"
-                          readOnly
-                          value={format(new Date(group.key), "yyyy-MM-dd")}
-                        /> */}
+                     
                         <IonPopover
                           isOpen={showPopover}
                           onDidDismiss={closePopover}
@@ -236,7 +225,7 @@ const ScheduleList1: React.FC = () => {
                             placeholder="Select Date"
                             value={selectedDate || undefined}
                             onIonChange={(e) =>
-                              handleDateChange(e, group.key, inputValue)
+                              handleDateChange(e, inputValue)
                             }
                           ></IonDatetime>
                         </IonPopover>

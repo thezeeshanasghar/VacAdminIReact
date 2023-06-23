@@ -60,7 +60,7 @@ const Patient: React.FC = () => {
   const [error, setError] = useState("");
   const [showerrorCard, setShowErrorCard] = useState(false);
   const [options, setOptions] = useState<IonSelectOption[]>([]);
-  const clearApiData = () => {
+  const clearApiData = () => {    
     setApiData([]);
   };
 
@@ -142,28 +142,18 @@ const Patient: React.FC = () => {
     { length: currentYear - 2000 + 1 },
     (_, index) => 2000 + index
   );
-  // const handleDateChange = (event: CustomEvent) => {
-  //   setSelectedDate(event.detail.value);
-  // };
-  // const options = [];
-  // for (let i = 1; i <= 31; i++) {
-  //   options.push(
-  //     <IonSelectOption key={i} value={i.toString()}>
-  //       {i}
-  //     </IonSelectOption>
-  //   );
-  // }
+
   const canSubmit =
-  doctorName.trim().length > 0 ||
-  paientName.trim().length > 0 ||
-  gender.trim().length > 0 ||
-  city.trim().length > 0 ||
-  fromDate.toString().length > 0 ||
-  toDate.toString().length > 0 ||
-  fromMonth.toString().trim().length > 0 ||
-  toMonth.toString().trim().length > 0 ||
-  fromYear.toString().trim().length > 0 ||
-  toYear.toString().trim().length > 0;
+    doctorName.trim().length > 0 ||
+    paientName.trim().length > 0 ||
+    gender.trim().length > 0 ||
+    city.trim().length > 0 ||
+    fromDate.toString().length > 0 ||
+    toDate.toString().length > 0 ||
+    fromMonth.toString().trim().length > 0 ||
+    toMonth.toString().trim().length > 0 ||
+    fromYear.toString().trim().length > 0 ||
+    toYear.toString().trim().length > 0;
   return (
     <IonPage>
       <HeaderButtons
@@ -602,13 +592,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="From Date"
-                  type="number"
-                  value={fromDate}
-                  onIonChange={(e) => setFromDate(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
@@ -625,14 +608,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="To Date"
-                  type="number"
-                  value={toDate}
-                  //@ts-ignore
-                  onIonChange={(e) => setToDate(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
@@ -651,13 +626,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="From Month"
-                  type="number"
-                  value={fromMonth}
-                  onIonChange={(e) => setFromMonth(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
@@ -675,14 +643,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="To Month"
-                  type="number"
-                  value={toMonth}
-                  //@ts-ignore
-                  onIonChange={(e) => setToMonth(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
@@ -701,13 +661,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="From Year"
-                  type="number"
-                  value={fromYear}
-                  onIonChange={(e) => setFromYear(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
@@ -724,14 +677,6 @@ const Patient: React.FC = () => {
                     </IonSelectOption>
                   ))}
                 </IonSelect>
-                {/* <IonInput
-                  label="To Year"
-                  type="number"
-                  value={toYear}
-                  //@ts-ignore
-                  onIonChange={(e) => setToYear(e.detail.value!)}
-                  labelPlacement="floating"
-                ></IonInput> */}
               </IonItem>
             </IonCol>
           </IonRow>
@@ -739,54 +684,51 @@ const Patient: React.FC = () => {
             Search
           </IonButton>
         </form>
-        
-          <div>
+        <div>
           {apiData.length > 0 ? (
-  <>
-    {apiData.map((entity, index) => (
-      <div key={index}>
-        <IonCard>
-          <IonCardContent>
-            <IonText
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontWeight: 700,
-                fontSize: 19,
-                borderBottom: "1px solid gray",
-              }}
-            >
-            Name: {entity.Name}
-          </IonText>
-          <IonItem>Guardian: {entity.Guardian}</IonItem>
-          <IonItem>Father name: {entity.FatherName}</IonItem>
-          <IonItem>Email: {entity.Email}</IonItem>
-          <IonItem>DOB: {entity.DOB}</IonItem>
-          <IonItem>Gender: {entity.Gender}</IonItem>
-          <IonItem>Type: {entity.Type}</IonItem>
-          <IonItem>City: {entity.City}</IonItem>
-          <IonItem>CNIC: {entity.CNIC}</IonItem>
-          <IonItem lines="none">
-            Preferred schedule: {entity.PreferredSchedule}
-          </IonItem>
-          </IonCardContent>
-        </IonCard>
-      </div>
-    ))}
-  </>
-) : null}
-{showerrorCard && error && apiData.length === 0 && (
-  <IonCard>
-    <IonCardHeader>
-      <IonCardTitle>Error</IonCardTitle>
-      <IonCardSubtitle>{error}</IonCardSubtitle>
-    </IonCardHeader>
-  </IonCard>
-)}
-
-            </div>
-           
+            <>
+              {apiData.map((entity, index) => (
+                <div key={index}>
+                  <IonCard>
+                    <IonCardContent>
+                      <IonText
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontWeight: 700,
+                          fontSize: 19,
+                          borderBottom: "1px solid gray",
+                        }}
+                      >
+                        Name: {entity.Name}
+                      </IonText>
+                      <IonItem>Guardian: {entity.Guardian}</IonItem>
+                      <IonItem>Father name: {entity.FatherName}</IonItem>
+                      <IonItem>Email: {entity.Email}</IonItem>
+                      <IonItem>DOB: {entity.DOB}</IonItem>
+                      <IonItem>Gender: {entity.Gender}</IonItem>
+                      <IonItem>Type: {entity.Type}</IonItem>
+                      <IonItem>City: {entity.City}</IonItem>
+                      <IonItem>CNIC: {entity.CNIC}</IonItem>
+                      <IonItem lines="none">
+                        Preferred schedule: {entity.PreferredSchedule}
+                      </IonItem>
+                    </IonCardContent>
+                  </IonCard>
+                </div>
+              ))}
+            </>
+          ) : null}
+          {showerrorCard && error && apiData.length === 0 && (
+            <IonCard>
+              <IonCardHeader>
+                <IonCardTitle>Error</IonCardTitle>
+                <IonCardSubtitle>{error}</IonCardSubtitle>
+              </IonCardHeader>
+            </IonCard>
+          )}
+        </div>
       </IonContent>
     </IonPage>
   );
