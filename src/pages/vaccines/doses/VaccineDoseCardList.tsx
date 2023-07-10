@@ -26,7 +26,7 @@ const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
   const [renderList, setRenderList] = useState<boolean>(false);
   const fetchDoseData = async () => {
     setShowLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}api/Dose/dose_name/${vaccineId}`)
+    fetch(`${import.meta.env.VITE_API_URL}api/vaccine/${vaccineId}/doses`)
       .then((response) => response.json())
       .then((data: IDoseData[]) => {
         setData(data);

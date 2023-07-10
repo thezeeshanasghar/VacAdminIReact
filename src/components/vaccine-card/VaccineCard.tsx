@@ -89,8 +89,8 @@ const VaccineCard: React.FC<IVaccineData> = ({
         </IonItem>
         <IonCardContent className="md card-content-md hydrated">
           <span>
-            <b color="black">IsSpecial :</b>
-            {IsSpecial ? "True" : "False"} &nbsp; <b>Infinite :</b>
+            <b color="black">IsSpecial: </b>
+            {IsSpecial ? "True" : "False"} &nbsp; <b>Infinite: </b>
             {Infinite ? "True" : "False"}
           </span>
           <br></br>

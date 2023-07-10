@@ -100,23 +100,21 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
       />
       <IonCard
         style={{ marginTop: `${mt ? 0 : null}`, marginInline: 0 }}
-        className="md hydrated"
-      >
+        className="md hydrated">
         <IonCardHeader style={{ padding: 0 }}>
           <IonItem>
             {Name}
             <IonItem lines="none" slot="end" style={{ padding: 0 }}>
               <IonText onClick={openPopover} style={{ cursor: "pointer" }}>
-                Expiry : &nbsp;
-                <span
-                  style={{ color: isExpired ? "red" : isValid ? "green" : "" }}
-                >
+                Expiry: &nbsp; 
+                <span style={{ color: isExpired ? "red" : isValid ? "green" : "" }}>
                   {format(new Date(selectedDate || ValidUpto), "MMM yyyy")}
                 </span>
               </IonText>
               <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
                 <IonDatetime
                   // displayFormat="MMM DD, YYYY"
+                  presentation="month-year"
                   placeholder="Select Date"
                   value={selectedDate || undefined}
                   onIonChange={handleDateChange}

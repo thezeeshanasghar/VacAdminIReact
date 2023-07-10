@@ -44,9 +44,11 @@ const VaccineCardList: React.FC = () => {
   };
   const fetchVaccineData = async () => {
     setShowLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
+    fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
+        console.log('zeeshan')
+        console.log(data)
         setData(data);
         setShowLoading(false);
       })
@@ -74,14 +76,14 @@ const VaccineCardList: React.FC = () => {
         <IonContent className="ion-padding">
           {data.length > 0 ? (
             data.map((item, index) => (
-              <React.Fragment key={index * item.vaccine.Id + 1}>
+              <React.Fragment key={index * item.Id + 1}>
                 <VaccineCard
-                  Id={item.vaccine.Id}
-                  Name={item.vaccine.Name}
-                  IsSpecial={item.vaccine.IsSpecial}
-                  Infinite={item.vaccine.Infinite}
-                  DoseCount={item.DoseCount}
-                  BrandCount={item.BrandCount}
+                  Id={item.Id}
+                  Name={item.Name}
+                  IsSpecial={item.IsSpecial}
+                  Infinite={item.Infinite}
+                  // DoseCount={item.DoseCount}
+                  // BrandCount={item.BrandCount}
                   mt={index === 0}
                   renderList={forceRender}
                 />

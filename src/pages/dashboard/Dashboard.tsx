@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
    fetchData()
 })
 const fetchData=()=>{
-  fetch(`${import.meta.env.VITE_API_URL}api/Vaccine/vaccine-with-count`)
+  fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
   .then((response) => response.json())
   .then((data) => {
     console.log(data.length)
