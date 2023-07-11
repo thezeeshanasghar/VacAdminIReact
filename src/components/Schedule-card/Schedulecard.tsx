@@ -16,13 +16,13 @@ import AlertSuccess from "../alerts/AlertSuccess";
 
 interface IDoseSchedule {
   Id: number;
-  DId:number;
+  
   Name: string;
   MinAge: number;
-  MinGap: number;
+
   VaccineId: number;
   DoseDate: string;
-  cardDate: string;
+ 
   renderList: () => void;
 }
 
@@ -30,8 +30,8 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
   Name,
   DoseDate,
   Id,
-  cardDate,
-  DId,
+ 
+
   renderList,
 }) => {
   const [error, setError] = useState(false);
@@ -51,7 +51,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
     // console.log(data1);
     const dataTobeSent = {
       date: selectedValue,
-      doseId: DId,
+      doseId: Id,
     };
     console.log(dataTobeSent);
     try {
@@ -116,12 +116,6 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                 icon={calendar}
                 onMouseOver={(e) => handelonmouseover(DoseDate)}
               />
-              {/* <input
-                style={{ border: "none" }}
-                type="date"
-                readOnly
-                value={DoseDate ? format(new Date(DoseDate), "yyyy-MM-dd") : ""}
-              /> */}
             </>
           </IonCol>
         </IonRow>
