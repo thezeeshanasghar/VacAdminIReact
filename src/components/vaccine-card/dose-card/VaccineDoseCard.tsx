@@ -21,7 +21,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
   Name,
   VaccineId,
   MinAge,
-  MinGap,
+  // MinGap,
   renderList,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -41,7 +41,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
             <IonButton
               fill="clear"
               className="custom-ripple doses-buttons"
-              routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name}&minAge=${MinAge}&minGap=${MinGap}`}
+              routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name}&minAge=${MinAge}`}
               routerDirection="root"
             >
               <IonIcon
@@ -69,7 +69,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
         </IonItem>
         <IonCardContent>
           <p>Minimum Age Limit: {MinAge} Days</p>
-          <p>Minimum Gap Limit: {MinGap} Days</p>
+          {/* <p>Minimum Gap Limit: {MinGap} Days</p> */}
         </IonCardContent>
       </IonCard>
     </>

@@ -8,57 +8,49 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { format } from "date-fns";
 import { calendar } from "ionicons/icons";
 
 import AlertError from "../alerts/AlertError";
 import AlertSuccess from "../alerts/AlertSuccess";
+import { format } from "date-fns";
 
 interface IDoseSchedule {
   Id: number;
-  
+  date: string;
   Name: string;
   MinAge: number;
-
   VaccineId: number;
-  DoseDate: string;
- 
   renderList: () => void;
 }
 
 const Schedulecard: React.FC<IDoseSchedule> = ({
   Name,
-  DoseDate,
   Id,
- 
-
+  date,
   renderList,
 }) => {
   const [error, setError] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<string>("");
-  const [success, setSuccess] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | undefined>(date); // Initialize with the `date` prop value
 
-  function handelonmouseover(inputValue: string) {
+  const [success, setSuccess] = useState(false);
+  const handelonmouseover = (inputValue: string) => {
     const data1 = inputValue.split("T");
-    const data2 = data1[0];
-    console.log(data2);
+    const data2 = format(new Date(inputValue), "yyyy-MM-dd");
+   
     setSelectedDate(data2);
-  }
+  };
   const handleDateChange = async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
-
-    // console.log(data1);
+console.log(selectedValue)
     const dataTobeSent = {
       date: selectedValue,
       doseId: Id,
     };
-    console.log(dataTobeSent);
+console.log(dataTobeSent)
     try {
       const response = await fetch(
-        `${
-          import.meta.env.VITE_API_URL
-        }api/AdminDoseSchedule/Admin_single_updateDate`,
+        `${import.meta.env.VITE_API_URL}api/AdminSchedule/Admin_single_updateDate`,
         {
           method: "PATCH",
           headers: {
@@ -68,11 +60,10 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
         }
       );
       if (response.ok) {
-        console.log(response.ok);
         setSuccess(true);
         renderList();
         setShowPopover(false);
-      } else if (!response.ok) {
+      } else {
         setError(true);
         renderList();
       }
@@ -81,10 +72,6 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
       setError(true);
       setShowPopover(false);
     }
-  };
-
-  const openPopover = () => {
-    setShowPopover(true);
   };
 
   const closePopover = () => {
@@ -106,7 +93,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
       <IonGrid>
         <IonRow>
           <IonCol>
-            <>{Name}</>
+            <b>{Name}</b>
           </IonCol>
           <IonCol size="auto">
             <>
@@ -114,7 +101,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                 color="primary"
                 onClick={() => setShowPopover(true)}
                 icon={calendar}
-                onMouseOver={(e) => handelonmouseover(DoseDate)}
+                onMouseOver={() => handelonmouseover(date)}
               />
             </>
           </IonCol>
@@ -123,7 +110,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
       <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
         <IonDatetime
           placeholder="Select Date"
-          value={selectedDate || undefined}
+          value={selectedDate}
           onIonChange={handleDateChange}
         ></IonDatetime>
       </IonPopover>

@@ -23,16 +23,18 @@ import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { format } from "date-fns";
 import DatePicker from "../../components/Date Picker/MyDatePicker"
 interface IVaccine {
+  
   Id: number;
   Name: string;
   MinAge: number;
   VaccineId: number;
-  DoseDate: Date;
+ 
 }
 
 interface IVaccineData {
   [date: string]: IVaccine[];
 }
+
 
 const ScheduleList1: React.FC = () => {
   const [data, setData] = useState<IVaccine[]>([]);
@@ -179,7 +181,7 @@ const ScheduleList1: React.FC = () => {
                         <IonDatetime
                           placeholder="Select Date"
                           value={selectedDate || undefined}
-                          onIonChange={(e) => handleDateChange(e, inputValue)}
+                          onIonChange={(e) => handleDateChange(e, date, inputValue)}
                         ></IonDatetime>
                       </IonPopover>
                     </IonItem>
@@ -188,11 +190,12 @@ const ScheduleList1: React.FC = () => {
                 {data[date].map((item: IVaccine) => (
   <Schedulecard
     key={item.Id}
+    date={date}
     Id={item.Id}
     Name={item.Name}
     MinAge={item.MinAge}
     VaccineId={item.VaccineId}
-    DoseDate={item.DoseDate}
+    
     renderList={forceRender}
   />
 ))}

@@ -56,7 +56,8 @@ const EditBrands: React.FC<IParam> = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShowLoading(true);
-    const dataTobeSent = { Name, id: brandId };
+    const dataTobeSent = { Name: Name, id: brandId };
+    console.log(dataTobeSent)
     const url = `${import.meta.env.VITE_API_URL}api/Brand/${brandId}`;
     try {
       const response = await fetch(url, {

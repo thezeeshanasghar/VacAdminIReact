@@ -53,7 +53,7 @@ const EditDoses: React.FC<IParam> = ({
   //@ts-ignore
   VaccineName && setName(VaccineName);
   setMinAge(VaccineIsSpecial)
-  setMinGap(VaccineInfinite)
+  // setMinGap(VaccineInfinite)
   },[search])
   const [Name, setName] = useState("");
   const [MinAge, setMinAge] = useState("");
@@ -88,7 +88,7 @@ const EditDoses: React.FC<IParam> = ({
       setMinAge("");
     }
   };
-  const canSubmit=Name.length>0 && MinGap.length>0 && MinAge.length>0;
+  const canSubmit=Name.length>0 && MinAge.length>0;
   return (
     <>
       <LoadingSpinner
@@ -236,7 +236,7 @@ const EditDoses: React.FC<IParam> = ({
                 <IonSelectOption value="5475">15 Years</IonSelectOption>
               </IonSelect>
             </IonItem>
-            <IonItem>
+            {/* <IonItem>
               <IonSelect
                 color="primary"
                 label="MinGap"
@@ -354,7 +354,7 @@ const EditDoses: React.FC<IParam> = ({
                   15 Years 6 Months
                 </IonSelectOption>
               </IonSelect>
-            </IonItem>
+            </IonItem> */}
             <IonButton
               type="submit"
               fill="solid"

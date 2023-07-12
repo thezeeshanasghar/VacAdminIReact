@@ -32,7 +32,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   // form submit handler
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(Name, MinGap, MinAge);
+    console.log(Name, MinAge);
     const dataTobeSent = { Name, MinAge, MinGap, VaccineId: vaccineId };
     const url = `${import.meta.env.VITE_API_URL}api/Dose`;
     try {
@@ -58,7 +58,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       setMinAge(0);
     }
   };
-  const canSubmit=Name.length>0 && MinGap.length>0 && MinAge.length>0;
+  const canSubmit=Name.length>0 && MinAge.length>0;
   return (
     <IonPage>
       <AlertSuccess
@@ -200,7 +200,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               <IonSelectOption value="5475">15 Years</IonSelectOption>
             </IonSelect>
           </IonItem>
-          <IonItem>
+          {/* <IonItem>
             <IonSelect
               color="primary"
               value={MinGap}
@@ -316,7 +316,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               <IonSelectOption value="5505">15 Years 1 Month</IonSelectOption>
               <IonSelectOption value="5655">15 Years 6 Months</IonSelectOption>
             </IonSelect>
-          </IonItem>
+          </IonItem> */}
           <IonButton
             type="submit"
             fill="solid"
