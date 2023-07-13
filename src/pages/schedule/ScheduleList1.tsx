@@ -60,7 +60,7 @@ const ScheduleList1: React.FC = () => {
   const fetchDoseData = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/new`
+        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_post_doseSchedule`
       );
       if (response.ok) {
         const data = await response.json();
