@@ -6,6 +6,7 @@ import "../doctorsFooterButtonStyle.css";
 import FooterButtons from "../../../components/doctor-card/footer-buttons-for-doctor-lists/FooterButtons";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
 import ErrorComponent from "../../../components/error-component/ErrorComponent";
+import { useLocation } from "react-router";
 export interface IdoctorData {
   Id: number;
   Name: string;
@@ -19,6 +20,7 @@ export interface IdoctorData {
   ValidUpto: string;
 }
 const ApprovedDoctorList: React.FC = () => {
+  const location = useLocation();
   const [data, setData] = useState<IdoctorData[]>([]);
   const [showLoading, setShowLoading] = useState(false);
   const [renderList, setRenderList] = useState(false);
@@ -37,7 +39,7 @@ const ApprovedDoctorList: React.FC = () => {
   };
   useEffect(() => {
     fetchDoctorData();
-  }, []);
+  }, [location]);
   // force render to refresh doctor list;
   const forceRender = () => {
     fetchDoctorData();
