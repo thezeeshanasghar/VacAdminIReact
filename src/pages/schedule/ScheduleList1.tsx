@@ -99,28 +99,29 @@ const ScheduleList1: React.FC = () => {
 
     console.log(event.detail.value);
 
-    const dataTobeSent = [
-      {
-        path: "Date",
-        op: "replace",
-        from: value,
-        value: data2,
-      },
-    ];
+    // const dataTobeSent = [
+    //   {
+    //     path: "Date",
+    //     op: "replace",
+    //     from: value,
+    //     value: data2,
+    //   },
+    // ];
 
-    console.log("object item date : ", dataTobeSent);
+    // console.log("object item date : ", dataTobeSent);
     try {
       setShowLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/Admin_bulk_updateDate/${value}`,
+        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(dataTobeSent),
+          // body: JSON.stringify(dataTobeSent),
         }
       );
+      console.log('${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}');
       if (response.status === 204) {
         console.log(response.ok);
         setSuccess(true);
