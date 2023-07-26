@@ -27,10 +27,11 @@ interface IPatientProps {
   FatherName: string;
   Email: string;
   DOB: string;
-  Gender: string;
+  Gender: number;
   Type: string;
   City: string;
   CNIC: string;
+  MobileNumber:number;
   PreferredSchedule: string;
   IsEPIDone: boolean;
   IsVerified: boolean;
@@ -703,17 +704,18 @@ const Patient: React.FC = () => {
                       >
                         Name: {entity.Name}
                       </IonText>
-                      <IonItem>Guardian: {entity.Guardian}</IonItem>
+                      {/* <IonItem>Guardian: {entity.Guardian}</IonItem> */}
                       <IonItem>Father name: {entity.FatherName}</IonItem>
                       <IonItem>Email: {entity.Email}</IonItem>
                       <IonItem>DOB: {entity.DOB}</IonItem>
-                      <IonItem>Gender: {entity.Gender}</IonItem>
-                      <IonItem>Type: {entity.Type}</IonItem>
+                      <IonItem>Gender: {entity.Gender==0?"Boy":"Girl"}</IonItem>
+                      {/* <IonItem>Type: {entity.Type}</IonItem> */}
                       <IonItem>City: {entity.City}</IonItem>
                       <IonItem>CNIC: {entity.CNIC}</IonItem>
-                      <IonItem lines="none">
+                      <IonItem>Mobile Number: {entity.MobileNumber}</IonItem>
+                      {/* <IonItem lines="none">
                         Preferred schedule: {entity.PreferredSchedule}
-                      </IonItem>
+                      </IonItem> */}
                     </IonCardContent>
                   </IonCard>
                 </div>
