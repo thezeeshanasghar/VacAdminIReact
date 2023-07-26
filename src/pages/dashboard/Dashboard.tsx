@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
   const [dLength, setDLength] = useState("");
   useEffect(()=>{
    fetchData()
-})
+},[])
 const fetchData=()=>{
   fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
   .then((response) => response.json())

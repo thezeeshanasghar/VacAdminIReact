@@ -123,7 +123,9 @@ const ScheduleList1: React.FC = () => {
         }
       );
       console.log(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`
       );
       if (response.status === 204) {
         console.log(response.ok);
@@ -207,17 +209,21 @@ const ScheduleList1: React.FC = () => {
                     </IonItem>
                   </IonLabel>
                 </IonItem>
-                {data[date].map((item: IVaccine) => (
-                  <Schedulecard
-                    key={item.Id}
-                    date={date}
-                    Id={item.Id}
-                    Name={item.Name}
-                    MinAge={item.MinAge}
-                    VaccineId={item.VaccineId}
-                    renderList={forceRender}
-                  />
-                ))}
+                {data[date].map((item: IVaccine) =>
+                  item !== null ? (
+                    <Schedulecard
+                      key={item.Id}
+                      date={date}
+                      Id={item.Id}
+                      Name={item.Name}
+                      MinAge={item.MinAge}
+                      VaccineId={item.VaccineId}
+                      renderList={forceRender}
+                    />
+                  ) : (
+                    ""
+                  )
+                )}
               </>
             </IonCard>
           ))}
