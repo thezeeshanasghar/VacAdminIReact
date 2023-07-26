@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import {
   IonCard,
-  IonCol,
+  // IonCol,
   IonContent,
   IonDatetime,
-  IonGrid,
+  // IonGrid,
   IonIcon,
   IonItem,
   IonLabel,
   IonPage,
   IonPopover,
-  IonRow,
+  // IonRow,
   IonText,
 } from "@ionic/react";
-import { groupBy } from "lodash";
+// import { groupBy } from "lodash";
 import Schedulecard from "../../components/Schedule-card/Schedulecard";
 import HeaderButtons from "../../components/HeaderButtons";
 import AlertError from "../../components/alerts/AlertError";
@@ -21,20 +21,17 @@ import AlertSuccess from "../../components/alerts/AlertSuccess";
 import { calendar } from "ionicons/icons";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { format } from "date-fns";
-import DatePicker from "../../components/Date Picker/MyDatePicker"
+// import DatePicker from "../../components/Date Picker/MyDatePicker";
 interface IVaccine {
-  
   Id: number;
   Name: string;
   MinAge: number;
   VaccineId: number;
- 
 }
 
 interface IVaccineData {
   [date: string]: IVaccine[];
 }
-
 
 const ScheduleList1: React.FC = () => {
   const [data, setData] = useState<IVaccine[]>([]);
@@ -60,7 +57,9 @@ const ScheduleList1: React.FC = () => {
   const fetchDoseData = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_post_doseSchedule`
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminSchedule/admin_post_doseSchedule`
       );
       if (response.ok) {
         const data = await response.json();
@@ -112,7 +111,9 @@ const ScheduleList1: React.FC = () => {
     try {
       setShowLoading(true);
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`,
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`,
         {
           method: "PATCH",
           headers: {
@@ -121,7 +122,9 @@ const ScheduleList1: React.FC = () => {
           // body: JSON.stringify(dataTobeSent),
         }
       );
-      console.log('${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}');
+      console.log(
+        `${import.meta.env.VITE_API_URL}api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`
+      );
       if (response.status === 204) {
         console.log(response.ok);
         setSuccess(true);
@@ -146,16 +149,23 @@ const ScheduleList1: React.FC = () => {
     setShowPopover(false);
   };
 
- 
   return (
     <>
-      <LoadingSpinner isOpen={showLoading} setOpen={setShowLoading} time={5000} />
+      <LoadingSpinner
+        isOpen={showLoading}
+        setOpen={setShowLoading}
+        time={5000}
+      />
       <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
         message="Selected dose date updated successfully"
       />
-      <AlertError isOpen={error} setOpen={setError} message="An error occurred. Please try again." />
+      <AlertError
+        isOpen={error}
+        setOpen={setError}
+        message="An error occurred. Please try again."
+      />
       <IonPage>
         <HeaderButtons
           pageName="Dose Schedule"
@@ -169,37 +179,45 @@ const ScheduleList1: React.FC = () => {
               <>
                 <IonItem lines="none" className="centered-item">
                   <IonLabel style={{ textAlign: "center" }}>
-                    <IonItem lines="none" slot="center" style={{ textAlign: "center", padding: 0 }}>
+                    <IonItem
+                      lines="none"
+                      slot="center"
+                      style={{ textAlign: "center", padding: 0 }}
+                    >
                       <IonIcon
                         color="primary"
                         onClick={() => setShowPopover(true)}
                         icon={calendar}
-                        style={{ marginRight: "10px", PointerEvent: "cursor" }}
+                        style={{ marginRight: "10px", cursor: "pointer" }}
                         onMouseOver={() => handelonmouseover(date)}
                       />
                       <IonText>{format(new Date(date), "yyyy-MM-dd")}</IonText>
-                      <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
+                      <IonPopover
+                        isOpen={showPopover}
+                        onDidDismiss={closePopover}
+                      >
                         <IonDatetime
                           placeholder="Select Date"
                           value={selectedDate || undefined}
-                          onIonChange={(e) => handleDateChange(e, date, inputValue)}
+                          onIonChange={(e) =>
+                            handleDateChange(e, date, inputValue)
+                          }
                         ></IonDatetime>
                       </IonPopover>
                     </IonItem>
                   </IonLabel>
                 </IonItem>
                 {data[date].map((item: IVaccine) => (
-  <Schedulecard
-    key={item.Id}
-    date={date}
-    Id={item.Id}
-    Name={item.Name}
-    MinAge={item.MinAge}
-    VaccineId={item.VaccineId}
-    
-    renderList={forceRender}
-  />
-))}
+                  <Schedulecard
+                    key={item.Id}
+                    date={date}
+                    Id={item.Id}
+                    Name={item.Name}
+                    MinAge={item.MinAge}
+                    VaccineId={item.VaccineId}
+                    renderList={forceRender}
+                  />
+                ))}
               </>
             </IonCard>
           ))}

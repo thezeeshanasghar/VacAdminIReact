@@ -194,9 +194,9 @@ const Patient: React.FC = () => {
               onIonChange={(e) => setGender(e.detail.value)}
               labelPlacement="floating"
             >
-              <IonSelectOption value="Male">Male</IonSelectOption>
-              <IonSelectOption value="Female">Female</IonSelectOption>
-              <IonSelectOption value="Any">Any</IonSelectOption>
+              <IonSelectOption value="0">Boy</IonSelectOption>
+              <IonSelectOption value="1">Girl</IonSelectOption>
+              <IonSelectOption value="2">Any</IonSelectOption>
             </IonSelect>
           </IonItem>
           <IonItem>
@@ -707,7 +707,7 @@ const Patient: React.FC = () => {
                       {/* <IonItem>Guardian: {entity.Guardian}</IonItem> */}
                       <IonItem>Father name: {entity.FatherName}</IonItem>
                       <IonItem>Email: {entity.Email}</IonItem>
-                      <IonItem>DOB: {entity.DOB}</IonItem>
+                      <IonItem>DOB: {entity.DOB.split("T")[0]}</IonItem>
                       <IonItem>Gender: {entity.Gender==0?"Boy":"Girl"}</IonItem>
                       {/* <IonItem>Type: {entity.Type}</IonItem> */}
                       <IonItem>City: {entity.City}</IonItem>

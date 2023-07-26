@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   IonDatetime,
   IonIcon,
-  IonItem,
+  // IonItem,
   IonPopover,
   IonGrid,
   IonRow,
@@ -37,20 +37,22 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
   const handelonmouseover = (inputValue: string) => {
     const data1 = inputValue.split("T");
     const data2 = format(new Date(inputValue), "yyyy-MM-dd");
-   
+
     setSelectedDate(data2);
   };
   const handleDateChange = async (event: CustomEvent<any>) => {
     const selectedValue = event.detail.value;
-console.log(selectedValue)
+    console.log(selectedValue);
     const dataTobeSent = {
       date: selectedValue,
       doseId: Id,
     };
-console.log(dataTobeSent)
+    console.log(dataTobeSent);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}api/AdminSchedule/Admin_single_updateDate`,
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminSchedule/Admin_single_updateDate`,
         {
           method: "PATCH",
           headers: {
@@ -101,6 +103,7 @@ console.log(dataTobeSent)
                 color="primary"
                 onClick={() => setShowPopover(true)}
                 icon={calendar}
+                style={{ marginRight: "10px", cursor: "pointer" }}
                 onMouseOver={() => handelonmouseover(date)}
               />
             </>
