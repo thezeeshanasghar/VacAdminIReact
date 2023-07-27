@@ -241,7 +241,7 @@ const ScheduleList1: React.FC = () => {
                       )
                     )
                   ) : (
-                    <ErrorComponent title="Brands" />
+                    <ErrorComponent title="Admin Schedule" />
                   )
                 ) : (
                   <ErrorComponent title="Brands" />

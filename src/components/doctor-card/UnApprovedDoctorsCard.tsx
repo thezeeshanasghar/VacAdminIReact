@@ -11,6 +11,7 @@ import { IdoctorData } from "../../pages/doctors/approved-doctors/ApprovedDoctor
 import axios from "axios";
 import AlertSuccess from "../alerts/AlertSuccess";
 import AlertError from "../alerts/AlertError";
+import Toast from "../Custom Toast/Toast";
 const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   mt,
   Id,
@@ -60,7 +61,19 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   };
   return (
     <>
-      <AlertSuccess
+    <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Bulk date of admin schedule update successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An error occurred while update bulk date of admin schedule. plz try again"
+        color="danger"
+      />
+      {/* <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
         message="Doctor approved successfully"
@@ -69,7 +82,7 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
         isOpen={error}
         setOpen={setError}
         message="An Error occcured. Plz try again."
-      />
+      /> */}
       <IonCard
         style={{ marginTop: `${mt ? 0 : null}`, marginInline: 0 }}
         className="md hydrated"

@@ -20,6 +20,7 @@ export type Props = {
 import { IdoctorData } from "../../pages/doctors/approved-doctors/ApprovedDoctorList";
 import DeletePopup from "../delete-popup/DeletePopup";
 import AlertError from "../alerts/AlertError";
+import Toast from "../Custom Toast/Toast";
 const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   mt,
   Id,
@@ -38,6 +39,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const openPopover = () => {
     setShowPopover(true);
@@ -58,14 +60,14 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   const UpdateExpiryDateOfDoctor = (updatedDate: string) => {
     const dataTobeSent = {
       id: Id,
-      name: "string",
-      mobileNumber: "string",
-      password: "string",
-      IsApproved: true,
-      isEnabled: true,
-      email: "string",
-      doctorType: "string",
-      pmdc: "string",
+      // name: "string",
+      // mobileNumber: "string",
+      // password: "string",
+      // IsApproved: true,
+      // isEnabled: true,
+      // email: "string",
+      // doctorType: "string",
+      // pmdc: "string",
       validUpto: format(new Date(updatedDate), "dd-MMM-yyyy", {
         locale: enUS,
       }),
@@ -78,7 +80,10 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
       body: JSON.stringify(dataTobeSent),
     })
       .then((response) => {
-        if (response.status === 204) renderList();
+        if (response.status === 204) {
+          renderList();
+        setSuccess(true)
+        }
       })
       .catch((err) => {
         setError(true);
@@ -86,11 +91,23 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   };
   return (
     <>
-      <AlertError
+    <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Bulk date of admin schedule update successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An error occurred while update bulk date of admin schedule. plz try again"
+        color="danger"
+      />
+      {/* <AlertError
         isOpen={error}
         setOpen={setError}
         message="An Error occurred while updating date"
-      />
+      /> */}
       <DeletePopup
         url={`${import.meta.env.VITE_API_URL}api/Doctor/${Id}`}
         title="Doctor"
