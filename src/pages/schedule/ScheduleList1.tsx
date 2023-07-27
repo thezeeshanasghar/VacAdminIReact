@@ -160,18 +160,18 @@ const ScheduleList1: React.FC = () => {
         setOpen={setShowLoading}
         time={3000}
       />
-       <Toast
-          isOpen={success}
-          setOpen={setSuccess}
-          message="Bulk date of doctor schedule update successfully."
-          color="success"
-        />
-        <Toast
-          isOpen={error}
-          setOpen={setError}
-          message="An error occurred while update doctor schedule. plz try again"
-          color="danger"
-        />
+      <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Bulk date of admin schedule update successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An error occurred while update bulk date of admin schedule. plz try again"
+        color="danger"
+      />
       {/* <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
@@ -224,28 +224,28 @@ const ScheduleList1: React.FC = () => {
                   </IonLabel>
                 </IonItem>
                 {data && data[date] ? (
-  data[date].length > 0 ? (
-    data[date].map((item: IVaccine) =>
-      item !== null ? (
-        <Schedulecard
-          key={item.Id}
-          date={date}
-          Id={item.Id}
-          Name={item.Name}
-          MinAge={item.MinAge}
-          VaccineId={item.VaccineId}
-          renderList={forceRender}
-        />
-      ) : (
-        ""
-      )
-    )
-  ) : (
-    <ErrorComponent title="Brands" />
-  )
-) : (
-  <ErrorComponent title="Brands" />
-)}
+                  data[date].length > 0 ? (
+                    data[date].map((item: IVaccine) =>
+                      item !== null ? (
+                        <Schedulecard
+                          key={item.Id}
+                          date={date}
+                          Id={item.Id}
+                          Name={item.Name}
+                          MinAge={item.MinAge}
+                          VaccineId={item.VaccineId}
+                          renderList={forceRender}
+                        />
+                      ) : (
+                        ""
+                      )
+                    )
+                  ) : (
+                    <ErrorComponent title="Brands" />
+                  )
+                ) : (
+                  <ErrorComponent title="Brands" />
+                )}
               </>
             </IonCard>
           ))}

@@ -86,13 +86,13 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
      <Toast
           isOpen={success}
           setOpen={setSuccess}
-          message="Bulk date of doctor schedule update successfully."
+          message="Single date of admin schedule update successfully."
           color="success"
         />
         <Toast
           isOpen={error}
           setOpen={setError}
-          message="An error occurred while update doctor schedule. plz try again"
+          message="An error occurred while update single date of admin schedule. plz try again"
           color="danger"
         />
       {/* <AlertSuccess
