@@ -20,6 +20,7 @@ import {
 import React, { useState, useEffect } from "react";
 import HeaderButtons from "../../components/HeaderButtons";
 import axios from "axios";
+import Toast from "../../components/Custom Toast/Toast";
 interface IPatientProps {
   Id: number;
   Name: string;
@@ -48,6 +49,8 @@ interface IonSelectOption {
 const Patient: React.FC = () => {
   const [doctorName, setdoctorName] = useState("");
   const [paientName, setpaientName] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error1, setError1] = useState(false);
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
@@ -82,14 +85,18 @@ const Patient: React.FC = () => {
           import.meta.env.VITE_API_URL
         }api/Child/search-by-doctor-name?doctorName=${doctorName}&Name=${paientName}&City=${city}&Gender=${gender}&fromDay=${fromDate}&toDay=${toDate}&fromMonth=${fromMonth}&toMonth=${toMonth}&fromYear=${fromYear}&toYear=${toYear}`
       )
-      .then((res) => setApiData(res.data))
+      .then((res) => {setApiData(res.data)
+      setSuccess(true);
+      })
       .catch((err) => {
         if (err.response) {
           setShowErrorCard(true);
           setError(err.response.data);
+          setError1(true);
         } else {
           setShowErrorCard(true);
           setError(err.message);
+          setError1(true);
         }
       })
       .finally(() => {
@@ -156,6 +163,19 @@ const Patient: React.FC = () => {
     fromYear.toString().trim().length > 0 ||
     toYear.toString().trim().length > 0;
   return (
+    <>
+    <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Patient search successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error1}
+        setOpen={setError1}
+        message="An error occurred while patient search. plz try again"
+        color="danger"
+      />
     <IonPage>
       <HeaderButtons
         pageName="Patient Search"
@@ -733,6 +753,7 @@ const Patient: React.FC = () => {
         </div>
       </IonContent>
     </IonPage>
+    </>
   );
 };
 
