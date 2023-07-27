@@ -157,7 +157,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
           <p>Email: {Email}</p>
           <p>Number: {MobileNumber}</p>
           <p>PMDC No: {PMDC}</p>
-          <IonButton color="tertiary" fill="outline" size="small">
+          <IonButton color="tertiary" fill="outline" disabled size="small">
             <IonIcon
               icon={fingerPrint}
               role="img"
