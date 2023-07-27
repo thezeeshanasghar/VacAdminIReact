@@ -14,6 +14,7 @@ import HeaderButtons from "../../../components/HeaderButtons";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
 import AlertSuccess from "../../../components/alerts/AlertError";
 import AlertError from "../../../components/alerts/AlertError";
+import Toast from "../../../components/Custom Toast/Toast";
 interface IParam {
   location: {
     search: string;
@@ -97,7 +98,19 @@ const EditDoses: React.FC<IParam> = ({
         time={3000}
       />
       <IonPage>
-        <AlertSuccess
+      <Toast
+          isOpen={success}
+          setOpen={setSuccess}
+          message="Dose updated successfully."
+          color="success"
+        />
+        <Toast
+          isOpen={error}
+          setOpen={setError}
+          message="An Error occcured. Plz try again."
+          color="danger"
+        />
+        {/* <AlertSuccess
           isOpen={success}
           setOpen={setSuccess}
           message="Dose updated successfully"
@@ -106,7 +119,7 @@ const EditDoses: React.FC<IParam> = ({
           isOpen={error}
           setOpen={setError}
           message="An Error occcured. Plz try again."
-        />
+        /> */}
         <HeaderButtons pageName="Update Dose"></HeaderButtons>
         <IonContent>
           <form onSubmit={handleSubmit}>
