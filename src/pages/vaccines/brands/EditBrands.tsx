@@ -12,6 +12,7 @@ import HeaderButtons from "../../../components/HeaderButtons";
 import LoadingSpinner from "../../../components/loading-spinner/LoadingSpinner";
 import AlertSuccess from "../../../components/alerts/AlertError";
 import AlertError from "../../../components/alerts/AlertError";
+import Toast from "../../../components/Custom Toast/Toast";
 interface IParam {
   location: {
     search: string;
@@ -87,7 +88,19 @@ const EditBrands: React.FC<IParam> = ({
         time={3000}
       />
       <IonPage>
-        <AlertSuccess
+      <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Brand updated successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An Error occcured. Plz try again."
+        color="danger"
+      />
+        {/* <AlertSuccess
           isOpen={success}
           setOpen={setSuccess}
           message="Brand updated successfully"
@@ -96,7 +109,7 @@ const EditBrands: React.FC<IParam> = ({
           isOpen={error}
           setOpen={setError}
           message="An Error occcured. Plz try again."
-        />
+        /> */}
         <HeaderButtons pageName="Update Brand"></HeaderButtons>
         <IonContent>
           <form onSubmit={handleSubmit}>
