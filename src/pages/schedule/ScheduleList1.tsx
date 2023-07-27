@@ -21,6 +21,7 @@ import AlertSuccess from "../../components/alerts/AlertSuccess";
 import { calendar } from "ionicons/icons";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { format } from "date-fns";
+import ErrorComponent from "../../components/error-component/ErrorComponent";
 // import DatePicker from "../../components/Date Picker/MyDatePicker";
 interface IVaccine {
   Id: number;
@@ -63,7 +64,7 @@ const ScheduleList1: React.FC = () => {
       );
       if (response.ok) {
         const data = await response.json();
-
+        setShowLoading(true);
         setData(data);
         console.log(data);
         setIsLoading(false);
@@ -128,9 +129,9 @@ const ScheduleList1: React.FC = () => {
         }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`
       );
       if (response.status === 204) {
+        setShowLoading(false);
         console.log(response.ok);
         setSuccess(true);
-        setShowLoading(false);
         forceRender();
       } else if (!response.ok) {
         setError(true);
@@ -156,7 +157,7 @@ const ScheduleList1: React.FC = () => {
       <LoadingSpinner
         isOpen={showLoading}
         setOpen={setShowLoading}
-        time={5000}
+        time={3000}
       />
       <AlertSuccess
         isOpen={success}
@@ -209,21 +210,29 @@ const ScheduleList1: React.FC = () => {
                     </IonItem>
                   </IonLabel>
                 </IonItem>
-                {data[date].map((item: IVaccine) =>
-                  item !== null ? (
-                    <Schedulecard
-                      key={item.Id}
-                      date={date}
-                      Id={item.Id}
-                      Name={item.Name}
-                      MinAge={item.MinAge}
-                      VaccineId={item.VaccineId}
-                      renderList={forceRender}
-                    />
-                  ) : (
-                    ""
-                  )
-                )}
+                {data && data[date] ? (
+  data[date].length > 0 ? (
+    data[date].map((item: IVaccine) =>
+      item !== null ? (
+        <Schedulecard
+          key={item.Id}
+          date={date}
+          Id={item.Id}
+          Name={item.Name}
+          MinAge={item.MinAge}
+          VaccineId={item.VaccineId}
+          renderList={forceRender}
+        />
+      ) : (
+        ""
+      )
+    )
+  ) : (
+    <ErrorComponent title="Brands" />
+  )
+) : (
+  <ErrorComponent title="Brands" />
+)}
               </>
             </IonCard>
           ))}
