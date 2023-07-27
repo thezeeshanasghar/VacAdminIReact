@@ -13,6 +13,7 @@ import { calendar } from "ionicons/icons";
 import AlertError from "../alerts/AlertError";
 import AlertSuccess from "../alerts/AlertSuccess";
 import { format } from "date-fns";
+import Toast from "../Custom Toast/Toast";
 
 interface IDoseSchedule {
   Id: number;
@@ -82,7 +83,19 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
 
   return (
     <>
-      <AlertSuccess
+     <Toast
+          isOpen={success}
+          setOpen={setSuccess}
+          message="Bulk date of doctor schedule update successfully."
+          color="success"
+        />
+        <Toast
+          isOpen={error}
+          setOpen={setError}
+          message="An error occurred while update doctor schedule. plz try again"
+          color="danger"
+        />
+      {/* <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
         message="Selected dose date updated successfully"
@@ -91,7 +104,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
         isOpen={error}
         setOpen={setError}
         message="An Error occurred. Please try again."
-      />
+      /> */}
       <IonGrid>
         <IonRow>
           <IonCol>

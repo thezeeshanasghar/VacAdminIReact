@@ -22,6 +22,7 @@ import { calendar } from "ionicons/icons";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { format } from "date-fns";
 import ErrorComponent from "../../components/error-component/ErrorComponent";
+import Toast from "../../components/Custom Toast/Toast";
 // import DatePicker from "../../components/Date Picker/MyDatePicker";
 interface IVaccine {
   Id: number;
@@ -159,7 +160,19 @@ const ScheduleList1: React.FC = () => {
         setOpen={setShowLoading}
         time={3000}
       />
-      <AlertSuccess
+       <Toast
+          isOpen={success}
+          setOpen={setSuccess}
+          message="Bulk date of doctor schedule update successfully."
+          color="success"
+        />
+        <Toast
+          isOpen={error}
+          setOpen={setError}
+          message="An error occurred while update doctor schedule. plz try again"
+          color="danger"
+        />
+      {/* <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
         message="Selected dose date updated successfully"
@@ -168,7 +181,7 @@ const ScheduleList1: React.FC = () => {
         isOpen={error}
         setOpen={setError}
         message="An error occurred. Please try again."
-      />
+      /> */}
       <IonPage>
         <HeaderButtons
           pageName="Dose Schedule"
