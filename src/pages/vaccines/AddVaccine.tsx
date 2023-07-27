@@ -13,6 +13,7 @@ import {
 import HeaderButtons from "../../components/HeaderButtons";
 import AlertError from "../../components/alerts/AlertError";
 import AlertSuccess from "../../components/alerts/AlertSuccess";
+import Toast from "../../components/Custom Toast/Toast";
 export interface IhistoryObjectProps {
   history: {
     push: (path: string, search: string) => void;
@@ -59,15 +60,17 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
   const canSubmit=Name.length>0;
   return (
     <IonPage>
-      <AlertSuccess
+     <Toast
         isOpen={success}
         setOpen={setSuccess}
-        message="Vaccine added successfully"
+        message="Vaccine added successfully."
+        color="success"
       />
-      <AlertError
+      <Toast
         isOpen={error}
         setOpen={setError}
         message="An Error occcured. Plz try again."
+        color="danger"
       />
       <HeaderButtons pageName="Add Vaccine"></HeaderButtons>
       <IonContent>

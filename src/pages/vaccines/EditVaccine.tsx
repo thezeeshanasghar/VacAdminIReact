@@ -13,6 +13,7 @@ import HeaderButtons from "../../components/HeaderButtons";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import AlertSuccess from "../../components/alerts/AlertError";
 import AlertError from "../../components/alerts/AlertError";
+import Toast from "../../components/Custom Toast/Toast";
 
 interface IParam {
   location: {
@@ -96,16 +97,18 @@ const canSubmit=Name.length>0;
         time={3000}
       />
       <IonPage>
-        <AlertSuccess
-          isOpen={success}
-          setOpen={setSuccess}
-          message="Vaccine Updated successfully"
-        />
-        <AlertError
-          isOpen={error}
-          setOpen={setError}
-          message="An Error occurred. Please try again."
-        />
+       <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Vaccine Updated successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An Error occurred. Please try again."
+        color="danger"
+      />
         <HeaderButtons pageName="Update Vaccine" />
         <IonContent>
           <form onSubmit={handleSubmit}>
