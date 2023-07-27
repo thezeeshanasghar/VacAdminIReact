@@ -16,6 +16,7 @@ import { VaccineIdProps } from "../brands/VaccineBrandCardList";
 import { IhistoryObjectProps } from "../AddVaccine";
 import AlertSuccess from "../../../components/alerts/AlertSuccess";
 import AlertError from "../../../components/alerts/AlertError";
+import Toast from "../../../components/Custom Toast/Toast";
 const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   match: {
     params: { vaccineId },
@@ -61,7 +62,19 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   const canSubmit=Name.length>0 && MinAge.length>0;
   return (
     <IonPage>
-      <AlertSuccess
+      <Toast
+        isOpen={success}
+        setOpen={setSuccess}
+        message="Dose added successfully."
+        color="success"
+      />
+      <Toast
+        isOpen={error}
+        setOpen={setError}
+        message="An Error occcured. Plz try again."
+        color="danger"
+      />
+      {/* <AlertSuccess
         isOpen={success}
         setOpen={setSuccess}
         message="Dose added successfully"
@@ -70,7 +83,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
         isOpen={error}
         setOpen={setError}
         message="An Error occcured. Plz try again."
-      />
+      /> */}
       <HeaderButtons pageName="Add Dose"></HeaderButtons>
       <IonContent>
         <form onSubmit={handleSubmit}>

@@ -191,6 +191,7 @@ const Patient: React.FC = () => {
               onIonChange={(e) => setdoctorName(e.detail.value)}
               labelPlacement="floating"
             >
+              <IonSelectOption value="">Select Doctor Name</IonSelectOption>
               {options.map((option) => (
                 <IonSelectOption key={option.Id} value={option.Name}>
                   {option.Name}
@@ -214,6 +215,7 @@ const Patient: React.FC = () => {
               onIonChange={(e) => setGender(e.detail.value)}
               labelPlacement="floating"
             >
+              <IonSelectOption value="">Select Gender</IonSelectOption>
               <IonSelectOption value="0">Boy</IonSelectOption>
               <IonSelectOption value="1">Girl</IonSelectOption>
               <IonSelectOption value="2">Any</IonSelectOption>
@@ -226,6 +228,7 @@ const Patient: React.FC = () => {
               onIonChange={(e) => setCity(e.detail.value!)}
               labelPlacement="floating"
             >
+              <IonSelectOption value="">Select City</IonSelectOption>
               <IonSelectOption value="Abbottabad">Abbottabad</IonSelectOption>
               <IonSelectOption value="Adezai">Adezai</IonSelectOption>
               <IonSelectOption value="Ali Bandar">Ali Bandar</IonSelectOption>
@@ -607,6 +610,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setFromDate(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Day</IonSelectOption>
                   {Array.from({ length: 31 }, (_, index) => (
                     <IonSelectOption key={index + 1} value={index + 1}>
                       {index + 1}
@@ -623,6 +627,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setToDate(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Day</IonSelectOption>
                   {Array.from({ length: 31 }, (_, index) => (
                     <IonSelectOption key={index + 1} value={index + 1}>
                       {index + 1}
@@ -641,6 +646,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setFromMonth(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Month</IonSelectOption>
                   {monthNames.map((month, index) => (
                     <IonSelectOption key={index + 1} value={index + 1}>
                       {month}
@@ -658,6 +664,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setToMonth(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Month</IonSelectOption>
                   {monthNames.map((month, index) => (
                     <IonSelectOption key={index + 1} value={index + 1}>
                       {month}
@@ -676,6 +683,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setFromYear(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Year</IonSelectOption>
                   {years.map((year) => (
                     <IonSelectOption key={year} value={year}>
                       {year}
@@ -692,6 +700,7 @@ const Patient: React.FC = () => {
                   onIonChange={(e) => setToYear(e.detail.value!)}
                   labelPlacement="floating"
                 >
+                  <IonSelectOption value="">Select Year</IonSelectOption>
                   {years.map((year) => (
                     <IonSelectOption key={year} value={year}>
                       {year}
