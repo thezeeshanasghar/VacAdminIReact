@@ -82,7 +82,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
       .then((response) => {
         if (response.status === 204) {
           renderList();
-        setSuccess(true)
+          setSuccess(true);
         }
       })
       .catch((err) => {
@@ -91,16 +91,16 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   };
   return (
     <>
-    <Toast
+      <Toast
         isOpen={success}
         setOpen={setSuccess}
-        message="Bulk date of admin schedule update successfully."
+        message="Doctor's Valid-upto date updated successfully!"
         color="success"
       />
       <Toast
         isOpen={error}
         setOpen={setError}
-        message="An error occurred while update bulk date of admin schedule. plz try again"
+        message="An error occurred while updating doctor's valid-up-date. plz try again"
         color="danger"
       />
       {/* <AlertError
@@ -117,14 +117,17 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
       />
       <IonCard
         style={{ marginTop: `${mt ? 0 : null}`, marginInline: 0 }}
-        className="md hydrated">
+        className="md hydrated"
+      >
         <IonCardHeader style={{ padding: 0 }}>
           <IonItem>
             {Name}
             <IonItem lines="none" slot="end" style={{ padding: 0 }}>
               <IonText onClick={openPopover} style={{ cursor: "pointer" }}>
-                Expiry: &nbsp; 
-                <span style={{ color: isExpired ? "red" : isValid ? "green" : "" }}>
+                Expiry: &nbsp;
+                <span
+                  style={{ color: isExpired ? "red" : isValid ? "green" : "" }}
+                >
                   {format(new Date(selectedDate || ValidUpto), "MMM yyyy")}
                 </span>
               </IonText>

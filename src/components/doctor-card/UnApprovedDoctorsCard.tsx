@@ -24,7 +24,7 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   DoctorType,
   PMDC,
   ValidUpto,
-  renderList
+  renderList,
 }) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -61,16 +61,16 @@ const UnApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   };
   return (
     <>
-    <Toast
+      <Toast
         isOpen={success}
         setOpen={setSuccess}
-        message="Bulk date of admin schedule update successfully."
+        message="Doctor approved successfully!"
         color="success"
       />
       <Toast
         isOpen={error}
         setOpen={setError}
-        message="An error occurred while update bulk date of admin schedule. plz try again"
+        message="An error occurred while approving doctor. plz try again"
         color="danger"
       />
       {/* <AlertSuccess
