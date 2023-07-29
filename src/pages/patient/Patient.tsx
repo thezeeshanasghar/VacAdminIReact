@@ -46,6 +46,10 @@ interface IonSelectOption {
   Name: string;
   label: string;
 }
+interface IonSelectAll {
+  Id: number;
+  Name: string;
+}
 const Patient: React.FC = () => {
   const [doctorName, setdoctorName] = useState("");
   const [paientName, setpaientName] = useState("");
@@ -64,15 +68,24 @@ const Patient: React.FC = () => {
   const [error, setError] = useState("");
   const [showerrorCard, setShowErrorCard] = useState(false);
   const [options, setOptions] = useState<IonSelectOption[]>([]);
+  const [all, setAll] = useState<IonSelectAll[]>([]);
   const clearApiData = () => {    
     setApiData([]);
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}api/Doctor/IsApproved/true`)
+    fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
       .then((response) => response.json())
       .then((data) => {
         setOptions(data);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+
+      fetch(`${import.meta.env.VITE_API_URL}api/Child/allpatients`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAll(data);
         console.log(data);
       })
       .catch((error) => console.log(error));
@@ -200,12 +213,19 @@ const Patient: React.FC = () => {
             </IonSelect>
           </IonItem>
           <IonItem>
-            <IonInput
+            <IonSelect
               label="Patient Name"
               value={paientName} //@ts-ignore
               onIonChange={(e) => setpaientName(e.detail.value)}
               labelPlacement="floating"
-            ></IonInput>
+            >
+              <IonSelectOption value="">Select Patient Name</IonSelectOption>
+              {all.map((option) => (
+                <IonSelectOption key={option.Id} value={option.Name}>
+                  {option.Name}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
           </IonItem>
           <IonItem>
             <IonSelect
