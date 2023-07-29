@@ -12,6 +12,7 @@ import {
 import { body, fingerPrint, trash } from "ionicons/icons";
 import React, { useState } from "react";
 import { format, isAfter, isBefore } from "date-fns";
+import { useIonRouter } from "@ionic/react";
 import { enUS } from "date-fns/locale";
 export type Props = {
   mt: boolean;
@@ -27,10 +28,10 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   Name,
   MobileNumber,
   Password,
-  IsApproved,
-  IsEnabled,
+  // IsApproved,
+  // IsEnabled,
   Email,
-  DoctorType,
+  // DoctorType,
   PMDC,
   ValidUpto,
   renderList,
@@ -60,18 +61,19 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
   const UpdateExpiryDateOfDoctor = (updatedDate: string) => {
     const dataTobeSent = {
       id: Id,
-      // name: "string",
-      // mobileNumber: "string",
-      // password: "string",
+      name: Name,
+      mobileNumber: MobileNumber,
+      password: Password,
       // IsApproved: true,
       // isEnabled: true,
-      // email: "string",
+      email: Email,
       // doctorType: "string",
-      // pmdc: "string",
-      validUpto: format(new Date(updatedDate), "dd-MMM-yyyy", {
+      pmdc: PMDC,
+      validUpto: format(new Date(updatedDate), "yyyy-MM-dd", {
         locale: enUS,
       }),
     };
+    console.log(dataTobeSent)
     fetch(`${import.meta.env.VITE_API_URL}api/Doctor/UpdateValidUpto/${Id}`, {
       method: "PATCH",
       headers: {
@@ -89,6 +91,13 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
         setError(true);
       });
   };
+
+  const data = useIonRouter();
+
+  const handleClick = () => {
+    data.push(`/members/doctor/allpatient/${Id}`, "forward");
+  };
+
   return (
     <>
       <Toast
@@ -170,7 +179,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
             color="tertiary"
             fill="outline"
             size="small"
-            disabled
+         onClick={handleClick}
             aria-disabled="true"
           >
             <IonIcon icon={body} role="img" aria-label="body"></IonIcon>{" "}

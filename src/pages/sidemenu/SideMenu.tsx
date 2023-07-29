@@ -32,7 +32,7 @@ const SideMenu: React.FC = () => {
   const routes = [
     { name: "Dashboard", to: "/members/dashboard", icon: home },
     { name: "Vaccines", to: "/members/vaccine", icon: colorFilter },
-    { name: "Doctors", to: "/members/doctor/approved", icon: medkit },
+    { name: "Doctors", to: "/members/doctor", icon: medkit },
     { name: "Patients", to: "/members/patient", icon: man },
     { name: "Schedule", to: "/members/schedule", icon: time },
   ];

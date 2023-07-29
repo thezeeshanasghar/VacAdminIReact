@@ -12,10 +12,10 @@ export interface IdoctorData {
   Name: string;
   MobileNumber: string;
   Password: string;
-  IsApproved: boolean;
-  IsEnabled: boolean;
+  // IsApproved: boolean;
+  // IsEnabled: boolean;
   Email: string;
-  DoctorType: string;
+  // DoctorType: string;
   PMDC: string;
   ValidUpto: string;
 }
@@ -61,17 +61,17 @@ const ApprovedDoctorList: React.FC = () => {
           {data.length > 0 ? (
             data.map((item, index) => (
               <React.Fragment key={index}>
-                {item.IsApproved && (
+                {item.Id && (
                   <ApprovedDoctorsCard
                     mt={index === 0}
                     Id={item.Id}
                     Name={item.Name}
                     MobileNumber={item.MobileNumber}
                     Password={item.Password}
-                    IsApproved={item.IsApproved}
-                    IsEnabled={item.IsEnabled}
+                    // IsApproved={item.IsApproved}
+                    // IsEnabled={item.IsEnabled}
                     Email={item.Email}
-                    DoctorType={item.DoctorType}
+                    // DoctorType={item.DoctorType}
                     PMDC={item.PMDC}
                     ValidUpto={item.ValidUpto}
                     renderList={forceRender}
@@ -83,7 +83,7 @@ const ApprovedDoctorList: React.FC = () => {
             <ErrorComponent title="Doctors" />
           )}
         </IonContent>
-        <FooterButtons approve={true} />
+        {/* <FooterButtons approve={true} /> */}
       </IonPage>
     </>
   );

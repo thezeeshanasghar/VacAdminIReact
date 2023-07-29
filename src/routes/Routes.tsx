@@ -15,6 +15,7 @@ import AddBrands from "../pages/vaccines/brands/AddBrands";
 import EditDose from "../pages/vaccines/doses/EditDose";
 import EditBrand from "../pages/vaccines/brands/EditBrands";
 import Test from "../pages/test/Test";
+import AllPatients from "../pages/doctors/approved-doctors/AllPatients";
 // import ScheduleList from "../pages/schedule/ScheduleLIst";
 import ScheduleList1 from "../pages/schedule/ScheduleList1";
 
@@ -68,8 +69,13 @@ const Routes: React.FC = () => {
         />
         <Route
           exact
-          path="/members/doctor/approved"
+          path="/members/doctor"
           component={ApprovedDoctorList}
+        />
+        <Route
+        exact
+        path="/members/doctor/allpatient/:Id"
+        component={AllPatients}
         />
         <Route
           exact
