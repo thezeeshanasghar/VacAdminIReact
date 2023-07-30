@@ -80,7 +80,7 @@ const ScheduleList1: React.FC = () => {
   };
 
   const handelonmouseover = (inputValue: string) => {
-    const data1 = inputValue.split("T");
+    // const data1 = inputValue.split("T");
     const data2 = format(new Date(inputValue), "yyyy-MM-dd");
     setValue(data2);
     setSelectedDate(data2);
