@@ -90,7 +90,7 @@ const AllPatients: React.FC = ({match}) => {
               </React.Fragment>
             ))
           ) : (
-            <ErrorComponent title="Doctors" />
+            <ErrorComponent title="Patients" />
           )}
         </IonContent>
         {/* <FooterButtons approve={true} /> */}
