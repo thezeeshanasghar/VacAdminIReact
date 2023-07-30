@@ -36,7 +36,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
 
   const [success, setSuccess] = useState(false);
   const handelonmouseover = (inputValue: string) => {
-    const data1 = inputValue.split("T");
+    // const data1 = inputValue.split("T");
     const data2 = format(new Date(inputValue), "yyyy-MM-dd");
 
     setSelectedDate(data2);

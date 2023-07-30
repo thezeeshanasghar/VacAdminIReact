@@ -94,10 +94,10 @@ const ScheduleList1: React.FC = () => {
     console.log(value);
     closePopover();
     const data = event.detail.value;
-    const data1 = data.split("T");
-    const data2 = data1[0];
-    console.log(data2);
-
+    // const data1 = data.split("T");
+    // const data2 = data1[0];
+    // console.log(data2);
+console.log(data)
     console.log(event.detail.value);
 
     // const dataTobeSent = [
@@ -115,7 +115,7 @@ const ScheduleList1: React.FC = () => {
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`,
+        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data}`,
         {
           method: "PATCH",
           headers: {
@@ -127,7 +127,7 @@ const ScheduleList1: React.FC = () => {
       console.log(
         `${
           import.meta.env.VITE_API_URL
-        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data2}`
+        }api/AdminSchedule/admin_bulk_update_Date?oldDate=${value}&newDate=${data}`
       );
       if (response.status === 204) {
         setShowLoading(false);
