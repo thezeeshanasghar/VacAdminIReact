@@ -78,7 +78,7 @@ const Patient: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setOptions(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => console.log(error));
 
@@ -86,7 +86,7 @@ const Patient: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setAll(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => console.log(error));
   }, []);

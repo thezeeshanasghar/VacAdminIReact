@@ -14,6 +14,10 @@ import { useLocation } from "react-router";
 import ErrorComponent from "../../components/error-component/ErrorComponent";
 
 interface IVaccineData {
+  Infinite: boolean;
+  IsSpecial: boolean;
+  Name: string;
+  Id: number;
   DoseCount: number;
   BrandCount: number;
   vaccine: {
@@ -47,10 +51,10 @@ const VaccineCardList: React.FC = () => {
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
-        console.log('zeeshan')
-        console.log(data)
+        // console.log('zeeshan')
+        // console.log(data)
         setData(data);
-        setShowLoading(false);
+        setShowLoading(true);
       })
       .catch((error) => {
         console.log(error);
@@ -85,8 +89,7 @@ const VaccineCardList: React.FC = () => {
                   // DoseCount={item.DoseCount}
                   // BrandCount={item.BrandCount}
                   mt={index === 0}
-                  renderList={forceRender}
-                />
+                  renderList={forceRender}               />
               </React.Fragment>
             ))
           ) : (

@@ -19,11 +19,29 @@ const Dashboard: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [length, setLength] = useState("");
   const [dLength, setDLength] = useState("");
-const fetchData=()=>{
+// const fetchData=()=>{
+//   fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log(data.length)
+//     setLength(data.length)
+//     // setShowLoading(false);
+//   })
+
+// fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
+// .then((response) => response.json())
+// .then((data) => {
+//   console.log(data.length)
+//   setDLength(data.length)
+//   // setShowLoading(false);
+// })
+// }
+
+useEffect(() => {
   fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data.length)
+    // console.log(data.length)
     setLength(data.length)
     // setShowLoading(false);
   })
@@ -31,14 +49,10 @@ const fetchData=()=>{
 fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
 .then((response) => response.json())
 .then((data) => {
-  console.log(data.length)
+  // console.log(data.length)
   setDLength(data.length)
   // setShowLoading(false);
 })
-}
-
-useEffect(() => {
-  fetchData();
 }, []);
 
   return (

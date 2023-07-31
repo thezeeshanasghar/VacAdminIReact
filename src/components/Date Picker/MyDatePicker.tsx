@@ -56,7 +56,7 @@ import {
               <IonDatetime
                 // displayFormat="DD/MM/YYYY"
                 //   pickerFormat="MM/DD/YYYY"
-                value={selectedDate.split("T")[0] || undefined}
+                value={selectedDate || undefined}
                 onIonChange={handleDateSelected}
               />
             </IonItem>

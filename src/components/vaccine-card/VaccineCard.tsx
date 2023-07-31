@@ -16,8 +16,8 @@ interface IVaccineData {
   Name: string;
   IsSpecial: boolean;
   Infinite: boolean;
-  DoseCount: number;
-  BrandCount: number;
+  // DoseCount: number;
+  // BrandCount: number;
   mt: boolean;
   renderList: () => void;
 }
@@ -26,8 +26,8 @@ const VaccineCard: React.FC<IVaccineData> = ({
   Name,
   IsSpecial,
   Infinite,
-  DoseCount,
-  BrandCount,
+  // DoseCount,
+  // BrandCount,
   mt,
   renderList,
 }) => {
@@ -108,7 +108,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
               color="primary"
               className="ion-color ion-color-primary md hydrated"
             >
-              {DoseCount}
+              {/* {DoseCount} */}
             </IonBadge>
           </IonButton>
           <IonButton
@@ -126,7 +126,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
               color="primary"
               className="ion-color ion-color-primary md hydrated"
             >
-              {BrandCount}
+              {/* {BrandCount} */}
             </IonBadge>
           </IonButton>
         </IonCardContent>
