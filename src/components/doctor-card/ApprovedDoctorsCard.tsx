@@ -137,13 +137,13 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
                 <span
                   style={{ color: isExpired ? "red" : isValid ? "green" : "" }}
                 >
-                  {format(new Date(selectedDate || ValidUpto), "MMM yyyy")}
+                  {format(new Date(selectedDate || ValidUpto), "dd MMM yyyy")}
                 </span>
               </IonText>
               <IonPopover isOpen={showPopover} onDidDismiss={closePopover}>
                 <IonDatetime
                   // displayFormat="MMM DD, YYYY"
-                  presentation="month-year"
+                  // presentation="month-year"
                   placeholder="Select Date"
                   value={selectedDate || undefined}
                   onIonChange={handleDateChange}
