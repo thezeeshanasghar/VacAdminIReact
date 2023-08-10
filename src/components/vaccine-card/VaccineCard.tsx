@@ -36,6 +36,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
     <>
       <DeletePopup
         url={`${import.meta.env.VITE_API_URL}api/Vaccine/${Id}`}
+        rrgdgdfgfgfgthsgfg
         title="Vaccine"
         confirmAlertOpen={showPopup}
         setConfirmAlertOpen={setShowPopup}
@@ -46,6 +47,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
           <IonIcon
             icon={bandageOutline}
             slot="start"
+            ghgnnnytjgjy
             style={{ marginRight: "16px" }}
             role="img"
             className="md hydrated"
