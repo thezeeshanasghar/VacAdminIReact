@@ -37,7 +37,6 @@ export interface IAddVaccineProps {
 const VaccineCardList: React.FC = () => {
   const location = useLocation();
   const [data, setData] = useState<IVaccineData[]>([]);
-  rtergdgstr
   const [renderList, setRenderList] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState(false);
   useEffect(() => {
