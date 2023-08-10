@@ -37,6 +37,7 @@ export interface IAddVaccineProps {
 const VaccineCardList: React.FC = () => {
   const location = useLocation();
   const [data, setData] = useState<IVaccineData[]>([]);
+  rtergdgstr
   const [renderList, setRenderList] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState(false);
   useEffect(() => {
@@ -51,8 +52,8 @@ const VaccineCardList: React.FC = () => {
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
-        // console.log('zeeshan')
-        // console.log(data)
+        console.log('zeeshan')
+        console.log(data)
         setData(data);
         setShowLoading(true);
       })
