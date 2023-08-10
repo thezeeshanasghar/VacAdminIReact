@@ -68,7 +68,7 @@ import {
             </IonItem>
           </IonItem>
           <IonCardContent>
-            <p>Minimum Age Limit: {Math.floor(MinAge/365)}years.{Math.floor((MinAge%365)/30)}Months.{Math.floor(((MinAge%365)%30)%7)}Days</p>
+            <p>Minimum Age Limit: {Math.floor(MinAge / 365) !== 0 ? `${Math.floor(MinAge / 365)} years` : ""} {Math.floor((MinAge%365)/30) !== 0 ? `${Math.floor((MinAge%365)/30)} Months` : ""} {Math.floor(((MinAge%365)%30)%7) !== 0 ? `${Math.floor(((MinAge%365)%30)%7)} Days` : ""}</p>
             {/* <p>Minimum Gap Limit: {MinGap} Days</p> */}
           </IonCardContent>
         </IonCard>
