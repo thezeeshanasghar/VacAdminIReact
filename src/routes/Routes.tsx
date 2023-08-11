@@ -77,11 +77,11 @@ const Routes: React.FC = () => {
         path="/members/doctor/allpatient/:Id"
         component={AllPatients}
         />
-        <Route
+        {/* <Route
           exact
           path="/members/doctor/unapproved"
           component={UnApprovedDoctorList}
-        />
+        /> */}
         <Route exact path={"/members/test"} component={Test} />
         <Route exact path="/members">
           <Redirect to="/members/dashboard" />
