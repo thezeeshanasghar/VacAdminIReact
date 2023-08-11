@@ -87,7 +87,7 @@ fetch(`${import.meta.env.VITE_API_URL}api/Doctor`)
               <IonCol size="12" sizeMd="6">
                 <IonCard
                   style={{ background: "#187da0" }}
-                  routerLink="/members/doctor/approved"
+                  routerLink="/members/doctor"
                   routerDirection="forward"
                 >
                   <IonHeader className="custom-header-style">
