@@ -83,6 +83,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
               required
+              id="name"
             ></IonInput>
           </IonItem>
 
@@ -95,6 +96,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
               placeholder="Select One"
               onIonChange={(e) => setIsSpecial(e.detail.checked)}
               slot="end"
+              id="special"
             ></IonCheckbox>
           </IonItem>
 
@@ -117,6 +119,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
             color="primary"
             slot="start"
             disabled={!canSubmit}
+            id="submit"
           >
             Add Vaccine
           </IonButton>
