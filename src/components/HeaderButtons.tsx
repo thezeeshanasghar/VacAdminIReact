@@ -54,6 +54,7 @@ const HeaderButtons: React.FC<Props> = ({
             slot="end"
             style={{ color: "#fff" }}
             onClick={() => router.push(url ? url : "", "root")}
+            id="add"
           >
             <IonIcon icon={add} slot="start" />
           </IonButton>

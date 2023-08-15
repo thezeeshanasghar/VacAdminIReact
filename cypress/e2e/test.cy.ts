@@ -3,6 +3,7 @@ describe('My First Test', () => {
     cy.visit('https://nadmin.ewarenet.com/')
     cy.get("#login").click();
     cy.get("#title1").click();
+    cy.get("#add").click();
   });
   it('approve the doctor', () => {
     cy.visit('https://nadmin.ewarenet.com/')
