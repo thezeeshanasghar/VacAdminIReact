@@ -14,8 +14,8 @@ import {
 } from "@ionic/react";
 import { calendar } from "ionicons/icons";
 
-import AlertError from "../alerts/AlertError";
-import AlertSuccess from "../alerts/AlertSuccess";
+// import AlertError from "../alerts/AlertError";
+// import AlertSuccess from "../alerts/AlertSuccess";
 import { format } from "date-fns";
 import Toast from "../Custom Toast/Toast";
 
@@ -29,7 +29,7 @@ interface IDoseSchedule {
 const Schedulecard: React.FC<IDoseSchedule> = ({
   // Name,
   // Id,
-  key,
+  // key,
   date,
   data,
   renderList,
@@ -236,7 +236,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
         message="an Error occurred while updating date, please try again later"
         color="danger"
       />
-      <IonCard key={key}>
+      <IonCard>
         <>
           <IonItem lines="none" className="centered-item">
             <IonLabel style={{ textAlign: "center" }}>

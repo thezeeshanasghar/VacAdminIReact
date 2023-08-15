@@ -69,6 +69,7 @@ const Login: React.FC = () => {
                     expand="full"
                     strong
                     className="custom-button"
+                    id="login"
                   >
                     <IonIcon icon={logIn} color="light" />
                     &nbsp; Login

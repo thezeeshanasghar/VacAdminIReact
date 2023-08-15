@@ -132,7 +132,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
           <IonItem>
             {Name}
             <IonItem lines="none" slot="end" style={{ padding: 0 }}>
-              <IonText onClick={openPopover} style={{ cursor: "pointer" }}>
+              <IonText onClick={openPopover} id="data" style={{ cursor: "pointer" }}>
                 Expiry: &nbsp;
                 <span
                   style={{ color: isExpired ? "red" : isValid ? "green" : "" }}
@@ -144,6 +144,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
                 <IonDatetime
                   // displayFormat="MMM DD, YYYY"
                   // presentation="month-year"
+                  id="data1"
                   placeholder="Select Date"
                   value={selectedDate || undefined}
                   onIonChange={handleDateChange}
@@ -181,6 +182,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
             size="small"
          onClick={handleClick}
             aria-disabled="true"
+            id="patient"
           >
             <IonIcon icon={body} role="img" aria-label="body"></IonIcon>{" "}
             Patients{" "}
