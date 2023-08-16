@@ -88,7 +88,7 @@ const canSubmit=Name.length>0
             </IonLabel>
             <IonInput
               type="text"
-              
+              id="name"
               value={Name}
               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
@@ -104,6 +104,7 @@ const canSubmit=Name.length>0
             expand="full"
             strong
             disabled={!canSubmit}
+            id="submit"
           >
             add brand
           </IonButton>

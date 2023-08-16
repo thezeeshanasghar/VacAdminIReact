@@ -96,6 +96,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               value={Name}               //@ts-ignore
               onIonChange={(e) => setName(e.detail.value)}
               required
+              id="name"
             ></IonInput>
           </IonItem>
           {/* <IonDatetime presentation="month-year"></IonDatetime> */}
@@ -105,12 +106,13 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               value={MinAge}
               onIonChange={(e) => setMinAge(e.detail.value)}
               labelPlacement="floating"
+              id="select"
             >
               <IonSelectOption selected-text value="0">
                 At Birth
               </IonSelectOption>
               <IonSelectOption value="1">1 Day</IonSelectOption>
-              <IonSelectOption value="2">2 Days</IonSelectOption>
+              <IonSelectOption id="two" value="2">2 Days</IonSelectOption>
               <IonSelectOption value="3">3 Days</IonSelectOption>
               <IonSelectOption value="4">4 Days</IonSelectOption>
               <IonSelectOption value="5">5 Days</IonSelectOption>
@@ -338,6 +340,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
             expand="full"
             strong
             disabled={!canSubmit}
+            id="submit"
           >
             Add Dose
           </IonButton>

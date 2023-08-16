@@ -77,6 +77,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
             className="custom-ripple"
             fill="clear"
             onClick={() => setShowPopup(true)}
+            id={`delete${Id}`}
           >
             <IonIcon
               color="primary"
@@ -86,6 +87,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
               role="img"
               className="md ion-color ion-color-primary icon-large hydrated"
               aria-label="trash"
+              
             />
           </IonButton>
         </IonItem>
@@ -104,6 +106,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
             routerLink={`/members/vaccine/${Id}/doses`}
             routerDirection="forward"
             className="ion-color ion-color-tertiary md button button-small button-outline ion-activatable ion-focusable hydrated"
+            id={`doses${Id}`}
           >
             Doses &nbsp;{" "}
             <IonBadge
@@ -121,6 +124,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
             routerLink={`/members/vaccine/${Id}/brands`}
             routerDirection="forward"
             className="ion-color ion-color-tertiary md button button-small button-outline ion-activatable ion-focusable hydrated"
+            id={`brands${Id}`}
           >
             {" "}
             Brands &nbsp;{" "}

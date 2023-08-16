@@ -121,6 +121,7 @@ const canSubmit=Name.length>0;
                 value={Name}
                 onIonChange={(e) => setName(e.detail.value!)}
                 required
+                id="name"
               ></IonInput>
             </IonItem>
             <IonItem>
@@ -129,6 +130,7 @@ const canSubmit=Name.length>0;
                 checked={IsSpecial}
                 onIonChange={(e) => setIsSpecial(e.detail.checked)}
                 slot="end"
+                id="special"
               ></IonCheckbox>
             </IonItem>
             <IonItem>
@@ -137,6 +139,7 @@ const canSubmit=Name.length>0;
                 checked={Infinite}
                 onIonChange={(e) => setInfinite(e.detail.checked)}
                 slot="end"
+                id="infinite"
               ></IonCheckbox>
             </IonItem>
             <IonButton
@@ -146,6 +149,7 @@ const canSubmit=Name.length>0;
               expand="full"
               strong
               disabled={!canSubmit}
+              id="submit"
             >
               Update Vaccine
             </IonButton>
