@@ -7,6 +7,7 @@ describe('My First Test', () => {
     cy.get("#name").type("atta1");
     cy.get("#special").click();
     cy.get("#submit").click();
+    cy.wait(3000);
   });
   it('approve the doctor', () => {
     cy.visit('https://nadmin.ewarenet.com/')
