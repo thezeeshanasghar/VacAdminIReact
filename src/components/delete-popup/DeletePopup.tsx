@@ -79,6 +79,7 @@ const DeletePopup: React.FC<IProps> = ({
             text: "Confirm",
             handler: handleConfirmDelete,
             cssClass: "custom-confirm-button",
+            id: "confirm-button",
           },
         ]}
         

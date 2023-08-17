@@ -43,6 +43,7 @@ import {
                 className="custom-ripple doses-buttons"
                 routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name}&minAge=${MinAge}`}
                 routerDirection="root"
+                id={`dosee${Id}`}
               >
                 <IonIcon
                   color="primary"
@@ -57,6 +58,7 @@ import {
                 fill="clear"
                 expand="full"
                 onClick={() => setShowPopup(true)}
+                id={`dosed${Id}`}
               >
                 <IonIcon
                   color="primary"

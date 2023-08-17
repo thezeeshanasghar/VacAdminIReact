@@ -50,6 +50,7 @@ const VaccineBrandCard: React.FC<IimprovedIBrandData> = ({
             className="custom-ripple"
             routerLink={`/members/vaccine/${VaccineId}/brands/edit/${Id}?brandName=${Name}`}
             routerDirection="root"
+            id={`brande${Id}`}
           >
             <IonIcon
               color="primary"
@@ -67,6 +68,7 @@ const VaccineBrandCard: React.FC<IimprovedIBrandData> = ({
             fill="clear"
             expand="full"
             onClick={() => setShowPopup(true)}
+            id={`brandd${Id}`}
           >
             <IonIcon
               color="primary"

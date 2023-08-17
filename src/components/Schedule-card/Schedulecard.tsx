@@ -251,6 +251,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                   icon={calendar}
                   style={{ marginRight: "10px", PointerEvent: "cursor" }}
                   onMouseOver={() => handelonmouseover2(date)}
+                  id="bulk"
                 />
                 {/* <IonText>{format(new Date(date), "yyyy-MM-dd")}</IonText> */}
                 <IonText>{date}</IonText>
@@ -282,6 +283,7 @@ const Schedulecard: React.FC<IDoseSchedule> = ({
                 icon={calendar}
                 style={{ marginRight: "10px", cursor: "pointer" }}
                 onMouseOver={() => handelonmouseover(date,item.Id)}
+                id="single"
               />
             </>
           </IonCol>
