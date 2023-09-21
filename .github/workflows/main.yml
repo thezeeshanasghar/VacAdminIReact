@@ -23,7 +23,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: nadmin.ewarenet.com
-          username: up@nadmin.ewarenet.com	
+          server: admin.echowhite.com
+          username: nadmin@echowhite.com
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
