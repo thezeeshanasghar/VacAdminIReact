@@ -123,6 +123,7 @@ const EditBrands: React.FC<IParam> = ({
                 //@ts-ignore
                 onIonChange={(e) => setName(e.detail.value)}
                 required
+                id="brandu"
               ></IonInput>
             </IonItem>
             <IonButton
@@ -133,6 +134,7 @@ const EditBrands: React.FC<IParam> = ({
               expand="full"
               strong
               disabled={!canSubmit}
+              id="brandss"
             >
               Update Brand
             </IonButton>
