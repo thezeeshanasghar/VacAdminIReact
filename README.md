@@ -13,3 +13,5 @@ ionic cap add android
 ionic cap sync      <!-- for synchronizing the changes that have been made to application after build -->
 
 ionic cap open android
+
+https://admin.echowhite.com
