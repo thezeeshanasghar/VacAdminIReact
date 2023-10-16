@@ -122,7 +122,8 @@ const ScheduleList: React.FC = () => {
     }
     // UpdateExpiryDateOfDoctor(event.detail.value);
   };
-  console.log(data)
+
+
   useEffect(() => {
     fetchDoseData();
     // console.log(data)
@@ -141,7 +142,9 @@ const ScheduleList: React.FC = () => {
     }
     console.log("groupArray", [...groupArray]);
     setGroupData(groupArray);
-  }, [data, location]);
+  }, [location]);
+
+
   const openPopover = () => {
     setShowPopover(true);
   };
