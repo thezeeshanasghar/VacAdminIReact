@@ -160,6 +160,7 @@ const ApprovedDoctorsCard: React.FC<Props & IdoctorData> = ({
               slot="end"
               role="img"
               aria-label="trash"
+              id={`doctord${Id}`}
             ></IonIcon>
           </IonItem>
         </IonCardHeader>

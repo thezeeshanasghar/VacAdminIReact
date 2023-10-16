@@ -133,6 +133,7 @@ const EditDoses: React.FC<IParam> = ({
                 //@ts-ignore
                 onIonChange={(e) => setName(e.detail.value)}
                 required
+                id="dose"
               ></IonInput>
             </IonItem>
             <IonItem>
@@ -376,6 +377,7 @@ const EditDoses: React.FC<IParam> = ({
               expand="full"
               strong
               disabled={!canSubmit}
+              id="udose"
             >
               Update Dose
             </IonButton>
