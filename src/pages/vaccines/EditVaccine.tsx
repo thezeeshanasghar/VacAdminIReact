@@ -35,22 +35,21 @@ const EditVaccine: React.FC<IParam> = ({
   const router = useIonRouter();
   const [showLoading, setShowLoading] = useState(false);
 
-  useEffect(()=> {
+  useEffect(() => {
     // Extracting data from the URL
-  const searchParams = new URLSearchParams(search);
-  const VaccineName = searchParams.get("vaccineName")
-  const VaccineIsSpecial = searchParams.get("IsSpecial");
-  const VaccineInfinite = searchParams.get("Infinite");
+    const searchParams = new URLSearchParams(search);
+    const VaccineName = searchParams.get("vaccineName");
+    const VaccineIsSpecial = searchParams.get("IsSpecial");
+    const VaccineInfinite = searchParams.get("Infinite");
 
-  // Initial values
-  const initialIsSpecial = VaccineIsSpecial === "true";
-  const initialInfinite = VaccineInfinite === "true";
-  //@ts-ignore
-  VaccineName && setName(VaccineName);
-  setIsSpecial(initialIsSpecial)
-  setInfinite(initialInfinite)
-  },[search])
-
+    // Initial values
+    const initialIsSpecial = VaccineIsSpecial === "true";
+    const initialInfinite = VaccineInfinite === "true";
+    //@ts-ignore
+    VaccineName && setName(VaccineName);
+    setIsSpecial(initialIsSpecial);
+    setInfinite(initialInfinite);
+  }, [search]);
 
   // States for saving form data
   const [Name, setName] = useState("");
@@ -65,7 +64,7 @@ const EditVaccine: React.FC<IParam> = ({
     event.preventDefault();
     setShowLoading(true);
     const dataTobeSent = { id: vaccineId, Name, IsSpecial, Infinite };
-    console.log(dataTobeSent)
+    console.log(dataTobeSent);
     const url = `${import.meta.env.VITE_API_URL}api/Vaccine/${vaccineId}`;
     try {
       const response = await fetch(url, {
@@ -88,7 +87,7 @@ const EditVaccine: React.FC<IParam> = ({
       setInfinite(false);
     }
   };
-const canSubmit=Name.length>0;
+  const canSubmit = Name.length > 0;
   return (
     <>
       <LoadingSpinner
@@ -97,19 +96,21 @@ const canSubmit=Name.length>0;
         time={3000}
       />
       <IonPage>
-       <Toast
-        isOpen={success}
-        setOpen={setSuccess}
-        message="Vaccine Updated successfully."
-        color="success"
-      />
-      <Toast
-        isOpen={error}
-        setOpen={setError}
-        message="An Error occurred. Please try again."
-        color="danger"
-      />
-        <HeaderButtons pageName="Update Vaccine" />
+        <Toast
+          isOpen={success}
+          setOpen={setSuccess}
+          message="Vaccine Updated successfully."
+          color="success"
+        />
+        <Toast
+          isOpen={error}
+          setOpen={setError}
+          message="An Error occurred. Please try again."
+          color="danger"
+        />
+        <HeaderButtons
+          pageName="Update Vaccine"
+        />
         <IonContent>
           <form onSubmit={handleSubmit}>
             <IonItem>

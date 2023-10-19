@@ -1,4 +1,4 @@
-import React, { useEffect,FormEvent, useState } from "react";
+import React, { useEffect, FormEvent, useState } from "react";
 import {
   IonContent,
   IonPage,
@@ -39,23 +39,24 @@ const EditDoses: React.FC<IParam> = ({
   //   .substring(1)
   //   .split("&")
   //   .map((search) => search.split("=")[1]);
-// console.log(first)
+  // console.log(first)
   //states
-  useEffect(()=> {
+  useEffect(() => {
     // Extracting data from the URL
-  const searchParams = new URLSearchParams(search);
-  const VaccineName = searchParams.get("doseName")
-  const VaccineIsSpecial = searchParams.get("minAge");
-  const VaccineInfinite = searchParams.get("minGap");
+    const searchParams = new URLSearchParams(search);
+    const VaccineName = searchParams.get("doseName");
+    const VaccineIsSpecial = searchParams.get("minAge");
+    const VaccineInfinite = searchParams.get("minGap");
 
-  // Initial values
-  const initialIsSpecial = VaccineIsSpecial ;
-  const initialInfinite = VaccineInfinite ;
-  //@ts-ignore
-  VaccineName && setName(VaccineName);
-  setMinAge(VaccineIsSpecial)
-  // setMinGap(VaccineInfinite)
-  },[search])
+    // Initial values
+    const initialIsSpecial = VaccineIsSpecial;
+    const initialInfinite = VaccineInfinite;
+    //@ts-ignore
+    VaccineName && setName(VaccineName);
+    //@ts-ignore
+    setMinAge(VaccineIsSpecial);
+    // setMinGap(VaccineInfinite)
+  }, [search]);
   const [Name, setName] = useState("");
   const [MinAge, setMinAge] = useState("");
   const [MinGap, setMinGap] = useState("");
@@ -78,7 +79,7 @@ const EditDoses: React.FC<IParam> = ({
       });
       if (response.ok) {
         setSuccess(true);
-     router.push(`/members/vaccine/${vaccineId}/doses`);   
+        router.push(`/members/vaccine/${vaccineId}/doses`);
       } else if (!response.ok) setError(true);
     } catch (err) {
       setError(true);
@@ -89,7 +90,7 @@ const EditDoses: React.FC<IParam> = ({
       setMinAge("");
     }
   };
-  const canSubmit=Name.length>0 && MinAge.length>0;
+  const canSubmit = Name.length > 0 && MinAge?.length > 0;
   return (
     <>
       <LoadingSpinner
@@ -98,7 +99,7 @@ const EditDoses: React.FC<IParam> = ({
         time={3000}
       />
       <IonPage>
-      <Toast
+        <Toast
           isOpen={success}
           setOpen={setSuccess}
           message="Dose updated successfully."
@@ -120,7 +121,11 @@ const EditDoses: React.FC<IParam> = ({
           setOpen={setError}
           message="An Error occcured. Plz try again."
         /> */}
-        <HeaderButtons pageName="Update Dose"></HeaderButtons>
+        <HeaderButtons
+          pageName="Update Dose"
+          backbutton={true}
+          backUrl={`/members/vaccine/${vaccineId}/doses`}
+        ></HeaderButtons>
         <IonContent>
           <form onSubmit={handleSubmit}>
             <IonItem>
@@ -129,7 +134,7 @@ const EditDoses: React.FC<IParam> = ({
               </IonLabel>
               <IonInput
                 type="text"
-                value={Name}
+                value={Name.replace("-", "#")}
                 //@ts-ignore
                 onIonChange={(e) => setName(e.detail.value)}
                 required

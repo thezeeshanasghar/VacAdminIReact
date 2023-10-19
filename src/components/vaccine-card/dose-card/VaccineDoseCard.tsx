@@ -41,7 +41,7 @@ import {
               <IonButton
                 fill="clear"
                 className="custom-ripple doses-buttons"
-                routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name}&minAge=${MinAge}`}
+                routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name.replace('#', '-')}&minAge=${MinAge}`}
                 routerDirection="root"
                 id={`dosee${Id}`}
               >
