@@ -16,7 +16,6 @@ import { calendar } from "ionicons/icons";
 import { format } from "date-fns";
 import AlertSuccess from "../../components/alerts/AlertSuccess";
 import AlertError from "../../components/alerts/AlertError";
-import { useLocation } from "react-router";
 
 interface IDoseSchedule {
   Date: string | number | Date;
@@ -47,7 +46,7 @@ const ScheduleList: React.FC = () => {
   const [showPopover, setShowPopover] = useState(false);
   const [success, setSuccess] = useState(false);
   const [value, setValue] = useState('');
-  const location = useLocation();
+
   // const [selectedDate, setSelectedDate] = useState<string>("");
   const handleIconClick = () => {
     setShowDatePicker(true);
@@ -122,12 +121,10 @@ const ScheduleList: React.FC = () => {
     }
     // UpdateExpiryDateOfDoctor(event.detail.value);
   };
-
-
+  console.log(data)
   useEffect(() => {
     fetchDoseData();
-    // console.log(data)
-     //@ts-ignore
+    console.log(data)
     const groupedData = groupBy(data, (item) => {
       const date = new Date(item.Date);
       return date.toISOString().split("T")[0];
@@ -142,9 +139,7 @@ const ScheduleList: React.FC = () => {
     }
     console.log("groupArray", [...groupArray]);
     setGroupData(groupArray);
-  }, [location]);
-
-
+  }, [data]);
   const openPopover = () => {
     setShowPopover(true);
   };
@@ -179,8 +174,8 @@ const ScheduleList: React.FC = () => {
             const array = objectItem.value;
          
             return (
-              <React.Fragment >
-                <IonCard key={index+Math.floor(Math.random()*10000)}>
+              <React.Fragment key={index}>
+                <IonCard>
                   <IonItem lines="none" className="centered-item">
                     <IonLabel style={{ textAlign: "center" }}>
                       <IonItem
@@ -218,9 +213,7 @@ const ScheduleList: React.FC = () => {
                   {array.map((item: any, itemIndex: number) => (
                     <IonItem key={itemIndex}>
                       <Schedulecard
-                      //@ts-ignore
                         Id={item.Id}
-                        key={item.Id}
                         Name={item.Name}
                         MinAge={item.MinAge}
                         MinGap={item.MinGap}
