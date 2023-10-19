@@ -17,6 +17,7 @@ import { groupBy } from "lodash";
 import { calendar } from "ionicons/icons";
 import HeaderButtons from "../../components/HeaderButtons";
 import Schedulecard from "../../components/Schedule-card/Schedulecard";
+import { useLocation } from "react-router";
 // import { format } from "date-fns";
 // import MyDatePicker from "../../components/datepicker/MyDatePicker";
 // import DoctorScheduleCard from "./DoctorScheduleCard";
@@ -32,6 +33,7 @@ interface IVaccine {
 interface IVaccineData {
   [date: string]: IVaccine[];
 }
+//@ts-ignore
 const storedValue = JSON.parse(sessionStorage.getItem("docData"));
 console.log(storedValue);
 
@@ -47,7 +49,7 @@ const DoctorScheduleCardList: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState("");
   const [showLoading, setShowLoading] = useState(false);
-
+  const location = useLocation();
   const forceRender = () => {
     fetchDoseData();
   };
@@ -55,7 +57,7 @@ const DoctorScheduleCardList: React.FC = () => {
   useEffect(() => {
     fetchDoseData();
     // window.location.reload();
-  }, []);
+  }, [location]);
 
   const fetchDoseData = async () => {
         try {
@@ -94,6 +96,7 @@ const DoctorScheduleCardList: React.FC = () => {
             <Schedulecard
               key={date}
               date={date}
+              //@ts-ignore
               data={data[date]}
               renderList={forceRender}
             />

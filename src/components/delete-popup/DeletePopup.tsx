@@ -25,7 +25,11 @@ const DeletePopup: React.FC<IProps> = ({
     //delete action (API call)
     deleteData()
       .then((response) => {
-        if (response.status === 204) {
+        if(response.status === 200) {
+          setErrorMessage("Dose can't be deleted");
+          setResultAlertOpen(true);
+        }
+        else if (response.status === 204) {
           setSuccessMessage(`${title} deleted successfully`);
           setResultAlertOpen(true);
           // @ts-ignore
