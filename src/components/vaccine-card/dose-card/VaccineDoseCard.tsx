@@ -21,7 +21,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
   Name,
   VaccineId,
   MinAge,
-  // MinGap,
+  MinAgeText,
   renderList,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -75,16 +75,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
         </IonItem>
         <IonCardContent>
           <p>
-            Minimum Age Limit: 
-            {MinAge === 0
-              ? "at birth"
-              : MinAge < 169
-              ? `${Math.floor(MinAge / 7)} weeks`
-              : MinAge % 365 === 0
-              ? `${Math.floor(MinAge / 365)} years`
-              : MinAge % 30 === 0
-              ? `${Math.floor(MinAge / 30)} months`
-              : MinAge > 30 && MinAge != 169 && MinAge != 365 ? `${Math.floor(MinAge / 30)} months` : `${MinAge} days`}
+            Minimum Age Limit: {MinAgeText}
           </p>
           {/* <p>Minimum Gap Limit: {MinGap} Days</p> */}
         </IonCardContent>

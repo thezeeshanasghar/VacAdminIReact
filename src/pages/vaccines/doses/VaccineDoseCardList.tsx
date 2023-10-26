@@ -10,7 +10,7 @@ export interface IDoseData {
   Id: number;
   Name: string;
   MinAge: number;
-  MinGap: number;
+  MinAgeText: string;
   VaccineId: number;
 }
 type ILocationProps = { location: { search: string } };
@@ -72,7 +72,7 @@ const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
                   Id={item.Id}
                   Name={item.Name}
                   MinAge={item.MinAge}
-                  MinGap={item.MinGap}
+                  MinAgeText={item.MinAgeText}
                   VaccineId={item.VaccineId}
                   renderList={forceRender}
                 />
