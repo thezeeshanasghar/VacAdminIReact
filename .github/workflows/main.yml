@@ -20,11 +20,7 @@ jobs:
       - name: Build
         run: npm run build:prod
 
-      # - name: Install Cypress
-      #   run: npm install cypress --save-dev
-
-      # - name: Run Cypress Tests
-      #   run: npx cypress run 
+     
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
