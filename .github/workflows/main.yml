@@ -20,8 +20,6 @@ jobs:
       - name: Build
         run: npm run build:prod
 
-     
-
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
