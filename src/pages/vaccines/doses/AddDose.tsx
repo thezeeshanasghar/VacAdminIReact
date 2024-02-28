@@ -26,7 +26,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   const router = useIonRouter();
   const [Name, setName] = useState("");
   const [MinGap, setMinGap] = useState(0);
-  const [MinAge, setMinAge] = useState({ value: 0, text: '' });
+  const [MinAge, setMinAge] = useState({ value: 0, text: "" });
   //states varibale for alert, succesMsg and errorMsg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -34,7 +34,12 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(Name, MinAge);
-    const dataTobeSent = { name: Name, minAge: MinAge.value, minAgeText: MinAge.text, vaccineId };
+    const dataTobeSent = {
+      name: Name,
+      minAge: MinAge.value,
+      minAgeText: MinAge.text,
+      vaccineId,
+    };
     const url = `${import.meta.env.VITE_API_URL}api/Dose`;
     try {
       const response = await fetch(url, {
@@ -55,13 +60,15 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       console.log("error : ", err);
     } finally {
       setName("");
-      setMinAge({ value: 0, text: '' });
+      setMinAge({ value: 0, text: "" });
       setMinGap(0);
     }
   };
   const handleSelectChange = (event: any) => {
     const selectedValue = event.detail.value;
-    const selectedText = event.target.querySelector(`ion-select-option[value="${selectedValue}"]`).textContent;
+    const selectedText = event.target.querySelector(
+      `ion-select-option[value="${selectedValue}"]`
+    ).textContent;
     setMinAge({ value: selectedValue, text: selectedText });
   };
   //@ts-ignore
@@ -90,7 +97,11 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
         setOpen={setError}
         message="An Error occcured. Plz try again."
       /> */}
-      <HeaderButtons pageName="Add Dose"></HeaderButtons>
+      <HeaderButtons
+        pageName="Add Dose"
+        backbutton={true}
+        backUrl={`/members/vaccine/${vaccineId}/doses`}
+      ></HeaderButtons>
       <IonContent>
         <form onSubmit={handleSubmit}>
           <IonItem>

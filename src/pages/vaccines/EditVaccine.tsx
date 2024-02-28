@@ -110,6 +110,8 @@ const EditVaccine: React.FC<IParam> = ({
         />
         <HeaderButtons
           pageName="Update Vaccine"
+          backbutton={true}
+          backUrl="/members/vaccine"
         />
         <IonContent>
           <form onSubmit={handleSubmit}>

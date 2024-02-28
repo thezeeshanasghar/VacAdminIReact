@@ -47,7 +47,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       });
       if (response.status === 201) {
         setSuccess(true);
-        router.push("/members/vaccine")
+        router.push("/members/vaccine");
       } else if (response.status !== 201) setError(true);
     } catch (err) {
       setError(true);
@@ -57,10 +57,10 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       setInfinite(false);
     }
   };
-  const canSubmit=Name.length>0;
+  const canSubmit = Name.length > 0;
   return (
     <IonPage>
-     <Toast
+      <Toast
         isOpen={success}
         setOpen={setSuccess}
         message="Vaccine added successfully."
@@ -72,11 +72,17 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
         message="An Error occcured. Plz try again."
         color="danger"
       />
-      <HeaderButtons pageName="Add Vaccine"></HeaderButtons>
+      <HeaderButtons
+        pageName="Add Vaccine"
+        backbutton={true}
+        backUrl="/members/vaccine"
+      ></HeaderButtons>
       <IonContent>
         <form onSubmit={handleSubmit}>
           <IonItem>
-            <IonLabel color="primary" position="floating">Name</IonLabel>
+            <IonLabel color="primary" position="floating">
+              Name
+            </IonLabel>
             <IonInput
               type="text"
               value={Name}

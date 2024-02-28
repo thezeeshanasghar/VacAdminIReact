@@ -49,12 +49,11 @@ const AddBrands: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       } else if (response.status !== 201) setError(true);
     } catch (err) {
       setError(true);
-      
     } finally {
       setName("");
     }
   };
-const canSubmit=Name.length>0
+  const canSubmit = Name.length > 0;
   return (
     <IonPage>
       <Toast
@@ -79,7 +78,11 @@ const canSubmit=Name.length>0
         setOpen={setError}
         message="An Error occcured. Plz try again."
       /> */}
-      <HeaderButtons pageName="Add Brand"></HeaderButtons>
+      <HeaderButtons
+        pageName="Add Brand"
+        backbutton={true}
+        backUrl={`/members/vaccine/${vaccineId}/brands`}
+      ></HeaderButtons>
       <IonContent>
         <form onSubmit={handleSubmit}>
           <IonItem>
@@ -126,4 +129,3 @@ const canSubmit=Name.length>0
 };
 
 export default AddBrands;
-

@@ -60,36 +60,36 @@ const DoctorScheduleCardList: React.FC = () => {
   }, [location]);
 
   const fetchDoseData = async () => {
-        try {
-          const response = await fetch(
-            `${
-              import.meta.env.VITE_API_URL
-            }api/AdminSchedule/admin_post_doseSchedule`
-          );
-          if (response.ok) {
-            const data = await response.json();
-            setShowLoading(true);
-            setData(data);
-            console.log(data);
-            setIsLoading(false);
-          } else {
-            console.log("Error fetching data");
-            setIsLoading(false);
-          }
-        } catch (error) {
-          console.log("Error:", error);
-          setIsLoading(false);
-        }
-      };
+    try {
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_API_URL
+        }api/AdminSchedule/admin_post_doseSchedule`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setShowLoading(true);
+        setData(data);
+        console.log(data);
+        setIsLoading(false);
+      } else {
+        console.log("Error fetching data");
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
       <IonPage>
-      <HeaderButtons
+        <HeaderButtons
           pageName="Dose Schedule"
           Showbutton={false}
           backbutton={true}
-          url="/members/schedule"
+          backUrl="/members/dashboard"
         />
         <IonContent className="ion-padding">
           {Object.keys(data).map((date) => (
@@ -108,14 +108,6 @@ const DoctorScheduleCardList: React.FC = () => {
 };
 
 export default DoctorScheduleCardList;
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import {

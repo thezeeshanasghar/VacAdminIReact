@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
   IonPage,
@@ -33,21 +33,21 @@ const EditBrands: React.FC<IParam> = ({
 }: IParam) => {
   const router = useIonRouter();
   const [showLoading, setShowLoading] = useState(false);
-  useEffect(()=> {
+  useEffect(() => {
     // Extracting data from the URL
-  const searchParams = new URLSearchParams(search);
-  const BrandName = searchParams.get("brandName")
-  // const VaccineIsSpecial = searchParams.get("minAge");
-  // const VaccineInfinite = searchParams.get("minGap");
-  
-  // Initial values
-  // const initialIsSpecial = VaccineIsSpecial ;
-  // const initialInfinite = VaccineInfinite ;
-  //@ts-ignore
-  BrandName && setName(BrandName);
-  // setMinAge(VaccineIsSpecial)
-  // setMinGap(VaccineInfinite)
-  },[search])
+    const searchParams = new URLSearchParams(search);
+    const BrandName = searchParams.get("brandName");
+    // const VaccineIsSpecial = searchParams.get("minAge");
+    // const VaccineInfinite = searchParams.get("minGap");
+
+    // Initial values
+    // const initialIsSpecial = VaccineIsSpecial ;
+    // const initialInfinite = VaccineInfinite ;
+    //@ts-ignore
+    BrandName && setName(BrandName);
+    // setMinAge(VaccineIsSpecial)
+    // setMinGap(VaccineInfinite)
+  }, [search]);
   //state variable to store brand Name from query parameter, using substring to remove first character '?'
   const [Name, setName] = useState("");
   //states varibale for alert, succesMsg and errorMsg
@@ -58,7 +58,7 @@ const EditBrands: React.FC<IParam> = ({
     event.preventDefault();
     setShowLoading(true);
     const dataTobeSent = { Name: Name, id: brandId };
-    console.log(dataTobeSent)
+    console.log(dataTobeSent);
     const url = `${import.meta.env.VITE_API_URL}api/Brand/${brandId}`;
     try {
       const response = await fetch(url, {
@@ -79,7 +79,7 @@ const EditBrands: React.FC<IParam> = ({
       setName("");
     }
   };
-  const canSubmit=Name.length>0
+  const canSubmit = Name.length > 0;
   return (
     <>
       <LoadingSpinner
@@ -88,18 +88,18 @@ const EditBrands: React.FC<IParam> = ({
         time={3000}
       />
       <IonPage>
-      <Toast
-        isOpen={success}
-        setOpen={setSuccess}
-        message="Brand updated successfully."
-        color="success"
-      />
-      <Toast
-        isOpen={error}
-        setOpen={setError}
-        message="An Error occcured. Plz try again."
-        color="danger"
-      />
+        <Toast
+          isOpen={success}
+          setOpen={setSuccess}
+          message="Brand updated successfully."
+          color="success"
+        />
+        <Toast
+          isOpen={error}
+          setOpen={setError}
+          message="An Error occcured. Plz try again."
+          color="danger"
+        />
         {/* <AlertSuccess
           isOpen={success}
           setOpen={setSuccess}
@@ -110,7 +110,11 @@ const EditBrands: React.FC<IParam> = ({
           setOpen={setError}
           message="An Error occcured. Plz try again."
         /> */}
-        <HeaderButtons pageName="Update Brand"></HeaderButtons>
+        <HeaderButtons
+          pageName="Update Brand"
+          backbutton={true}
+          backUrl="/members/vaccine/1/brands"
+        ></HeaderButtons>
         <IonContent>
           <form onSubmit={handleSubmit}>
             <IonItem>

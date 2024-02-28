@@ -55,7 +55,7 @@ const ApprovedDoctorList: React.FC = () => {
         <HeaderButtons
           pageName="Doctors"
           backbutton={true}
-          backUrl="/members/vaccine"
+          backUrl="/members/dashboard"
         />
         <IonContent className="ion-padding">
           {data.length > 0 ? (

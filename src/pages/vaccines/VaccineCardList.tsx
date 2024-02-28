@@ -51,8 +51,8 @@ const VaccineCardList: React.FC = () => {
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
-        console.log('zeeshan')
-        console.log(data)
+        console.log("zeeshan");
+        console.log(data);
         setData(data);
         setShowLoading(true);
       })
@@ -75,6 +75,8 @@ const VaccineCardList: React.FC = () => {
         <HeaderButtons
           pageName="Vaccines"
           Showbutton={true}
+          backbutton={true}
+          backUrl="/members/dashboard"
           url="/members/vaccine/add"
         />
         <IonContent className="ion-padding">
@@ -89,7 +91,8 @@ const VaccineCardList: React.FC = () => {
                   // DoseCount={item.DoseCount}
                   // BrandCount={item.BrandCount}
                   mt={index === 0}
-                  renderList={forceRender}               />
+                  renderList={forceRender}
+                />
               </React.Fragment>
             ))
           ) : (
