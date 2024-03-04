@@ -25,7 +25,7 @@ export interface IhistoryObjectProps {
 }
 const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
   const [Name, setName] = useState("");
-  const [IsSpecial, setIsSpecial] = useState<boolean>(false);
+  // const [IsSpecial, setIsSpecial] = useState<boolean>(false);
   const [Infinite, setInfinite] = useState<boolean>(false);
   //states varibale for alert, succesMsg and errorMsg
   const [success, setSuccess] = useState(false);
@@ -35,7 +35,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const dataTobeSent = { Name, IsSpecial, Infinite };
+    const dataTobeSent = { Name, Infinite }; //Add isSpecial here
     const url = `${import.meta.env.VITE_API_URL}api/Vaccine`;
     try {
       const response = await fetch(url, {
@@ -53,7 +53,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
       setError(true);
     } finally {
       setName("");
-      setIsSpecial(false);
+      // setIsSpecial(false);
       setInfinite(false);
     }
   };
@@ -93,7 +93,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
             ></IonInput>
           </IonItem>
 
-          <IonItem>
+          {/* <IonItem>
             <IonLabel color="primary">Is-Special</IonLabel>
             <IonCheckbox
               aria-label="isspecial"
@@ -104,7 +104,7 @@ const AddVaccine: React.FC<IhistoryObjectProps> = ({ history }) => {
               slot="end"
               id="special"
             ></IonCheckbox>
-          </IonItem>
+          </IonItem> */}
 
           <IonItem>
             <IonLabel color="primary">Infinite</IonLabel>

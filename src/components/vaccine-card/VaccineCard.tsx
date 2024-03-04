@@ -14,7 +14,7 @@ import DeletePopup from "../delete-popup/DeletePopup";
 interface IVaccineData {
   Id: number;
   Name: string;
-  IsSpecial: boolean;
+  // IsSpecial: boolean;
   Infinite: boolean;
   // DoseCount: number;
   // BrandCount: number;
@@ -24,7 +24,7 @@ interface IVaccineData {
 const VaccineCard: React.FC<IVaccineData> = ({
   Id,
   Name,
-  IsSpecial,
+  // IsSpecial,
   Infinite,
   // DoseCount,
   // BrandCount,
@@ -57,7 +57,7 @@ const VaccineCard: React.FC<IVaccineData> = ({
           <IonButton
             fill="clear"
             className="custom-ripple"
-            routerLink={`/members/vaccine/edit/${Id}?vaccineName=${Name}&IsSpecial=${IsSpecial}&Infinite=${Infinite}`}
+            routerLink={`/members/vaccine/edit/${Id}?vaccineName=${Name}&Infinite=${Infinite}`}
             routerDirection="root"
             id={`edit${Id}`}
           >
@@ -93,8 +93,8 @@ const VaccineCard: React.FC<IVaccineData> = ({
         </IonItem>
         <IonCardContent className="md card-content-md hydrated">
           <span>
-            <b color="black">IsSpecial: </b>
-            {IsSpecial ? "True" : "False"} &nbsp; <b>Infinite: </b>
+            {/* <b color="black">IsSpecial: </b> */}
+            &nbsp; <b>Infinite: </b>
             {Infinite ? "True" : "False"}
           </span>
           <br></br>

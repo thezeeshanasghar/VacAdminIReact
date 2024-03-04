@@ -15,7 +15,7 @@ import ErrorComponent from "../../components/error-component/ErrorComponent";
 
 interface IVaccineData {
   Infinite: boolean;
-  IsSpecial: boolean;
+  // IsSpecial: boolean;
   Name: string;
   Id: number;
   DoseCount: number;
@@ -23,7 +23,7 @@ interface IVaccineData {
   vaccine: {
     Id: number;
     Name: string;
-    IsSpecial: boolean;
+    // IsSpecial: boolean;
     Infinite: boolean;
   };
 }
@@ -51,7 +51,7 @@ const VaccineCardList: React.FC = () => {
     fetch(`${import.meta.env.VITE_API_URL}api/Vaccine`)
       .then((response) => response.json())
       .then((data: IVaccineData[]) => {
-        console.log("zeeshan");
+     
         console.log(data);
         setData(data);
         setShowLoading(true);
@@ -86,7 +86,7 @@ const VaccineCardList: React.FC = () => {
                 <VaccineCard
                   Id={item.Id}
                   Name={item.Name}
-                  IsSpecial={item.IsSpecial}
+                  // IsSpecial={item.IsSpecial}
                   Infinite={item.Infinite}
                   // DoseCount={item.DoseCount}
                   // BrandCount={item.BrandCount}

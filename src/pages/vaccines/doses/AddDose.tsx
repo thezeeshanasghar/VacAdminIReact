@@ -10,6 +10,7 @@ import {
   IonSelectOption,
   IonAlert,
   useIonRouter,
+  IonCheckbox,
 } from "@ionic/react";
 import HeaderButtons from "../../../components/HeaderButtons";
 import { VaccineIdProps } from "../brands/VaccineBrandCardList";
@@ -30,6 +31,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
   //states varibale for alert, succesMsg and errorMsg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [IsSpecial, setIsSpecial] = useState<boolean>(false);
   // form submit handler
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,6 +41,7 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
       minAge: MinAge.value,
       minAgeText: MinAge.text,
       vaccineId,
+      IsSpecial: IsSpecial
     };
     const url = `${import.meta.env.VITE_API_URL}api/Dose`;
     try {
@@ -234,6 +237,18 @@ const AddDoses: React.FC<VaccineIdProps & IhistoryObjectProps> = ({
               <IonSelectOption value="5111">14 Years</IonSelectOption>
               <IonSelectOption value="5476">15 Years</IonSelectOption>
             </IonSelect>
+          </IonItem>
+          <IonItem>
+            <IonLabel color="primary">Is-Special</IonLabel>
+            <IonCheckbox
+              aria-label="isspecial"
+              value={IsSpecial}
+              checked={IsSpecial}
+              placeholder="Select One"
+              onIonChange={(e) => setIsSpecial(e.detail.checked)}
+              slot="end"
+              id="special"
+            ></IonCheckbox>
           </IonItem>
           <IonButton
             type="submit"

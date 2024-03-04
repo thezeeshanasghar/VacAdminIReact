@@ -19,9 +19,10 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
   mt,
   Id,
   Name,
-  VaccineId,
   MinAge,
   MinAgeText,
+  IsSpecial,
+  VaccineId,
   renderList,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -45,7 +46,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
               routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name.replace(
                 "#",
                 "-"
-              )}&minAge=${MinAge}`}
+              )}&minAge=${MinAge}&isSpecial=${IsSpecial}`}
               routerDirection="root"
               id={`dosee${Id}`}
             >
@@ -77,6 +78,10 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
           <p>
             Minimum Age Limit: {MinAgeText}
           </p>
+          <p>
+            Special : {IsSpecial ? "True" : "False"}
+          </p> 
+
           {/* <p>Minimum Gap Limit: {MinGap} Days</p> */}
         </IonCardContent>
       </IonCard>

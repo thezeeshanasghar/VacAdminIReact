@@ -47,13 +47,12 @@ const EditVaccine: React.FC<IParam> = ({
     const initialInfinite = VaccineInfinite === "true";
     //@ts-ignore
     VaccineName && setName(VaccineName);
-    setIsSpecial(initialIsSpecial);
+
     setInfinite(initialInfinite);
   }, [search]);
 
   // States for saving form data
   const [Name, setName] = useState("");
-  const [IsSpecial, setIsSpecial] = useState<boolean>();
   const [Infinite, setInfinite] = useState<boolean>();
 
   // States for success and error alerts
@@ -63,7 +62,7 @@ const EditVaccine: React.FC<IParam> = ({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShowLoading(true);
-    const dataTobeSent = { id: vaccineId, Name, IsSpecial, Infinite };
+    const dataTobeSent = { id: vaccineId, Name, Infinite };
     console.log(dataTobeSent);
     const url = `${import.meta.env.VITE_API_URL}api/Vaccine/${vaccineId}`;
     try {
@@ -83,7 +82,7 @@ const EditVaccine: React.FC<IParam> = ({
     } finally {
       setShowLoading(false);
       setName("");
-      setIsSpecial(false);
+     
       setInfinite(false);
     }
   };
@@ -127,15 +126,7 @@ const EditVaccine: React.FC<IParam> = ({
                 id="name"
               ></IonInput>
             </IonItem>
-            <IonItem>
-              <IonLabel color="primary">Is-Special</IonLabel>
-              <IonCheckbox
-                checked={IsSpecial}
-                onIonChange={(e) => setIsSpecial(e.detail.checked)}
-                slot="end"
-                id="special"
-              ></IonCheckbox>
-            </IonItem>
+ 
             <IonItem>
               <IonLabel color="primary">Infinite</IonLabel>
               <IonCheckbox

@@ -11,7 +11,9 @@ export interface IDoseData {
   Name: string;
   MinAge: number;
   MinAgeText: string;
+  IsSpecial: boolean;
   VaccineId: number;
+  
 }
 type ILocationProps = { location: { search: string } };
 const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
@@ -73,8 +75,10 @@ const VaccineDoseCardList: React.FC<VaccineIdProps & ILocationProps> = ({
                   Name={item.Name}
                   MinAge={item.MinAge}
                   MinAgeText={item.MinAgeText}
+                  IsSpecial={item.IsSpecial}
                   VaccineId={item.VaccineId}
                   renderList={forceRender}
+                  
                 />
               </React.Fragment>
             ))
