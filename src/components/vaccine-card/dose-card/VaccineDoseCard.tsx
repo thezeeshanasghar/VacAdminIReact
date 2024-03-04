@@ -46,7 +46,7 @@ const VaccineDoseCard: React.FC<IDoseDataWithMt> = ({
               routerLink={`/members/vaccine/${VaccineId}/doses/edit/${Id}?doseName=${Name.replace(
                 "#",
                 "-"
-              )}&minAge=${MinAge}&isSpecial=${IsSpecial}`}
+              )}&minAge=${MinAge}&isSpecial=${IsSpecial}&minAgeText=${MinAgeText}`}
               routerDirection="root"
               id={`dosee${Id}`}
             >

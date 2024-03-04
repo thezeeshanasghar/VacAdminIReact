@@ -52,7 +52,8 @@ const EditDoses: React.FC<IParam> = ({
     const VaccineInfinite = searchParams.get("minGap");
     const checkSpecial = searchParams.get("isSpecial");
     const isSpecial = checkSpecial === "true" ? true : false;
-    console.log(isSpecial);
+    const minAgeTxt=searchParams.get('minAgeText')
+
 
     // Initial values
     const initialIsSpecial = VaccineIsSpecial;
@@ -65,23 +66,51 @@ const EditDoses: React.FC<IParam> = ({
     //@ts-ignore
     setIsSpecial(isSpecial);
   }, [search]);
+  const searchParams = new URLSearchParams(search);
+  const VaccineName = searchParams.get("doseName");
+  const VaccineIsSpecial = parseInt(searchParams.get("minAge")!, 10);
+
+  
+  const checkSpecial = searchParams.get("isSpecial");
+  const isSpecial = checkSpecial === "true" ? true : false;
+  const minAgeTxt=searchParams.get('minAgeText')
   const [Name, setName] = useState("");
-  const [MinAge, setMinAge] = useState({ value: 0, text: "" });
+  const [MinAge, setMinAge] = useState({ value: VaccineIsSpecial, text: minAgeTxt});
   // const [MinGap, setMinGap] = useState("");
   //states varibale for alert, succesMsg and errorMsg
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   // form submit handler
+  
+  const handleSelectChange = (event: any) => {
+    localStorage.removeItem('selectedMinAge');
+    const selectedValue = event.detail.value;
+    const selectedText = event.target.querySelector(
+      `ion-select-option[value="${selectedValue}"]`
+    ).textContent;
+    console.log(selectedText)
+    console.log(selectedValue)
+    setMinAge(selectedValue);
+    localStorage.setItem('selectedMinAge', JSON.stringify({ value: selectedValue, text: selectedText }));
+  };
+
+
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShowLoading(true);
+   const storedMinAge=localStorage.getItem('selectedMinAge')
+   //@ts-ignore
+   const { value, text } = JSON.parse(storedMinAge);
     const dataTobeSent = {
       id: doseId,
       Name,
-      MinAge,
-      minAgeText: MinAge.text,
+      MinAge:value,
+      minAgeText: text,
       IsSpecial,
     };
+    localStorage.clear
+    console.log(dataTobeSent)
     const url = `${import.meta.env.VITE_API_URL}api/Dose/${doseId}`;
     try {
       const response = await fetch(url, {
@@ -102,13 +131,6 @@ const EditDoses: React.FC<IParam> = ({
       setName("");
       setMinAge({ value: 0, text: "" });
     }
-  };
-  const handleSelectChange = (event: any) => {
-    const selectedValue = event.detail.value;
-    const selectedText = event.target.querySelector(
-      `ion-select-option[value="${selectedValue}"]`
-    ).textContent;
-    setMinAge({ value: selectedValue, text: selectedText });
   };
   const canSubmit = Name.length > 0 && MinAge?.value > 0;
   return (
